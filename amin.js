@@ -2383,7 +2383,7 @@ break
 	        case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, 'apikey'))
+                let anu = await getbuffer('http://cdn-29.lovetik.com/tiktok-file.php?file=jaL%2FF1PZO6WlANmYGMox3kw%2Bc10iRwHU%2B0T6gNxKr8rd0G3QDezuujDYbGDv3uA%2F6AvgjVf8RNRYxbh14%2Bek3xWsAnReCSpPvuYRVD2wVLzxzMMeTCpXo8Wk2vuEqQqUlDsHE1dwk38CLbe%2FIGUIKRVwb7Fww67HWpRxGweiFI0UAmkVSuvCFNBSH4lnVo9bA1kBIai07LHGloZBMcn4wmgtDneaWydpi09vUXImuqez&finfo=g7jqCkXeWOWyFeTfB405xU5%2BKFhkGl%2BS9FrzjMwBoKScz3PcFa%2BO%2BW2MVj%2Be2vQ2uF311B %2BsHoBczLh9uA%3D%3D')
                 let buttons = [
                     {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1},
                     {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
