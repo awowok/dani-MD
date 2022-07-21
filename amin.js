@@ -62,7 +62,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
     	const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
     	const isPremium = isCreator || global.premium.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || false
         const reply = (teks) => {
-  hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `${ucapan()} ${pushname}`,"body": `Asrori Amin🤗`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./lib/Dani.jpg'),"sourceUrl": "asroriamin.my.id"}}}, { quoted: m})
+  hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `${ucapan()} ${pushname}`,"body": `Asrori Amin🤗`, "previewType": "PHOTO","https://telegra.ph/file/166934a2c7ec3133bdeff.jpg": ``,"thumbnail": fs.readFileSync(`./lib/Dani.jpg'),"sourceUrl": "asroriamin.my.id"}}}, { quoted: m})
 }
 	
 	
