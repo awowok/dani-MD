@@ -10,11 +10,12 @@ const chalk = require('chalk')
 // Website Api
 global.APIs = {
 	zenz: 'https://zenzapis.xyz',
+	amin: 'https://myhuman.herokuapp.com/',
 }
 
 // Apikey Website Api
 global.APIKeys = {
-	'https://zenzapis.xyz': 'Your Key',
+	'https://zenzapis.xyz': 'https://myhuman.herokuapp.com/',
 }
 
 // Other
