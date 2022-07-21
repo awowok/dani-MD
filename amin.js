@@ -1410,7 +1410,7 @@ break
 if (isBan) return m.reply(mess.ban)
 if (!isCreator) return m.reply(mess.owner)
 if (!m.quoted) return m.reply(`*Reply Media Dengan Kunci ${command} video|teks\n\nList:\n\n1. video\n2. image\n3. butvd\n4. butima*`)
-let getGroups = await rzki.groupFetchAllParticipating()
+let getGroups = await hisoka.groupFetchAllParticipating()
 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
 let anu = groups.map(v => v.id)
 let media = await quoted.download()
@@ -1421,7 +1421,7 @@ var logo9 = inilogo9.split('|')[1]
 m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 2.5} detik`)
 for (let i of anu) {
 await sleep(2500)
-let txt = `❏  *B R O A D C A S T*\n\n${logo9}`
+let txt = `❏  *B R O A D C A S T*\n\nAminBot`
 if (logo4 == `video`) {
 hisoka.sendMessage(i, {caption:txt, video:media, mentions:participants.map(a => a.id)})
 } else if (logo4 == `image`) {
