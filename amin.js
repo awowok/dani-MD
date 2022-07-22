@@ -61,9 +61,6 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
     	const isBotAdmins = m.isGroup ? groupAdmins.includes(botNumber) : false
     	const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
     	const isPremium = isCreator || global.premium.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || false
-        const reply = (teks) => {
-  hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `${ucapan()} ${pushname}`,"body": `Asrori Amin🤗`, "previewType": "PHOTO","https://telegra.ph/file/166934a2c7ec3133bdeff.jpg": ``,"thumbnail": fs.readFileSync(`./lib/Dani.jpg'),"sourceUrl": "asroriamin.my.id"}}}, { quoted: m})
-}
 	
 	
 	try {
@@ -153,15 +150,15 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
 	  // Anti Link
         if (db.data.chats[m.chat].antilink) {
         if (budy.match(`chat.whatsapp.com`)) {
-        reply(`「 ANTI LINK 」\n\nKamu terdeteksi mengirim link group, maaf kamu akan di Tendang Dari Group
+        m.reply(`「 ANTI LINK 」\n\nKamu terdeteksi mengirim link group, maaf kamu akan di Tendang Dari Group
 	!`)
-        if (!isBotAdmins) return reply(`Maaf bot Bukan admin Group T_T`)
+        if (!isBotAdmins) return m.reply(`Maaf bot Bukan admin Group T_T`)
         let gclink = (`https://chat.whatsapp.com/`+await hisoka.groupInviteCode(m.chat))
         let isLinkThisGc = new RegExp(gclink, 'i')
         let isgclink = isLinkThisGc.test(m.text)
-        if (isgclink) return reply(`Ehh Soryy Kamu gak jadi DiKick, karena kamu ngirim link group ini`)
-        if (isAdmins) return reply(`Ehh Soryy kamu admin Group`)
-        if (isCreator) return reply(`Soryy Bg kamu kn Owner BotKu`)
+        if (isgclink) return m.reply(`Ehh Soryy Kamu gak jadi DiKick, karena kamu ngirim link group ini`)
+        if (isAdmins) return m.reply(`Ehh Soryy kamu admin Group`)
+        if (isCreator) return m.reply(`Soryy Bg kamu kn Owner BotKu`)
         hisoka.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
         }
         }
@@ -219,16 +216,16 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             if (budy.toLowerCase() == jawaban) {
                 await hisoka.sendButtonText(m.chat, [{ buttonId: 'tebak lagu', buttonText: { displayText: 'Tebak Lagu' }, type: 1 }], `🎮 Tebak Lagu 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, hisoka.user.name, m)
                 delete tebaklagu[m.sender.split('@')[0]]
-            } else reply('*Jawaban Salah!*')
+            } else m.reply('*Jawaban Salah!*')
         }
 
         if (kuismath.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
             kuis = true
             jawaban = kuismath[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await reply(`🎮 Kuis Matematika  🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? kirim ${prefix}math mode`)
+                await m.reply(`🎮 Kuis Matematika  🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? kirim ${prefix}math mode`)
                 delete kuismath[m.sender.split('@')[0]]
-            } else reply('*Jawaban Salah!*')
+            } else m.reply('*Jawaban Salah!*')
         }
 
         if (tebakgambar.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
@@ -237,7 +234,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             if (budy.toLowerCase() == jawaban) {
                 await hisoka.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `🎮 Tebak Gambar 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, hisoka.user.name, m)
                 delete tebakgambar[m.sender.split('@')[0]]
-            } else reply('*Jawaban Salah!*')
+            } else m.reply('*Jawaban Salah!*')
         }
 
         if (tebakkata.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
@@ -246,7 +243,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             if (budy.toLowerCase() == jawaban) {
                 await hisoka.sendButtonText(m.chat, [{ buttonId: 'tebak kata', buttonText: { displayText: 'Tebak Kata' }, type: 1 }], `🎮 Tebak Kata 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, hisoka.user.name, m)
                 delete tebakkata[m.sender.split('@')[0]]
-            } else reply('*Jawaban Salah!*')
+            } else m.reply('*Jawaban Salah!*')
         }
 
         if (caklontong.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
@@ -257,7 +254,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
                 await hisoka.sendButtonText(m.chat, [{ buttonId: 'tebak lontong', buttonText: { displayText: 'Tebak Lontong' }, type: 1 }], `🎮 Cak Lontong 🎮\n\nJawaban Benar 🎉\n*${deskripsi}*\n\nIngin bermain lagi? tekan button dibawah`, hisoka.user.name, m)
                 delete caklontong[m.sender.split('@')[0]]
 		delete caklontong_desk[m.sender.split('@')[0]]
-            } else reply('*Jawaban Salah!*')
+            } else m.reply('*Jawaban Salah!*')
         }
 
         if (tebakkalimat.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
@@ -266,7 +263,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             if (budy.toLowerCase() == jawaban) {
                 await hisoka.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { displayText: 'Tebak Kalimat' }, type: 1 }], `🎮 Tebak Kalimat 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, hisoka.user.name, m)
                 delete tebakkalimat[m.sender.split('@')[0]]
-            } else reply('*Jawaban Salah!*')
+            } else m.reply('*Jawaban Salah!*')
         }
 
         if (tebaklirik.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
@@ -275,7 +272,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             if (budy.toLowerCase() == jawaban) {
                 await hisoka.sendButtonText(m.chat, [{ buttonId: 'tebak lirik', buttonText: { displayText: 'Tebak Lirik' }, type: 1 }], `🎮 Tebak Lirik 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, hisoka.user.name, m)
                 delete tebaklirik[m.sender.split('@')[0]]
-            } else reply('*Jawaban Salah!*')
+            } else m.reply('*Jawaban Salah!*')
         }
 	    
 	if (tebaktebakan.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
@@ -284,7 +281,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             if (budy.toLowerCase() == jawaban) {
                 await hisoka.sendButtonText(m.chat, [{ buttonId: 'tebak tebakan', buttonText: { displayText: 'Tebak Tebakan' }, type: 1 }], `🎮 Tebak Tebakan 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, hisoka.user.name, m)
                 delete tebaktebakan[m.sender.split('@')[0]]
-            } else reply('*Jawaban Salah!*')
+            } else m.reply('*Jawaban Salah!*')
         }
         
         //TicTacToe
@@ -295,14 +292,14 @@ ${Array.from(room.jawaban, (jawaban, index) => {
 	    let isWin = !1
 	    let isTie = !1
 	    let isSurrender = !1
-	    // reply(`[DEBUG]\n${parseInt(m.text)}`)
+	    // m.reply(`[DEBUG]\n${parseInt(m.text)}`)
 	    if (!/^([1-9]|(me)?nyerah|surr?ender|off|skip)$/i.test(m.text)) return
 	    isSurrender = !/^[1-9]$/.test(m.text)
 	    if (m.sender !== room.game.currentTurn) { // nek wayahku
 	    if (!isSurrender) return !0
 	    }
 	    if (!isSurrender && 1 > (ok = room.game.turn(m.sender === room.game.playerO, parseInt(m.text) - 1))) {
-	    reply({
+	    m.reply({
 	    '-3': 'Game telah berakhir',
 	    '-2': 'Invalid',
 	    '-1': 'Posisi Invalid',
@@ -396,13 +393,13 @@ klik https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] }
 	    if (jwb && reg.test(m.text) && !roof.pilih && !m.isGroup) {
 	    roof.pilih = reg.exec(m.text.toLowerCase())[0]
 	    roof.text = m.text
-	    reply(`Kamu telah memilih ${m.text} ${!roof.pilih2 ? `\n\nMenunggu lawan memilih` : ''}`)
+	    m.reply(`Kamu telah memilih ${m.text} ${!roof.pilih2 ? `\n\nMenunggu lawan memilih` : ''}`)
 	    if (!roof.pilih2) hisoka.sendText(roof.p2, '_Lawan sudah memilih_\nSekarang giliran kamu', 0)
 	    }
 	    if (jwb2 && reg.test(m.text) && !roof.pilih2 && !m.isGroup) {
 	    roof.pilih2 = reg.exec(m.text.toLowerCase())[0]
 	    roof.text2 = m.text
-	    reply(`Kamu telah memilih ${m.text} ${!roof.pilih ? `\n\nMenunggu lawan memilih` : ''}`)
+	    m.reply(`Kamu telah memilih ${m.text} ${!roof.pilih ? `\n\nMenunggu lawan memilih` : ''}`)
 	    if (!roof.pilih) hisoka.sendText(roof.p, '_Lawan sudah memilih_\nSekarang giliran kamu', 0)
 	    }
 	    let stage = roof.pilih
@@ -432,7 +429,7 @@ klik https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] }
             let afkTime = user.afkTime
             if (!afkTime || afkTime < 0) continue
             let reason = user.afkReason || ''
-            reply(`
+            m.reply(`
 Jangan tag dia!
 Dia sedang AFK ${reason ? 'dengan alasan ' + reason : 'tanpa alasan'}
 Selama ${clockString(new Date - afkTime)}
@@ -452,7 +449,7 @@ Selama ${clockString(new Date - user.afkTime)}`)
                 let user = global.db.data.users[m.sender]
                 user.afkTime = + new Date
                 user.afkReason = text
-                reply(`${m.pushName} Telah Afk${text ? ': ' + text : ''}`)
+                m.reply(`${m.pushName} Telah Afk${text ? ': ' + text : ''}`)
             }
             break	
         case 'ttc': case 'ttt': case 'tictactoe': {
@@ -461,7 +458,7 @@ Selama ${clockString(new Date - user.afkTime)}`)
             if (Object.values(this.game).find(room => room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender))) throw 'Kamu masih didalam game'
             let room = Object.values(this.game).find(room => room.state === 'WAITING' && (text ? room.name === text : true))
             if (room) {
-            reply('Partner ditemukan!')
+            m.reply('Partner ditemukan!')
             room.o = m.chat
             room.game.playerO = m.sender
             room.state = 'PLAYING'
@@ -500,7 +497,7 @@ Ketik *nyerah* untuk menyerah dan mengakui kekalahan`
             state: 'WAITING'
             }
             if (text) room.name = text
-            reply('Menunggu partner' + (text ? ` mengetik command dibawah ini ${prefix}${command} ${text}` : ''))
+            m.reply('Menunggu partner' + (text ? ` mengetik command dibawah ini ${prefix}${command} ${text}` : ''))
             this.game[room.id] = room
             }
             }
@@ -509,7 +506,7 @@ Ketik *nyerah* untuk menyerah dan mengakui kekalahan`
             let roomnya = Object.values(this.game).find(room => room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender))
             if (!roomnya) throw `Kamu sedang tidak berada di room tictactoe !`
             delete this.game[roomnya.id]
-            reply(`Berhasil delete session room tictactoe !`)
+            m.reply(`Berhasil delete session room tictactoe !`)
             }
             break
             case 'suitpvp': case 'suit': {
@@ -517,9 +514,9 @@ Ketik *nyerah* untuk menyerah dan mengakui kekalahan`
             let poin = 10
             let poin_lose = 10
             let timeout = 60000
-            if (Object.values(this.suit).find(roof => roof.id.startsWith('suit') && [roof.p, roof.p2].includes(m.sender))) reply(`Selesaikan suit mu yang sebelumnya`)
-	    if (m.mentionedJid[0] === m.sender) return reply(`Tidak bisa bermain dengan diri sendiri !`)
-            if (!m.mentionedJid[0]) return reply(`_Siapa yang ingin kamu tantang?_\nTag orangnya..\n\nContoh : ${prefix}suit @${owner[1]}`, m.chat, { mentions: [owner[1] + '@s.whatsapp.net'] })
+            if (Object.values(this.suit).find(roof => roof.id.startsWith('suit') && [roof.p, roof.p2].includes(m.sender))) m.reply(`Selesaikan suit mu yang sebelumnya`)
+	    if (m.mentionedJid[0] === m.sender) return m.reply(`Tidak bisa bermain dengan diri sendiri !`)
+            if (!m.mentionedJid[0]) return m.reply(`_Siapa yang ingin kamu tantang?_\nTag orangnya..\n\nContoh : ${prefix}suit @${owner[1]}`, m.chat, { mentions: [owner[1] + '@s.whatsapp.net'] })
             if (Object.values(this.suit).find(roof => roof.id.startsWith('suit') && [roof.p, roof.p2].includes(m.mentionedJid[0]))) throw `Orang yang kamu tantang sedang bermain suit bersama orang lain :(`
             let id = 'suit_' + new Date() * 1
             let caption = `_*SUIT PvP*_
@@ -590,25 +587,25 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isCreator) throw mess.owner
                 if (!q) throw 'Option : 1. mute\n2. unmute\n3. archive\n4. unarchive\n5. read\n6. unread\n7. delete'
                 if (args[0] === 'mute') {
-                    hisoka.chatModify({ mute: 'Infinity' }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    hisoka.chatModify({ mute: 'Infinity' }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'unmute') {
-                    hisoka.chatModify({ mute: null }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    hisoka.chatModify({ mute: null }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'archive') {
-                    hisoka.chatModify({  archive: true }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    hisoka.chatModify({  archive: true }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'unarchive') {
-                    hisoka.chatModify({ archive: false }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    hisoka.chatModify({ archive: false }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'read') {
-                    hisoka.chatModify({ markRead: true }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    hisoka.chatModify({ markRead: true }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'unread') {
-                    hisoka.chatModify({ markRead: false }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    hisoka.chatModify({ markRead: false }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'delete') {
-                    hisoka.chatModify({ clear: { message: { id: m.quoted.id, fromMe: true }} }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    hisoka.chatModify({ clear: { message: { id: m.quoted.id, fromMe: true }} }, m.chat, []).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 }
             }
             break
 	    case 'family100': {
                 if ('family100'+m.chat in _family100) {
-                    reply('Masih Ada Sesi Yang Belum Diselesaikan!')
+                    m.reply('Masih Ada Sesi Yang Belum Diselesaikan!')
                     throw false
                 }
                 let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/family100.json')
@@ -627,7 +624,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             if (!m.quoted && !text) throw `Kirim/reply text dengan caption ${prefix + command}`
             ter = command[1].toLowerCase()
             tex = m.quoted ? m.quoted.text ? m.quoted.text : q ? q : m.text : q ? q : m.text
-            reply(tex.replace(/[aiueo]/g, ter).replace(/[AIUEO]/g, ter.toUpperCase()))
+            m.reply(tex.replace(/[aiueo]/g, ter).replace(/[AIUEO]/g, ter.toUpperCase()))
             break
             case 'tebak': {
                 if (!text) throw `Example : ${prefix + command} lagu\n\nOption : \n1. lagu\n2. gambar\n3. kata\n4. kalimat\n5. lirik\n6.lontong`
@@ -726,7 +723,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 await sleep(result.waktu)
                 if (kuismath.hasOwnProperty(m.sender.split('@')[0])) {
                     console.log("Jawaban: " + result.jawaban)
-                    reply("Waktu Habis\nJawaban: " + kuismath[m.sender.split('@')[0]])
+                    m.reply("Waktu Habis\nJawaban: " + kuismath[m.sender.split('@')[0]])
                     delete kuismath[m.sender.split('@')[0]]
                 }
             }
@@ -776,14 +773,14 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isCreator) throw mess.owner
                 if (!text) throw 'Masukkan Link Group!'
                 if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw 'Link Invalid!'
-                reply(mess.wait)
+                m.reply(mess.wait)
                 let result = args[0].split('https://chat.whatsapp.com/')[1]
-                await hisoka.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                await hisoka.groupAcceptInvite(result).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
             }
             break
             case 'leave': {
                 if (!isCreator) throw mess.owner
-                await hisoka.groupLeave(m.chat).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                await hisoka.groupLeave(m.chat).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
             }
             break
             case 'setexif': {
@@ -791,7 +788,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                if (!text) throw `Example : ${prefix + command} packname|author`
           global.packname = text.split("|")[0]
           global.author = text.split("|")[1]
-          reply(`Exif berhasil diubah menjadi\n\n⭔ Packname : ${global.packname}\n⭔ Author : ${global.author}`)
+          m.reply(`Exif berhasil diubah menjadi\n\n⭔ Packname : ${global.packname}\n⭔ Author : ${global.author}`)
             }
             break
 	case 'kick': {
@@ -799,7 +796,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await hisoka.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+		await hisoka.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
 	case 'add': {
@@ -807,7 +804,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await hisoka.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+		await hisoka.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
 	case 'promote': {
@@ -815,7 +812,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await hisoka.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+		await hisoka.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
 	case 'demote': {
@@ -823,19 +820,19 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await hisoka.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+		await hisoka.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
         case 'block': {
 		if (!isCreator) throw mess.owner
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await hisoka.updateBlockStatus(users, 'block').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+		await hisoka.updateBlockStatus(users, 'block').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
         case 'unblock': {
 		if (!isCreator) throw mess.owner
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await hisoka.updateBlockStatus(users, 'unblock').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+		await hisoka.updateBlockStatus(users, 'unblock').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
 	    case 'setname': case 'setsubject': {
@@ -843,7 +840,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
                 if (!text) throw 'Text ?'
-                await hisoka.groupUpdateSubject(m.chat, text).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
+                await hisoka.groupUpdateSubject(m.chat, text).then((res) => m.reply(mess.success)).catch((err) => m.reply(jsonformat(err)))
             }
             break
           case 'setdesc': case 'setdesk': {
@@ -851,14 +848,14 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
                 if (!text) throw 'Text ?'
-                await hisoka.groupUpdateDescription(m.chat, text).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
+                await hisoka.groupUpdateDescription(m.chat, text).then((res) => m.reply(mess.success)).catch((err) => m.reply(jsonformat(err)))
             }
             break
           case 'setppbot': {
-            if (!isCreator) return reply(mess.owner)
-            if (!quoted) return reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
-            if (!/image/.test(mime)) return reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
-            if (/webp/.test(mime)) return reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
+            if (!isCreator) return m.reply(mess.owner)
+            if (!quoted) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
+            if (!/image/.test(mime)) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
+            if (/webp/.test(mime)) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
             var media = await hisoka.downloadAndSaveMediaMessage(quoted, 'ppbot.jpeg')
             if (args[0] == `'panjang'`) {
             var { img } = await generateProfilePicture(media)
@@ -878,20 +875,20 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             ]
             })
             fs.unlinkSync(media)
-            reply(`Sukses`)
+            m.reply(`Sukses`)
             } else {
             var data = await hisoka.updateProfilePicture(botNumber, { url: media })
             fs.unlinkSync(media)
-            reply(`Sukses`)
+            m.reply(`Sukses`)
             }
             }
                 break
            case 'setppgroup': case 'setppgrup': case 'setppgc': {
-                if (!m.isGroup) return reply(mess.group)
-                if (!isAdmins && !isCreator) return reply(mess.admin)
-                if (!quoted) return reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
-                if (!/image/.test(mime)) return reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
-                if (/webp/.test(mime)) return reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
+                if (!m.isGroup) return m.reply(mess.group)
+                if (!isAdmins && !isCreator) return m.reply(mess.admin)
+                if (!quoted) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
+                if (!/image/.test(mime)) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
+                if (/webp/.test(mime)) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
                 var media = await hisoka.downloadAndSaveMediaMessage(quoted, 'ppbot.jpeg')
                 if (args[0] == `'panjang'`) {
                 var { img } = await generateProfilePicture(media)
@@ -911,11 +908,11 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 ]
                 })
                 fs.unlinkSync(media)
-                reply(`Sukses`)
+                m.reply(`Sukses`)
                 } else {
                 var data = await hisoka.updateProfilePicture(m.chat, { url: media })
                 fs.unlinkSync(media)
-                reply(`Sukses`)
+                m.reply(`Sukses`)
                 }
                 }
                 break
@@ -953,7 +950,7 @@ let teks = `══✪〘 *👥 Tag All* 〙✪══
                }
                break
 	    case 'style': case 'styletext': {
-	        if (!isPremium && global.db.data.users[m.sender].limit < 1) return reply(mess.endLimit) // respon ketika limit habis
+	        if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 		db.data.users[m.sender].limit -= 1 // -1 limit
 		let { styletext } = require('./lib/scraper')
 		if (!text) throw 'Masukkan Query text!'
@@ -962,14 +959,14 @@ let teks = `══✪〘 *👥 Tag All* 〙✪══
                 for (let i of anu) {
                     teks += `⭔ *${i.name}* : ${i.result}\n\n`
                 }
-                reply(teks)
+                m.reply(teks)
 	    }
 	    break
                case 'vote': {
             if (!m.isGroup) throw mess.group
             if (m.chat in vote) throw `_Masih ada vote di chat ini!_\n\n*${prefix}hapusvote* - untuk menghapus vote`
             if (!text) throw `Masukkan Alasan Melakukan Vote, Example: *${prefix + command} Owner Ganteng*`
-            reply(`Vote dimulai!\n\n*${prefix}upvote* - untuk ya\n*${prefix}devote* - untuk tidak\n*${prefix}cekvote* - untuk mengecek vote\n*${prefix}hapusvote* - untuk menghapus vote`)
+            m.reply(`Vote dimulai!\n\n*${prefix}upvote* - untuk ya\n*${prefix}devote* - untuk tidak\n*${prefix}cekvote* - untuk mengecek vote\n*${prefix}hapusvote* - untuk menghapus vote`)
             vote[m.chat] = [q, [], []]
             await sleep(1000)
             upvote = vote[m.chat][1]
@@ -1124,7 +1121,7 @@ break
             if (!m.isGroup) throw mess.group
             if (!(m.chat in vote)) throw `_*tidak ada voting digrup ini!*_\n\n*${prefix}vote* - untuk memulai vote`
             delete vote[m.chat]
-            reply('Berhasil Menghapus Sesi Vote Di Grup Ini')
+            m.reply('Berhasil Menghapus Sesi Vote Di Grup Ini')
 	    }
             break
                case 'group': case 'grup': {
@@ -1132,9 +1129,9 @@ break
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
                 if (args[0] === 'close'){
-                    await hisoka.groupSettingUpdate(m.chat, 'announcement').then((res) => reply(`Sukses Menutup Group`)).catch((err) => reply(jsonformat(err)))
+                    await hisoka.groupSettingUpdate(m.chat, 'announcement').then((res) => m.reply(`Sukses Menutup Group`)).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'open'){
-                    await hisoka.groupSettingUpdate(m.chat, 'not_announcement').then((res) => reply(`Sukses Membuka Group`)).catch((err) => reply(jsonformat(err)))
+                    await hisoka.groupSettingUpdate(m.chat, 'not_announcement').then((res) => m.reply(`Sukses Membuka Group`)).catch((err) => m.reply(jsonformat(err)))
                 } else {
                 let buttons = [
                         { buttonId: 'group open', buttonText: { displayText: 'Open' }, type: 1 },
@@ -1150,9 +1147,9 @@ break
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
              if (args[0] === 'open'){
-                await hisoka.groupSettingUpdate(m.chat, 'unlocked').then((res) => reply(`Sukses Membuka Edit Info Group`)).catch((err) => reply(jsonformat(err)))
+                await hisoka.groupSettingUpdate(m.chat, 'unlocked').then((res) => m.reply(`Sukses Membuka Edit Info Group`)).catch((err) => m.reply(jsonformat(err)))
              } else if (args[0] === 'close'){
-                await hisoka.groupSettingUpdate(m.chat, 'locked').then((res) => reply(`Sukses Menutup Edit Info Group`)).catch((err) => reply(jsonformat(err)))
+                await hisoka.groupSettingUpdate(m.chat, 'locked').then((res) => m.reply(`Sukses Menutup Edit Info Group`)).catch((err) => m.reply(jsonformat(err)))
              } else {
              let buttons = [
                         { buttonId: 'editinfo open', buttonText: { displayText: 'Open' }, type: 1 },
@@ -1168,13 +1165,13 @@ break
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
                 if (args[0] === "on") {
-                if (db.data.chats[m.chat].antilink) return reply(`Sudah Aktif Sebelumnya`)
+                if (db.data.chats[m.chat].antilink) return m.reply(`Sudah Aktif Sebelumnya`)
                 db.data.chats[m.chat].antilink = true
-                reply(`Antilink Berhasil Di Aktifin !`)
+                m.reply(`Antilink Berhasil Di Aktifin !`)
                 } else if (args[0] === "off") {
-                if (!db.data.chats[m.chat].antilink) return reply(`Sudah Tidak Aktif Sebelumnya`)
+                if (!db.data.chats[m.chat].antilink) return m.reply(`Sudah Tidak Aktif Sebelumnya`)
                 db.data.chats[m.chat].antilink = false
-                reply(`Antilink Berhasil Di Matikan !`)
+                m.reply(`Antilink Berhasil Di Matikan !`)
                 } else {
                  let buttons = [
                         { buttonId: 'antilink on', buttonText: { displayText: 'On' }, type: 1 },
@@ -1189,13 +1186,13 @@ break
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
                 if (args[0] === "on") {
-                if (db.data.chats[m.chat].mute) return reply(`Sudah Aktif Sebelumnya`)
+                if (db.data.chats[m.chat].mute) return m.reply(`Sudah Aktif Sebelumnya`)
                 db.data.chats[m.chat].mute = true
-                reply(`${hisoka.user.name} telah di mute di group ini !`)
+                m.reply(`${hisoka.user.name} telah di mute di group ini !`)
                 } else if (args[0] === "off") {
-                if (!db.data.chats[m.chat].mute) return reply(`Sudah Tidak Aktif Sebelumnya`)
+                if (!db.data.chats[m.chat].mute) return m.reply(`Sudah Tidak Aktif Sebelumnya`)
                 db.data.chats[m.chat].mute = false
-                reply(`${hisoka.user.name} telah di unmute di group ini !`)
+                m.reply(`${hisoka.user.name} telah di unmute di group ini !`)
                 } else {
                  let buttons = [
                         { buttonId: 'mute on', buttonText: { displayText: 'On' }, type: 1 },
@@ -1217,13 +1214,13 @@ break
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
                 if (args[0] === '1') {
-                    await hisoka.groupToggleEphemeral(m.chat, 1*24*3600).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    await hisoka.groupToggleEphemeral(m.chat, 1*24*3600).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === '7') {
-                    await hisoka.groupToggleEphemeral(m.chat, 7*24*3600).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    await hisoka.groupToggleEphemeral(m.chat, 7*24*3600).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === '90') {
-                    await hisoka.groupToggleEphemeral(m.chat, 90*24*3600).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    await hisoka.groupToggleEphemeral(m.chat, 90*24*3600).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'off') {
-                    await hisoka.groupToggleEphemeral(m.chat, 0).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    await hisoka.groupToggleEphemeral(m.chat, 0).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
                 } else {
                 let sections = [
                 {
@@ -1244,13 +1241,13 @@ break
             if (!isCreator) throw mess.owner
                 let ciko = db.data.settings[botNumber].anticall
                 if (args[0] === "on") {
-                if (ciko) return reply(`Sudah Aktif Sebelumnya`)
+                if (ciko) return m.reply(`Sudah Aktif Sebelumnya`)
                 ciko = true
-                reply(`AntiCall Aktif !`)
+                m.reply(`AntiCall Aktif !`)
                 } else if (args[0] === "off") {
-                if (!ciko) return reply(`Sudah Tidak Aktif Sebelumnya`)
+                if (!ciko) return m.reply(`Sudah Tidak Aktif Sebelumnya`)
                 ciko = false
-                reply(`AntiCall Tidak Aktif !`)
+                m.reply(`AntiCall Tidak Aktif !`)
                 } else {
                  let buttons = [
                         { buttonId: 'anticall on', buttonText: { displayText: 'On' }, type: 1 },
@@ -1320,7 +1317,7 @@ break
                 let getGroups = await hisoka.groupFetchAllParticipating()
                 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
                 let anu = groups.map(v => v.id)
-                reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
                 for (let i of anu) {
                     await sleep(1500)
                     let btn = [{
@@ -1352,14 +1349,14 @@ break
                       let txt = `「 Broadcast Bot 」\n\n${text}`
                       hisoka.send5ButImg(i, txt, hisoka.user.name, global.thumb, btn)
                     }
-                reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }
             break
             case 'bc': case 'broadcast': case 'bcall': {
                 if (!isCreator) throw mess.owner
                 if (!text) throw `Text mana?\n\nExample : ${prefix + command} fatih-san`
                 let anu = await store.chats.all().map(v => v.id)
-                reply(`Mengirim Broadcast Ke ${anu.length} Chat\nWaktu Selesai ${anu.length * 1.5} detik`)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Chat\nWaktu Selesai ${anu.length * 1.5} detik`)
 		for (let yoi of anu) {
 		    await sleep(1500)
             let btn = [{
@@ -1391,11 +1388,11 @@ break
                          let txt = `「 Broadcast Bot 」\n\n${text}`
                       hisoka.send5ButImg(yoi, txt, 'Asrori Amin', global.thumb, btn)
 		}
-		reply('Sukses Broadcast')
+		m.reply('Sukses Broadcast')
             }
             break
             case 'infochat': {
-                if (!m.quoted) reply('Reply Pesan')
+                if (!m.quoted) m.reply('Reply Pesan')
                 let msg = await m.getQuotedObj()
                 if (!m.quoted.isBaileys) throw 'ᴘᴇsᴀɴ ᴛᴇʀsᴇʙᴜᴛ ʙᴜᴋᴀɴ ᴅɪᴋɪʀɪᴍ ᴏʟᴇʜ ʙᴏᴛ!'
                 let teks = ''
@@ -1410,10 +1407,10 @@ break
             }
             break
             case prefix+'bcm': case prefix+'bcmedia': {
-if (isBan) return reply(mess.ban)
-if (!isCreator) return reply(mess.owner)
-if (!m.quoted) return reply(`*Reply Media Dengan Kunci ${command} video|teks\n\nList:\n\n1. video\n2. image\n3. butvd\n4. butima*`)
-let getGroups = await hisoka.groupFetchAllParticipating()
+if (isBan) return m.reply(mess.ban)
+if (!isCreator) return m.reply(mess.owner)
+if (!m.quoted) return m.reply(`*Reply Media Dengan Kunci ${command} video|teks\n\nList:\n\n1. video\n2. image\n3. butvd\n4. butima*`)
+let getGroups = await rzki.groupFetchAllParticipating()
 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
 let anu = groups.map(v => v.id)
 let media = await quoted.download()
@@ -1421,10 +1418,10 @@ inilogo4 = args.join(" ")
 inilogo9 = args.join(" ")
 var logo4 = inilogo4.split('|')[0]
 var logo9 = inilogo9.split('|')[1]
-reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 2.5} detik`)
+m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 2.5} detik`)
 for (let i of anu) {
 await sleep(2500)
-let txt = `❏  *B R O A D C A S T*\n\nAminBot`
+let txt = `❏  *B R O A D C A S T*\n\n${logo9}`
 if (logo4 == `video`) {
 hisoka.sendMessage(i, {caption:txt, video:media, mentions:participants.map(a => a.id)})
 } else if (logo4 == `image`) {
@@ -1438,13 +1435,13 @@ var buttons = [{ urlButton: { displayText: 'WEBSITE', url : 'asroriamin.my.id' }
 }
 //quoted.copyNForward(i, true)
 }
-reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
 }
 break
             case 'q': case 'quoted': {
-		if (!m.quoted) return reply('Reply Pesannya!!')
+		if (!m.quoted) return m.reply('Reply Pesannya!!')
 		let wokwol = await hisoka.serializeM(await m.getQuotedObj())
-		if (!wokwol.quoted) return reply('Pesan Yang anda reply tidak mengandung reply')
+		if (!wokwol.quoted) return m.reply('Pesan Yang anda reply tidak mengandung reply')
 		await wokwol.quoted.copyNForward(m.chat, true)
             }
 	    break
@@ -1476,18 +1473,18 @@ break
              break
             case 'sticker': case 's': case 'stickergif': case 'sgif': {
            if (/image/.test(mime)) {
-           reply(mess.wait)
+           m.reply(mess.wait)
                 let media = await hisoka.downloadMediaMessage(qmsg)
                 let encmedia = await hisoka.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
                 await fs.unlinkSync(encmedia)
             } else if (/video/.test(mime)) {
-            reply(mess.wait)
-                if (qmsg.seconds > 11) return reply('Maksimal 10 detik!')
+            m.reply(mess.wait)
+                if (qmsg.seconds > 11) return m.reply('Maksimal 10 detik!')
                 let media = await hisoka.downloadMediaMessage(qmsg)
                 let encmedia = await hisoka.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
                 await fs.unlinkSync(encmedia)
             } else {
-                reply(`Kirim/reply gambar/video/gif dengan caption ${prefix + command}\nDurasi Video/Gif 1-9 Detik`)
+                m.reply(`Kirim/reply gambar/video/gif dengan caption ${prefix + command}\nDurasi Video/Gif 1-9 Detik`)
                 }
             }
             break
@@ -1495,13 +1492,13 @@ break
                 let [teks1, teks2] = text.split`|`
                 if (!teks1) throw `Kirim/reply image/video dengan caption ${prefix + command} teks1|teks2`
                 if (!teks2) throw `Kirim/reply image/video dengan caption ${prefix + command} teks1|teks2`
-            	reply(mess.wait)
+            	m.reply(mess.wait)
                 if (/image/.test(mime)) {
                     let media = await hisoka.downloadMediaMessage(qmsg)
                     let encmedia = await hisoka.sendImageAsSticker(m.chat, media, m, { packname: teks1, author: teks2 })
                     await fs.unlinkSync(encmedia)
                 } else if (/video/.test(mime)) {
-                    if ((quoted.msg || quoted).seconds > 11) return reply('Maksimal 10 detik!')
+                    if ((quoted.msg || quoted).seconds > 11) return m.reply('Maksimal 10 detik!')
                     let media = await hisoka.downloadMediaMessage(qmsg)
                     let encmedia = await hisoka.sendVideoAsSticker(m.chat, media, m, { packname: teks1, author: teks2 })
                     await fs.unlinkSync(encmedia)
@@ -1514,14 +1511,14 @@ break
             if (!text) throw `Example : ${prefix + command} text`
             let { eBinary } = require('./lib/binary')
             let eb = await eBinary(text)
-            reply(eb)
+            m.reply(eb)
         }
         break
             case 'dbinary': {
             if (!text) throw `Example : ${prefix + command} text`
             let { dBinary } = require('./lib/binary')
             let db = await dBinary(text)
-            reply(db)
+            m.reply(db)
         }
         break
             case 'emojimix': {
@@ -1554,7 +1551,7 @@ break
 	        let respond = `Kirim/reply image/sticker dengan caption ${prefix + command} text1|text2`
 	        if (!/image/.test(mime)) throw respond
             if (!text) throw respond
-	        reply(mess.wait)
+	        m.reply(mess.wait)
             atas = text.split('|')[0] ? text.split('|')[0] : '-'
             bawah = text.split('|')[1] ? text.split('|')[1] : '-'
 	        let dwnld = await hisoka.downloadMediaMessage(qmsg)
@@ -1568,12 +1565,12 @@ break
 	        case 'simih': case 'simisimi': {
             if (!text) throw `Example : ${prefix + command} text`
             hm = await fetchJson(api('zenz', '/api/simisimi', { text : text }, 'apikey'))
-            reply(hm.result.message)
+            m.reply(hm.result.message)
             }
             break
             case 'toimage': case 'toimg': {
                 if (!/webp/.test(mime)) throw `Reply sticker dengan caption *${prefix + command}*`
-                reply(mess.wait)
+                m.reply(mess.wait)
                 let media = await hisoka.downloadAndSaveMediaMessage(qmsg)
                 let ran = await getRandom('.png')
                 exec(`ffmpeg -i ${media} ${ran}`, (err) => {
@@ -1587,7 +1584,7 @@ break
             break
 	        case 'tomp4': case 'tovideo': {
                 if (!/webp/.test(mime)) throw `Reply stiker dengan caption *${prefix + command}*`
-                reply(mess.wait)
+                m.reply(mess.wait)
 		        let { webp2mp4File } = require('./lib/uploader')
                 let media = await hisoka.downloadAndSaveMediaMessage(qmsg)
                 let webpToMp4 = await webp2mp4File(media)
@@ -1597,7 +1594,7 @@ break
             break
             case 'toaud': case 'toaudio': {
             if (!/video/.test(mime) && !/audio/.test(mime)) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan Audio Dengan Caption ${prefix + command}`
-            reply(mess.wait)
+            m.reply(mess.wait)
             let media = await hisoka.downloadMediaMessage(qmsg)
             let { toAudio } = require('./lib/converter')
             let audio = await toAudio(media, 'mp4')
@@ -1606,7 +1603,7 @@ break
             break
             case 'tomp3': {
             if (!/video/.test(mime) && !/audio/.test(mime)) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan MP3 Dengan Caption ${prefix + command}`
-            reply(mess.wait)
+            m.reply(mess.wait)
             let media = await hisoka.downloadMediaMessage(qmsg)
             let { toAudio } = require('./lib/converter')
             let audio = await toAudio(media, 'mp4')
@@ -1615,7 +1612,7 @@ break
             break
             case 'tovn': case 'toptt': {
             if (!/video/.test(mime) && !/audio/.test(mime)) throw `Reply Video/Audio Yang Ingin Dijadikan VN Dengan Caption ${prefix + command}`
-            reply(mess.wait)
+            m.reply(mess.wait)
             let media = await hisoka.downloadMediaMessage(qmsg)
             let { toPTT } = require('./lib/converter')
             let audio = await toPTT(media, 'mp4')
@@ -1624,7 +1621,7 @@ break
             break
             case 'togif': {
                 if (!/webp/.test(mime)) throw `Reply stiker dengan caption *${prefix + command}*`
-                reply(mess.wait)
+                m.reply(mess.wait)
 		        let { webp2mp4File } = require('./lib/uploader')
                 let media = await hisoka.downloadAndSaveMediaMessage(qmsg)
                 let webpToMp4 = await webp2mp4File(media)
@@ -1633,15 +1630,15 @@ break
             }
             break
 	        case 'tourl': {
-                reply(mess.wait)
+                m.reply(mess.wait)
 		let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
                 let media = await hisoka.downloadAndSaveMediaMessage(qmsg)
                 if (/image/.test(mime)) {
                     let anu = await TelegraPh(media)
-                    reply(util.format(anu))
+                    m.reply(util.format(anu))
                 } else if (!/image/.test(mime)) {
                     let anu = await UploadFileUgu(media)
-                    reply(util.format(anu))
+                    m.reply(util.format(anu))
                 }
                 await fs.unlinkSync(media)
             }
@@ -1655,7 +1652,7 @@ break
 	    hmm = await './src/remobg-'+getRandom('')
 	    localFile = await hisoka.downloadAndSaveMediaMessage(qmsg, hmm)
 	    outputFile = await './src/hremo-'+getRandom('.png')
-	    reply(mess.wait)
+	    m.reply(mess.wait)
 	    remobg.removeBackgroundFromImageFile({
 	      path: localFile,
 	      apiKey: apinobg,
@@ -1692,7 +1689,7 @@ break
                 teks += `⭔ *Description* : ${g.snippet}\n`
                 teks += `⭔ *Link* : ${g.link}\n\n────────────────────────\n\n`
                 } 
-                reply(teks)
+                m.reply(teks)
                 })
                 }
                 break
@@ -1752,7 +1749,7 @@ break
                 if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
                 let quality = args[1] ? args[1] : '128kbps'
                 let media = await yta(text, quality)
-                if (media.filesize >= 100000) return reply('File Melebihi Batas '+util.format(media))
+                if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 hisoka.sendImage(m.chat, media.thumb, `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '128kbps'}`, m)
                 hisoka.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
             }
@@ -1762,20 +1759,20 @@ break
                 if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 360p`
                 let quality = args[1] ? args[1] : '360p'
                 let media = await ytv(text, quality)
-                if (media.filesize >= 100000) return reply('File Melebihi Batas '+util.format(media))
+                if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 hisoka.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '360p'}` }, { quoted: m })
             }
             break
 	    case 'getmusic': {
                 let { yta } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} 1`
-                if (!m.quoted) return reply('Reply Pesan')
+                if (!m.quoted) return m.reply('Reply Pesan')
                 if (!m.quoted.isBaileys) throw `Hanya Bisa Membalas Pesan Dari Bot`
 		let urls = quoted.text.match(new RegExp(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed|shorts)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\_-]+)/, 'gi'))
                 if (!urls) throw `Mungkin pesan yang anda reply tidak mengandung result ytsearch`
                 let quality = args[1] ? args[1] : '128kbps'
                 let media = await yta(urls[text - 1], quality)
-                if (media.filesize >= 100000) return reply('File Melebihi Batas '+util.format(media))
+                if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 hisoka.sendImage(m.chat, media.thumb, `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${urls[text - 1]}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '128kbps'}`, m)
                 hisoka.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
             }
@@ -1783,18 +1780,18 @@ break
             case 'getvideo': {
                 let { ytv } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} 1`
-                if (!m.quoted) return reply('Reply Pesan')
+                if (!m.quoted) return m.reply('Reply Pesan')
                 if (!m.quoted.isBaileys) throw `Hanya Bisa Membalas Pesan Dari Bot`
                 let urls = quoted.text.match(new RegExp(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed|shorts)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\_-]+)/, 'gi'))
                 if (!urls) throw `Mungkin pesan yang anda reply tidak mengandung result ytsearch`
                 let quality = args[1] ? args[1] : '360p'
                 let media = await ytv(urls[text - 1], quality)
-                if (media.filesize >= 100000) return reply('File Melebihi Batas '+util.format(media))
+                if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 hisoka.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${urls[text - 1]}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '360p'}` }, { quoted: m })
             }
             break
             case 'pinterest': {
-                reply(mess.wait)
+                m.reply(mess.wait)
 		let { pinterest } = require('./lib/scraper')
                 anu = await pinterest(text)
                 result = anu[Math.floor(Math.random() * anu.length)]
@@ -1802,31 +1799,31 @@ break
             }
             break
 case 'meme': {
-reply(mess.wait)
+m.reply(mess.wait)
 let anu = await getbuffer(`https://api.zacros.my.id/randomimg/meme`)
 hisoka.sendmessage(m.chat, { image: anu, caption: `nih  kak` }, { quoted: m})
 }
 break
 case 'darkjoke': case 'darkjokes': {
-reply(mess.wait)
+m.reply(mess.wait)
 let anu = await getbuffer(`https://api.zacros.my.id/randomimg/darkjokes`)
 hisoka.sendmessage(m.chat, { image: anu, caption: `nih  kak` }, { quoted: m})
 }
 break
 case 'darkmeme': {
-reply(mess.wait)
+m.reply(mess.wait)
 let anu = await getbuffer(`https://hardianto.xyz/api/darkmeme?apikey=hardianto`)
 hisoka.sendmessage(m.chat, { image: anu, caption: `nih  kak` }, { quoted: m})
 }
 break
 case 'memeindo': {
-reply(mess.wait)
+m.reply(mess.wait)
 let anu = await getbuffer(`https://api.lolhuman.xyz/api/meme/memeindo?apikey=your apikey`)
 hisoka.sendmessage(m.chat, { image: anu, caption: `nih  kak` }, { quoted: m})
 }
 break 
             case 'anime': case 'waifu': case 'husbu': case 'neko': case 'shinobu': case 'megumin': case 'waifus': case 'nekos': case 'trap': case 'blowjob': {
-                reply(mess.wait)
+                m.reply(mess.wait)
                 hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/api/random/'+command, {}, 'apikey') }, caption: 'Generate Random ' + command }, { quoted: m })
             }
             break
@@ -1963,7 +1960,7 @@ reply(mess.wait)
                 })
 break   
 	    case 'couple': {
-                reply(mess.wait)
+                m.reply(mess.wait)
                 let anu = await fetchJson('https://raw.githubusercontent.com/iamriz7/kopel_/main/kopel.json')
                 let random = anu[Math.floor(Math.random() * anu.length)]
                 hisoka.sendMessage(m.chat, { image: { url: random.male }, caption: `Couple Male` }, { quoted: m })
@@ -2052,33 +2049,33 @@ break
             break
             case '3dchristmas': case '3ddeepsea': case 'americanflag': case '3dscifi': case '3drainbow': case '3dwaterpipe': case 'halloweenskeleton': case 'sketch': case 'bluecircuit': case 'space': case 'metallic': case 'fiction': case 'greenhorror': case 'transformer': case 'berry': case 'thunder': case 'magma': case '3dcrackedstone': case '3dneonlight': case 'impressiveglitch': case 'naturalleaves': case 'fireworksparkle': case 'matrix': case 'dropwater':  case 'harrypotter': case 'foggywindow': case 'neondevils': case 'christmasholiday': case '3dgradient': case 'blackpink': case 'gluetext': {
                 if (!text) throw `Example : ${prefix + command} text`
-                reply(mess.wait)
+                m.reply(mess.wait)
                 hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/textpro/' + command, { text: text }, 'apikey') }, caption: `Text Pro ${command}` }, { quoted: m})
 	    }
             break
 	    case 'shadow': case 'romantic': case 'smoke': case 'burnpapper': case 'naruto': case 'lovemsg': case 'grassmsg': case 'lovetext': case 'coffecup': case 'butterfly': case 'harrypotter': case 'retrolol': {
                 if (!text) throw 'No Query Text'
-                reply(mess.wait)
+                m.reply(mess.wait)
                 hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/photooxy/' + command, { text: text }, 'apikey') }, caption: `Photo Oxy ${command}` }, { quoted: m })
             }
             break
             case 'ffcover': case 'crossfire': case 'galaxy': case 'glass': case 'neon': case 'beach': case 'blackpink': case 'igcertificate': case 'ytcertificate': {
                 if (!text) throw 'No Query Text'
-                reply(mess.wait)
+                m.reply(mess.wait)
                 hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/ephoto/' + command, { text: text }, 'apikey') }, caption: `Ephoto ${command}` }, { quoted: m })
             }
             break
 	    case 'nomerhoki': case 'nomorhoki': {
                 if (!Number(text)) throw `Example : ${prefix + command} 6288292024190`
                 let anu = await primbon.nomer_hoki(Number(text))
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Nomor HP :* ${anu.message.nomer_hp}\n⭔ *Angka Shuzi :* ${anu.message.angka_shuzi}\n⭔ *Energi Positif :*\n- Kekayaan : ${anu.message.energi_positif.kekayaan}\n- Kesehatan : ${anu.message.energi_positif.kesehatan}\n- Cinta : ${anu.message.energi_positif.cinta}\n- Kestabilan : ${anu.message.energi_positif.kestabilan}\n- Persentase : ${anu.message.energi_positif.persentase}\n⭔ *Energi Negatif :*\n- Perselisihan : ${anu.message.energi_negatif.perselisihan}\n- Kehilangan : ${anu.message.energi_negatif.kehilangan}\n- Malapetaka : ${anu.message.energi_negatif.malapetaka}\n- Kehancuran : ${anu.message.energi_negatif.kehancuran}\n- Persentase : ${anu.message.energi_negatif.persentase}`, m)
             }
             break
             case 'artimimpi': case 'tafsirmimpi': {
                 if (!text) throw `Example : ${prefix + command} belanja`
                 let anu = await primbon.tafsir_mimpi(text)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Mimpi :* ${anu.message.mimpi}\n⭔ *Arti :* ${anu.message.arti}\n⭔ *Solusi :* ${anu.message.solusi}`, m)
             }
             break
@@ -2086,7 +2083,7 @@ break
                 if (!text) throw `Example : ${prefix + command} Dika, 7, 7, 2005, Novia, 16, 11, 2004`
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.ramalan_jodoh(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Nama Anda :* ${anu.message.nama_anda.nama}\n⭔ *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\n⭔ *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\n⭔ *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2094,7 +2091,7 @@ break
                 if (!text) throw `Example : ${prefix + command} Dika, 7, 7, 2005, Novia, 16, 11, 2004`
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.ramalan_jodoh_bali(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Nama Anda :* ${anu.message.nama_anda.nama}\n⭔ *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\n⭔ *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\n⭔ *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2102,7 +2099,7 @@ break
                 if (!text) throw `Example : ${prefix + command} Dika, 7, 7, 2005, Novia, 16, 11, 2004`
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.suami_istri(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Nama Suami :* ${anu.message.suami.nama}\n⭔ *Lahir Suami :* ${anu.message.suami.tgl_lahir}\n⭔ *Nama Istri :* ${anu.message.istri.nama}\n⭔ *Lahir Istri :* ${anu.message.istri.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2110,14 +2107,14 @@ break
                 if (!text) throw `Example : ${prefix + command} Dika, 7, 7, 2005, Novia, 16, 11, 2004`
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.ramalan_cinta(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Nama Anda :* ${anu.message.nama_anda.nama}\n⭔ *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\n⭔ *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\n⭔ *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\n⭔ *Sisi Positif :* ${anu.message.sisi_positif}\n⭔ *Sisi Negatif :* ${anu.message.sisi_negatif}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'artinama': {
                 if (!text) throw `Example : ${prefix + command} Dika Ardianta`
                 let anu = await primbon.arti_nama(text)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Arti :* ${anu.message.arti}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2125,7 +2122,7 @@ break
                 if (!text) throw `Example : ${prefix + command} Dika, 7, 7, 2005`
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.kecocokan_nama(nama, tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Life Path :* ${anu.message.life_path}\n⭔ *Destiny :* ${anu.message.destiny}\n⭔ *Destiny Desire :* ${anu.message.destiny_desire}\n⭔ *Personality :* ${anu.message.personality}\n⭔ *Persentase :* ${anu.message.persentase_kecocokan}`, m)
             }
             break
@@ -2133,7 +2130,7 @@ break
                 if (!text) throw `Example : ${prefix + command} Dika|Novia`
                 let [nama1, nama2] = text.split`|`
                 let anu = await primbon.kecocokan_nama_pasangan(nama1, nama2)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendImage(m.chat,  anu.message.gambar, `⭔ *Nama Anda :* ${anu.message.nama_anda}\n⭔ *Nama Pasangan :* ${anu.message.nama_pasangan}\n⭔ *Sisi Positif :* ${anu.message.sisi_positif}\n⭔ *Sisi Negatif :* ${anu.message.sisi_negatif}`, m)
             }
             break
@@ -2141,7 +2138,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 6, 12, 2020`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.tanggal_jadian_pernikahan(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Tanggal Pernikahan :* ${anu.message.tanggal}\n⭔ *karakteristik :* ${anu.message.karakteristik}`, m)
             }
             break
@@ -2149,7 +2146,7 @@ break
                 if (!ext)throw `Example : ${prefix+ command} 28, 12, 2021`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.sifat_usaha_bisnis(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Lahir :* ${anu.message.hari_lahir}\n⭔ *Usaha :* ${anu.message.usaha}`, m)
             }
             break
@@ -2157,7 +2154,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 7, 7, 2005`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.rejeki_hoki_weton(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Lahir :* ${anu.message.hari_lahir}\n⭔ *Rezeki :* ${anu.message.rejeki}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2165,7 +2162,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 7, 7, 2005`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.pekerjaan_weton_lahir(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Lahir :* ${anu.message.hari_lahir}\n⭔ *Pekerjaan :* ${anu.message.pekerjaan}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2173,7 +2170,7 @@ break
                 if (!text) throw `Example : 7, 7, 2005`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.ramalan_nasib(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Analisa :* ${anu.message.analisa}\n⭔ *Angka Akar :* ${anu.message.angka_akar}\n⭔ *Sifat :* ${anu.message.sifat}\n⭔ *Elemen :* ${anu.message.elemen}\n⭔ *Angka Keberuntungan :* ${anu.message.angka_keberuntungan}`, m)
             }
             break
@@ -2181,7 +2178,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 7, 7, 2005`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.cek_potensi_penyakit(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Analisa :* ${anu.message.analisa}\n⭔ *Sektor :* ${anu.message.sektor}\n⭔ *Elemen :* ${anu.message.elemen}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2189,7 +2186,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 7, 7, 2005`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.arti_kartu_tarot(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendImage(m.chat, anu.message.image, `⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Simbol Tarot :* ${anu.message.simbol_tarot}\n⭔ *Arti :* ${anu.message.arti}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2197,7 +2194,7 @@ break
                 if (!text) throw `Example : ${prefix + command} Dika, 1, 2005\n\nNote : ${prefix + command} Nama, gender, tahun lahir\nGender : 1 untuk laki-laki & 2 untuk perempuan`
                 let [nama, gender, tahun] = text.split`,`
                 let anu = await primbon.perhitungan_feng_shui(nama, gender, tahun)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tahun_lahir}\n⭔ *Gender :* ${anu.message.jenis_kelamin}\n⭔ *Angka Kua :* ${anu.message.angka_kua}\n⭔ *Kelompok :* ${anu.message.kelompok}\n⭔ *Karakter :* ${anu.message.karakter}\n⭔ *Sektor Baik :* ${anu.message.sektor_baik}\n⭔ *Sektor Buruk :* ${anu.message.sektor_buruk}`, m)
             }
             break
@@ -2205,7 +2202,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 7, 7, 2005`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.petung_hari_baik(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Kala Tinantang :* ${anu.message.kala_tinantang}\n⭔ *Info :* ${anu.message.info}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2213,7 +2210,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 7, 7, 2005`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.hari_sangar_taliwangke(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Info :* ${anu.message.info}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2221,7 +2218,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 7, 7, 2005`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.primbon_hari_naas(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Hari Lahir :* ${anu.message.hari_lahir}\n⭔ *Tanggal Lahir :* ${anu.message.tgl_lahir}\n⭔ *Hari Naas :* ${anu.message.hari_naas}\n⭔ *Info :* ${anu.message.catatan}\n⭔ *Catatan :* ${anu.message.info}`, m)
             }
             break
@@ -2229,7 +2226,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 7, 7, 2005`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.rahasia_naga_hari(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Hari Lahir :* ${anu.message.hari_lahir}\n⭔ *Tanggal Lahir :* ${anu.message.tgl_lahir}\n⭔ *Arah Naga Hari :* ${anu.message.arah_naga_hari}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2237,7 +2234,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 7, 7, 2005`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.primbon_arah_rejeki(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Hari Lahir :* ${anu.message.hari_lahir}\n⭔ *tanggal Lahir :* ${anu.message.tgl_lahir}\n⭔ *Arah Rezeki :* ${anu.message.arah_rejeki}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2245,7 +2242,7 @@ break
                 if (!text) throw `Example : ${prefix + command} DIka, 7, 7, 2005, 2022\n\nNote : ${prefix + command} Nama, tanggal lahir, bulan lahir, tahun lahir, untuk tahun`
                 let [nama, tgl, bln, thn, untuk] = text.split`,`
                 let anu = await primbon.ramalan_peruntungan(nama, tgl, bln, thn, untuk)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Peruntungan Tahun :* ${anu.message.peruntungan_tahun}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2253,7 +2250,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 7, 7, 2005`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.weton_jawa(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Tanggal :* ${anu.message.tanggal}\n⭔ *Jumlah Neptu :* ${anu.message.jumlah_neptu}\n⭔ *Watak Hari :* ${anu.message.watak_hari}\n⭔ *Naga Hari :* ${anu.message.naga_hari}\n⭔ *Jam Baik :* ${anu.message.jam_baik}\n⭔ *Watak Kelahiran :* ${anu.message.watak_kelahiran}`, m)
             }
             break
@@ -2261,7 +2258,7 @@ break
                 if (!text) throw `Example : ${prefix + command} Dika, 7, 7, 2005`
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.sifat_karakter_tanggal_lahir(nama, tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Garis Hidup :* ${anu.message.garis_hidup}`, m)
             }
             break
@@ -2269,7 +2266,7 @@ break
                 if (!text) throw `Example : ${prefix + command} Dika, 7, 7, 2005`
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.potensi_keberuntungan(nama, tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}`, m)
             }
             break
@@ -2277,7 +2274,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 12, 1, 2022`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.primbon_memancing_ikan(tgl, bln, thn)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Tanggal :* ${anu.message.tgl_memancing}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2285,7 +2282,7 @@ break
                 if (!text) throw `Example : ${prefix + command} 12, 1, 2022, 28\n\nNote : ${prefix + command} hari pertama menstruasi, siklus`
                 let [tgl, bln, thn, siklus] = text.split`,`
                 let anu = await primbon.masa_subur(tgl, bln, thn, siklus)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
@@ -2320,73 +2317,73 @@ break
                 let zodiac = await getZodiac(birth[1], birth[2])
                 
                 let anu = await primbon.zodiak(zodiac)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Zodiak :* ${anu.message.zodiak}\n⭔ *Nomor :* ${anu.message.nomor_keberuntungan}\n⭔ *Aroma :* ${anu.message.aroma_keberuntungan}\n⭔ *Planet :* ${anu.message.planet_yang_mengitari}\n⭔ *Bunga :* ${anu.message.bunga_keberuntungan}\n⭔ *Warna :* ${anu.message.warna_keberuntungan}\n⭔ *Batu :* ${anu.message.batu_keberuntungan}\n⭔ *Elemen :* ${anu.message.elemen_keberuntungan}\n⭔ *Pasangan Zodiak :* ${anu.message.pasangan_zodiak}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'shio': {
                 if (!text) throw `Example : ${prefix + command} tikus\n\nNote : For Detail https://primbon.com/shio.htm`
                 let anu = await primbon.shio(text)
-                if (anu.status == false) return reply(anu.message)
+                if (anu.status == false) return m.reply(anu.message)
                 hisoka.sendText(m.chat, `⭔ *Hasil :* ${anu.message}`, m)
             }
             break
 	    case 'stalker': case 'stalk': {
-		if (!isPremium && global.db.data.users[m.sender].limit < 1) return reply('Limit Harian Anda Telah Habis')
-                if (!text) return reply(`Example : ${prefix +command} type id\n\nList Type :\n1. ff (Free Fire)\n2. ml (Mobile Legends)\n3. aov (Arena Of Valor)\n4. cod (Call Of Duty)\n5. pb (point Blank)\n6. ig (Instagram)\n7. npm (https://npmjs.com)`)
+		if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply('Limit Harian Anda Telah Habis')
+                if (!text) return m.reply(`Example : ${prefix +command} type id\n\nList Type :\n1. ff (Free Fire)\n2. ml (Mobile Legends)\n3. aov (Arena Of Valor)\n4. cod (Call Of Duty)\n5. pb (point Blank)\n6. ig (Instagram)\n7. npm (https://npmjs.com)`)
                 let [type, id, zone] = args
                 if (type.toLowerCase() == 'ff') {
                     if (!id) throw `No Query id, Example ${prefix + command} ff 552992060`
                     let anu = await fetchJson(api('zenz', '/api/nickff', { apikey: global.APIKeys[global.APIs['zenz']], query: id }))
-                    if (anu.status == false) return reply(anu.result.message)
-                    reply(`ID : ${anu.result.gameId}\nUsername : ${anu.result.userName}`)
+                    if (anu.status == false) return m.reply(anu.result.message)
+                    m.reply(`ID : ${anu.result.gameId}\nUsername : ${anu.result.userName}`)
 		    db.data.users[m.sender].limit -= 1
                 } else if (type.toLowerCase() == 'ml') {
                     if (!id) throw `No Query id, Example : ${prefix + command} ml 214885010 2253`
                     if (!zone) throw `No Query id, Example : ${prefix + command} ml 214885010 2253`
                     let anu = await fetchJson(api('zenz', '/api/nickml', { apikey: global.APIKeys[global.APIs['zenz']], query: id, query2: zone }))
-                    if (anu.status == false) return reply(anu.result.message)
-                    reply(`ID : ${anu.result.gameId}\nZone : ${anu.result.zoneId}\nUsername : ${anu.result.userName}`)
+                    if (anu.status == false) return m.reply(anu.result.message)
+                    m.reply(`ID : ${anu.result.gameId}\nZone : ${anu.result.zoneId}\nUsername : ${anu.result.userName}`)
 		    db.data.users[m.sender].limit -= 1
                 } else if (type.toLowerCase() == 'aov') {
                     if (!id) throw `No Query id, Example ${prefix + command} aov 293306941441181`
                     let anu = await fetchJson(api('zenz', '/api/nickaov', { apikey: global.APIKeys[global.APIs['zenz']], query: id }))
-                    if (anu.status == false) return reply(anu.result.message)
-                    reply(`ID : ${anu.result.gameId}\nUsername : ${anu.result.userName}`)
+                    if (anu.status == false) return m.reply(anu.result.message)
+                    m.reply(`ID : ${anu.result.gameId}\nUsername : ${anu.result.userName}`)
 		    db.data.users[m.sender].limit -= 1
                 } else if (type.toLowerCase() == 'cod') {
                     if (!id) throw `No Query id, Example ${prefix + command} cod 6290150021186841472`
                     let anu = await fetchJson(api('zenz', '/api/nickcod', { apikey: global.APIKeys[global.APIs['zenz']], query: id }))
-                    if (anu.status == false) return reply(anu.result.message)
-                    reply(`ID : ${anu.result.gameId}\nUsername : ${anu.result.userName}`)
+                    if (anu.status == false) return m.reply(anu.result.message)
+                    m.reply(`ID : ${anu.result.gameId}\nUsername : ${anu.result.userName}`)
 		    db.data.users[m.sender].limit -= 1
                 } else if (type.toLowerCase() == 'pb') {
                     if (!id) throw `No Query id, Example ${prefix + command} pb riio46`
                     let anu = await fetchJson(api('zenz', '/api/nickpb', { apikey: global.APIKeys[global.APIs['zenz']], query: id }))
-                    if (anu.status == false) return reply(anu.result.message)
-                    reply(`ID : ${anu.result.gameId}\nUsername : ${anu.result.userName}`)
+                    if (anu.status == false) return m.reply(anu.result.message)
+                    m.reply(`ID : ${anu.result.gameId}\nUsername : ${anu.result.userName}`)
 		    db.data.users[m.sender].limit -= 1
                 } else if (type.toLowerCase() == 'ig') {
                     if (!id) throw `No Query username, Example : ${prefix + command} ig cak_haho`
                     let { result: anu } = await fetchJson(api('zenz', '/api/stalker/ig', { username: id }, 'apikey'))
-                    if (anu.status == false) return reply(anu.result.message)
+                    if (anu.status == false) return m.reply(anu.result.message)
                     hisoka.sendMedia(m.chat, anu.caption.profile_hd, '', `⭔ Full Name : ${anu.caption.full_name}\n⭔ User Name : ${anu.caption.user_name}\n⭔ ID ${anu.caption.user_id}\n⭔ Followers : ${anu.caption.followers}\n⭔ Following : ${anu.caption.following}\n⭔ Bussines : ${anu.caption.bussines}\n⭔ Profesional : ${anu.caption.profesional}\n⭔ Verified : ${anu.caption.verified}\n⭔ Private : ${anu.caption.private}\n⭔ Bio : ${anu.caption.biography}\n⭔ Bio Url : ${anu.caption.bio_url}`, m)
 		    db.data.users[m.sender].limit -= 1
                 } else if (type.toLowerCase() == 'npm') {
                     if (!id) throw `No Query username, Example : ${prefix + command} npm scrape-primbon`
                     let { result: anu } = await fetchJson(api('zenz', '/api/stalker/npm', { query: id }, 'apikey'))
-                    if (anu.status == false) return reply(anu.result.message)
-                    reply(`⭔ Name : ${anu.name}\n⭔ Version : ${Object.keys(anu.versions)}\n⭔ Created : ${tanggal(anu.time.created)}\n⭔ Modified : ${tanggal(anu.time.modified)}\n⭔ Maintainers :\n ${anu.maintainers.map(v => `- ${v.name} : ${v.email}`).join('\n')}\n\n⭔ Description : ${anu.description}\n⭔ Homepage : ${anu.homepage}\n⭔ Keywords : ${anu.keywords}\n⭔ Author : ${anu.author.name}\n⭔ License : ${anu.license}\n⭔ Readme : ${anu.readme}`)
+                    if (anu.status == false) return m.reply(anu.result.message)
+                    m.reply(`⭔ Name : ${anu.name}\n⭔ Version : ${Object.keys(anu.versions)}\n⭔ Created : ${tanggal(anu.time.created)}\n⭔ Modified : ${tanggal(anu.time.modified)}\n⭔ Maintainers :\n ${anu.maintainers.map(v => `- ${v.name} : ${v.email}`).join('\n')}\n\n⭔ Description : ${anu.description}\n⭔ Homepage : ${anu.homepage}\n⭔ Keywords : ${anu.keywords}\n⭔ Author : ${anu.author.name}\n⭔ License : ${anu.license}\n⭔ Readme : ${anu.readme}`)
 		    db.data.users[m.sender].limit -= 1
                 } else {
-                    reply(`Example : ${prefix +command} type id\n\nList Type :\n1. ff (Free Fire)\n2. ml (Mobile Legends)\n3. aov (Arena Of Valor)\n4. cod (Call Of Duty)\n5. pb (point Blank)\n6. ig (Instagram)\n7. npm (https://npmjs.com)`)
+                    m.reply(`Example : ${prefix +command} type id\n\nList Type :\n1. ff (Free Fire)\n2. ml (Mobile Legends)\n3. aov (Arena Of Valor)\n4. cod (Call Of Duty)\n5. pb (point Blank)\n6. ig (Instagram)\n7. npm (https://npmjs.com)`)
                 }
             }
             break
 	        case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'Masukkan Query Link!'
-                reply(mess.wait)
-                let anu = await fetchJson(api('amin', '/downloader/tiktok', { url: text }, 'apikey'))
+                m.reply(mess.wait)
+                let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, 'apikey'))
                 let buttons = [
                     {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1},
                     {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
@@ -2403,7 +2400,7 @@ break
             break
             case 'tiktokwm': case 'tiktokwatermark': {
                 if (!text) throw 'Masukkan Query Link!'
-                reply(mess.wait)
+                m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, 'apikey'))
                 let buttons = [
                     {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
@@ -2421,7 +2418,7 @@ break
             break
             case 'tiktokmp3': case 'tiktokaudio': {
                 if (!text) throw 'Masukkan Query Link!'
-                reply(mess.wait)
+                m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/musically', { url: text }, 'apikey'))
                 let buttons = [
                     {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
@@ -2439,7 +2436,7 @@ break
             break
 	        case 'instagram': case 'ig': case 'igdl': {
                 if (!text) throw 'No Query Url!'
-                reply(mess.wait)
+                m.reply(mess.wait)
                 if (/(?:\/p\/|\/reel\/|\/tv\/)([^\s&]+)/.test(isUrl(text)[0])) {
                     let anu = await fetchJson(api('zenz', '/downloader/instagram2', { url: isUrl(text)[0] }, 'apikey'))
                     for (let media of anu.data) hisoka.sendFileUrl(m.chat, media, `Download Url Instagram From ${isUrl(text)[0]}`, m)
@@ -2451,7 +2448,7 @@ break
             break
             case 'joox': case 'jooxdl': {
                 if (!text) throw 'No Query Title'
-                reply(mess.wait)
+                m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/joox', { query: text }, 'apikey'))
                 let msg = await hisoka.sendImage(m.chat, anu.result.img, `⭔ Title : ${anu.result.lagu}\n⭔ Album : ${anu.result.album}\n⭔ Singer : ${anu.result.penyanyi}\n⭔ Publish : ${anu.result.publish}\n⭔ Lirik :\n${anu.result.lirik.result}`, m)
                 hisoka.sendMessage(m.chat, { audio: { url: anu.result.mp4aLink }, mimetype: 'audio/mpeg', fileName: anu.result.lagu+'.m4a' }, { quoted: msg })
@@ -2459,7 +2456,7 @@ break
             break
             case 'soundcloud': case 'scdl': {
                 if (!text) throw 'No Query Title'
-                reply(mess.wait)
+                m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/soundcloud', { url: isUrl(text)[0] }, 'apikey'))
                 let msg = await hisoka.sendImage(m.chat, anu.result.thumb, `⭔ Title : ${anu.result.title}\n⭔ Url : ${isUrl(text)[0]}`)
                 hisoka.sendMessage(m.chat, { audio: { url: anu.result.url }, mimetype: 'audio/mpeg', fileName: anu.result.title+'.m4a' }, { quoted: msg })
@@ -2467,7 +2464,7 @@ break
             break
 	        case 'twitdl': case 'twitter': {
                 if (!text) throw 'Masukkan Query Link!'
-                reply(mess.wait)
+                m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/twitter', { url: text }, 'apikey'))
                 let buttons = [
                     {buttonId: `twittermp3 ${text}`, buttonText: {displayText: '► Audio'}, type: 1}
@@ -2484,7 +2481,7 @@ break
             break
             case 'twittermp3': case 'twitteraudio': {
                 if (!text) throw 'Masukkan Query Link!'
-                reply(mess.wait)
+                m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/twitter', { url: text }, 'apikey'))
                 let buttons = [
                     {buttonId: `twitter ${text}`, buttonText: {displayText: '► Video'}, type: 1}
@@ -2502,14 +2499,14 @@ break
             break
 	        case 'fbdl': case 'fb': case 'facebook': {
                 if (!text) throw 'Masukkan Query Link!'
-                reply(mess.wait)
+                m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/facebook', { url: text }, 'apikey'))
                 hisoka.sendMessage(m.chat, { video: { url: anu.result.url }, caption: `⭔ Title : ${anu.result.title}`}, { quoted: m })
             }
             break
 	        case 'pindl': case 'pinterestdl': {
                 if (!text) throw 'Masukkan Query Link!'
-                reply(mess.wait)
+                m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/pinterestdl', { url: text }, 'apikey'))
                 hisoka.sendMessage(m.chat, { video: { url: anu.result }, caption: `Download From ${text}` }, { quoted: m })
             }
@@ -2557,7 +2554,7 @@ Untuk Download Media Silahkan Klik salah satu Button dibawah ini atau masukkan c
 		oh = `Example : ${prefix + command} 3\n\nIQRA Yang tersedia : 1,2,3,4,5,6`
 		if (!text) throw oh
 		yy = await getBuffer(`https://islamic-api-indonesia.herokuapp.com/api/data/pdf/iqra${text}`)
-		hisoka.sendMessage(m.chat, {document: yy, mimetype: 'application/pdf', fileName: `iqra${text}.pdf`}, {quoted:m}).catch ((err) => reply(oh))
+		hisoka.sendMessage(m.chat, {document: yy, mimetype: 'application/pdf', fileName: `iqra${text}.pdf`}, {quoted:m}).catch ((err) => m.reply(oh))
 		}
 		break
 		case 'hadits': case 'hadis': case 'hadist': {
@@ -2588,13 +2585,13 @@ muslim
 		try {
 		let res = await fetchJson(`https://fatiharridho.herokuapp.com/api/islamic/hadits?list=${args[0]}`)
 		let { number, arab, id } = res.result.find(v => v.number == args[1])
-		reply(`No. ${number}
+		m.reply(`No. ${number}
 
 ${arab}
 
 ${id}`)
 		} catch (e) {
-		reply(`Hadis tidak ditemukan !`)
+		m.reply(`Hadis tidak ditemukan !`)
 		}
 		}
 		break
@@ -2607,7 +2604,7 @@ ${id}`)
 *Indonesia* : ${res.result.data.translation.id}
 
 ( Q.S ${res.result.data.surah.name.transliteration.id} : ${res.result.data.number.inSurah} )`
-		reply(txt)
+		m.reply(txt)
 		hisoka.sendMessage(m.chat, {audio: { url: res.result.data.audio.primary }, mimetype: 'audio/mpeg'}, { quoted : m })
 		}
 		break
@@ -2622,7 +2619,7 @@ ${id}`)
 *Panjang* : ${res.result.data.tafsir.id.long}
 
 ( Q.S ${res.result.data.surah.name.transliteration.id} : ${res.result.data.number.inSurah} )`
-		reply(txt)
+		m.reply(txt)
 		}
 		break
 		   case 'bass': case 'blown': case 'deep': case 'earrape': case 'fast': case 'fat': case 'nightcore': case 'reverse': case 'robot': case 'slow': case 'smooth': case 'tupai':
@@ -2641,19 +2638,19 @@ ${id}`)
                 if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
                 if (/tupai/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
                 if (/audio/.test(mime)) {
-                reply(mess.wait)
+                m.reply(mess.wait)
                 let media = await hisoka.downloadAndSaveMediaMessage(qmsg)
                 let ran = getRandom('.mp3')
                 exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
                 fs.unlinkSync(media)
-                if (err) return reply(err)
+                if (err) return m.reply(err)
                 let buff = fs.readFileSync(ran)
                 hisoka.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })
                 fs.unlinkSync(ran)
                 })
-                } else reply(`Balas audio yang ingin diubah dengan caption *${prefix + command}*`)
+                } else m.reply(`Balas audio yang ingin diubah dengan caption *${prefix + command}*`)
                 } catch (e) {
-                reply(e)
+                m.reply(e)
                 }
                 break
             case 'setcmd': {
@@ -2669,7 +2666,7 @@ ${id}`)
                     at: + new Date,
                     locked: false,
                 }
-                reply(`Done!`)
+                m.reply(`Done!`)
             }
             break
             case 'delcmd': {
@@ -2677,7 +2674,7 @@ ${id}`)
                 if (!hash) throw `Tidak ada hash`
                 if (global.db.data.sticker[hash] && global.db.data.sticker[hash].locked) throw 'You have no permission to delete this sticker command'              
                 delete global.db.data.sticker[hash]
-                reply(`Done!`)
+                m.reply(`Done!`)
             }
             break
             case 'listcmd': {
@@ -2696,7 +2693,7 @@ ${Object.entries(global.db.data.sticker).map(([key, value], index) => `${index +
                 let hash = m.quoted.fileSha256.toString('base64')
                 if (!(hash in global.db.data.sticker)) throw 'Hash not found in database'
                 global.db.data.sticker[hash].locked = !/^un/i.test(command)
-                reply('Done!')
+                m.reply('Done!')
             }
             break
             case 'addmsg': {
@@ -2705,7 +2702,7 @@ ${Object.entries(global.db.data.sticker).map(([key, value], index) => `${index +
                 let msgs = global.db.data.database
                 if (text.toLowerCase() in msgs) throw `'${text}' telah terdaftar di list pesan`
                 msgs[text.toLowerCase()] = quoted.fakeObj
-reply(`Berhasil menambahkan pesan di list pesan sebagai '${text}'
+m.reply(`Berhasil menambahkan pesan di list pesan sebagai '${text}'
     
 Akses dengan ${prefix}getmsg ${text}
 
@@ -2726,14 +2723,14 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
 		for (let i of seplit) {
 		    teks += `⬡ *Name :* ${i.nama}\n⬡ *Type :* ${getContentType(i.message).replace(/Message/i, '')}\n────────────────────────\n\n`
 	        }
-	        reply(teks)
+	        m.reply(teks)
 	    }
 	    break
             case 'delmsg': case 'deletemsg': {
 	        let msgs = global.db.data.database
-	        if (!(text.toLowerCase() in msgs)) return reply(`'${text}' tidak terdaftar didalam list pesan`)
+	        if (!(text.toLowerCase() in msgs)) return m.reply(`'${text}' tidak terdaftar didalam list pesan`)
 		delete msgs[text.toLowerCase()]
-		reply(`Berhasil menghapus '${text}' dari list pesan`)
+		m.reply(`Berhasil menghapus '${text}' dari list pesan`)
             }
 	    break
   case 'nsfw': {
@@ -2768,7 +2765,7 @@ replay('Success in turning off nsfw in this group')
   }
   break
 	    case 'anonymous': {
-                if (m.isGroup) return reply('Fitur Tidak Dapat Digunakan Untuk Group!')
+                if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
 				let buttons = [
                     { buttonId: 'start', buttonText: { displayText: 'Start' }, type: 1 }
                 ]
@@ -2776,7 +2773,7 @@ replay('Success in turning off nsfw in this group')
             }
 			break
             case 'keluar': case 'leave': {
-                if (m.isGroup) return reply('Fitur Tidak Dapat Digunakan Untuk Group!')
+                if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
                 let room = Object.values(db.data.anonymous).find(room => room.check(m.sender))
                 if (!room) {
                     let buttons = [
@@ -2785,14 +2782,14 @@ replay('Success in turning off nsfw in this group')
                     await hisoka.sendButtonText(m.chat, buttons, `\`\`\`Kamu Sedang Tidak Berada Di Sesi Anonymous, Tekan Button Untuk Mencari Partner \`\`\``)
                     throw false
                 }
-                reply('Ok')
+                m.reply('Ok')
                 let other = room.other(m.sender)
                 if (other) await hisoka.sendText(other, `\`\`\`Partner Telah Meninggalkan Sesi Anonymous\`\`\``, m)
                 delete db.data.anonymous[room.id]
                 if (command === 'leave') break
             }
             case 'mulai': case 'start': {
-                if (m.isGroup) return reply('Fitur Tidak Dapat Digunakan Untuk Group!')
+                if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
                 if (Object.values(db.data.anonymous).find(room => room.check(m.sender))) {
                     let buttons = [
                         { buttonId: 'keluar', buttonText: { displayText: 'Stop' }, type: 1 }
@@ -2832,7 +2829,7 @@ replay('Success in turning off nsfw in this group')
                 break
             }
             case 'next': case 'lanjut': {
-                if (m.isGroup) return reply('Fitur Tidak Dapat Digunakan Untuk Group!')
+                if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
                 let romeo = Object.values(db.data.anonymous).find(room => room.check(m.sender))
                 if (!romeo) {
                     let buttons = [
@@ -2878,13 +2875,13 @@ replay('Success in turning off nsfw in this group')
             case 'public': {
                 if (!isCreator) throw mess.owner
                 hisoka.public = true
-                reply('Sukse Change To Public Usage')
+                m.reply('Sukse Change To Public Usage')
             }
             break
             case 'self': {
                 if (!isCreator) throw mess.owner
                 hisoka.public = false
-                reply('Sukses Change To Self Usage')
+                m.reply('Sukses Change To Self Usage')
             }
             break
             case 'ping': case 'botstatus': case 'statusbot': {
@@ -2931,11 +2928,11 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
 _CPU Core(s) Usage (${cpus.length} Core CPU)_
 ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}`).join('\n\n')}` : ''}
                 `.trim()
-                reply(respon)
+                m.reply(respon)
             }
             break
             case 'speedtest': {
-            reply('Testing Speed...')
+            m.reply('Testing Speed...')
             let cp = require('child_process')
             let { promisify } = require('util')
             let exec = promisify(cp.exec).bind(cp)
@@ -2946,8 +2943,8 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
           o = e
          } finally {
         let { stdout, stderr } = o
-        if (stdout.trim()) reply(stdout)
-        if (stderr.trim()) reply(stderr)
+        if (stdout.trim()) m.reply(stdout)
+        if (stderr.trim()) m.reply(stderr)
             }
             }
             break
@@ -2965,7 +2962,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             teks += `⭔ Developer : ${i.developer}\n`
             teks += `⭔ Link Developer : ${i.link_dev}\n\n──────────────────────\n`
             }
-            reply(teks)
+            m.reply(teks)
             }
             break
             case 'gsmarena': {
@@ -3052,7 +3049,7 @@ let capt = `⭔ Title: ${judul}
             capt += `⭔ Genre: ${i.genre}\n`
             capt += `⭔ Url: ${i.url}\n\n──────────────────────\n`
             }
-            reply(capt)
+            m.reply(capt)
             }
             break
             case 'drakor': {
@@ -3078,35 +3075,35 @@ let capt = `⭔ Title: ${judul}
                 setbot.templateGif = false
                 setbot.templateMsg = false
                 setbot.templateLocation = false
-                reply(mess.success)
+                m.reply(mess.success)
                 } else if (args[0] === 'templateVideo'){
                 setbot.templateImage = false
                 setbot.templateVideo = true
                 setbot.templateGif = false
                 setbot.templateMsg = false
                 setbot.templateLocation = false
-                reply(mess.success)
+                m.reply(mess.success)
                 } else if (args[0] === 'templateGif'){
                 setbot.templateImage = false
                 setbot.templateVideo = false
                 setbot.templateGif = true
                 setbot.templateMsg = false
                 setbot.templateLocation = false
-                reply(mess.success)
+                m.reply(mess.success)
                 } else if (args[0] === 'templateMessage'){
                 setbot.templateImage = false
                 setbot.templateVideo = false
                 setbot.templateGif = false
                 setbot.templateMsg = true
                 setbot.templateLocation = false
-                reply(mess.success)
+                m.reply(mess.success)
                 } else if (args[0] === 'templateLocation'){
                 setbot.templateImage = false
                 setbot.templateVideo = false
                 setbot.templateGif = false
                 setbot.templateMsg = false
                 setbot.templateLocation = true
-                reply(mess.success)
+                m.reply(mess.success)
                 } else {
                 let sections = [
                 {
