@@ -2930,7 +2930,20 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                 `.trim()
                 m.reply(respon)
             }
-            break
+                         let setbot = db.data.settings[botNumber]
+                        if (setbot.templateImage) {
+                        hisoka.send5ButImg(m.chat, anu, hisoka.user.name, global.thumb, btn, global.thumb)
+                        } else if (setbot.templateGif) {
+                        hisoka.send5ButGif(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
+                        } else if (setbot.templateVid) {
+                        hisoka.send5ButVid(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
+                        } else if (setbot.templateMsg) {
+                        hisoka.send5ButMsg(m.chat, anu, hisoka.user.name, btn)
+                        } else if (setbot.templateLocation) {
+                        hisoka.send5ButLoc(m.chat, anu, hisoka.user.name, global.thumb, btn)
+                        }
+                     }
+            break            
             case 'speedtest': {
             m.reply('Testing Speed...')
             let cp = require('child_process')
@@ -4952,7 +4965,7 @@ case 'thanksto': {
 │⭔ Saad Bn
 │⭔ Raisya Ronove
 │⭔ Penyedia Module
-│⭔ Penyedia Rest Api
+│⭔ Asrori Amin (Saya)
 │
 └───────⭓`
 let btn = [{
