@@ -2930,6 +2930,32 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                 `.trim()
                 m.reply(respon)
             }
+            let btn = [{
+                                urlButton: {
+                                    displayText: 'Website',
+                                    url: 'https://www.asroriamin.my.id'
+                                }
+                            }, {
+                                urlButton: {
+                                    displayText: 'Grub',
+                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: 'Status Bot',
+                                    id: 'ping'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: 'Contact Owner',
+                                    id: 'owner'
+                                }  
+                            }, {
+                                quickReplyButton: {
+                                    displayText: 'Sewa Bot',
+                                    id: 'donasi'
+                                }
+                            }]
                          let setbot = db.data.settings[botNumber]
                         if (setbot.templateImage) {
                         hisoka.send5ButImg(m.chat, anu, hisoka.user.name, global.thumb, btn, global.thumb)
@@ -2943,7 +2969,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                         hisoka.send5ButLoc(m.chat, anu, hisoka.user.name, global.thumb, btn)
                         }
                      }
-            break            
+            break
             case 'speedtest': {
             m.reply('Testing Speed...')
             let cp = require('child_process')
