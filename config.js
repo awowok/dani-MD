@@ -19,7 +19,7 @@ global.APIKeys = {
 }
 
 // Other
-global.owner =['6288227248988'], ['6285335877178']
+global.owner =['6288227248988', '6285335877178']
 global.premium = ['6288227248988']
 global.packname = 'Asrori Amin'
 global.author = ''
