@@ -1,9 +1,3 @@
-/**
-   * Create By Dani Official
-   * Contact Me on wa.me/6281251549899
-   * Follow https://github.com/YTDANIBOTZ
-*/
-
 require('./config')
 const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = require('@adiwajshing/baileys')
 const fs = require('fs')
@@ -66,7 +60,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
 	//Fake Reply 
 	
 	const reply = (teks) => {
-hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Amin Bot`,"body": `Amin Bot`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./lib/Dani.jpg`),"sourceUrl": "https://www.asroriamin.my.id"}}}, { quoted: m})
+hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Amin Bot`,"body": `Amin Bot`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./lib/Amin.jpg`),"sourceUrl": "https://asroriamin-api.herokuapp.com/"}}}, { quoted: m})
 }
 
 	const reply2 = (teks) => {
@@ -558,7 +552,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -1286,7 +1280,7 @@ break
              let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -1335,7 +1329,7 @@ break
                     let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -1374,7 +1368,7 @@ break
             let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -2896,6 +2890,43 @@ replay('Success in turning off nsfw in this group')
                 reply('Sukses Change To Self Usage')
             }
             break
+            case 'mode': {
+            	anu = 'Tekan Mode Dibawah Ini'
+            let btn = [{
+                                urlButton: {
+                                    displayText: 'Website',
+                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                }
+                            }, {
+                                urlButton: {
+                                    displayText: 'Grub',
+                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: 'Self',
+                                    id: 'Self'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: 'Public',
+                                    id: 'public'
+                                }
+                            }]
+                         let setbot = db.data.settings[botNumber]
+                        if (setbot.templateImage) {
+                        hisoka.send5ButImg(m.chat, anu, hisoka.user.name, global.thumb, btn, global.thumb)
+                        } else if (setbot.templateGif) {
+                        hisoka.send5ButGif(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
+                        } else if (setbot.templateVid) {
+                        hisoka.send5ButVid(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
+                        } else if (setbot.templateMsg) {
+                        hisoka.send5ButMsg(m.chat, anu, hisoka.user.name, btn)
+                        } else if (setbot.templateLocation) {
+                        hisoka.send5ButLoc(m.chat, anu, hisoka.user.name, global.thumb, btn)
+                        }
+                     }
+            break
             case 'ping': case 'botstatus': case 'statusbot': {
                 const used = process.memoryUsage()
                 const cpus = os.cpus().map(cpu => {
@@ -3138,7 +3169,7 @@ let capt = `⭔ Title: ${judul}
             let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -3190,7 +3221,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
             let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -3230,17 +3261,17 @@ Bot Ini Di Buat Oleh *Asrori Amin*
             case 'command':{
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 listMessage :{
-                    title: `Hi ${pushname}\n┌──⭓ 「 INFO USER 」⭓\n│\n│ Nama : ${pushname}\n│ Nomor : ${m.sender.split('@')[0]}\n│ Status : ${isCreator ? 'Owner' : 'User'}\n│\n└───────⭓\n\n┌──⭓ 「 INFO BOT 」⭓\n│\n│ Prefix : ( ${prefix} )\n│ Nama : ${global.namabot}\n│ Owner : ${global.namaowner}\n│ Mode : ${hisoka.public ? 'Public' : 'Self'}\n│ Runtime : ${runtime(process.uptime())}\n│ Lib : Baileys Multi Device\n│\n└───────⭓`,
+                    title: `Hi ${pushname}\nSilahkan Pilih List Menu Dibawah 😁`,
                     description: "\n",
-                    buttonText: "KLIK DISINI👋",
-                    footerText: "Silahkan Klik Tombol Dibawah Ini Untuk Menampilkan Menu",
+                    buttonText: "Pencet Ini 👍",
+                    footerText: "Asrori Amin",
                     listType: "SINGLE_SELECT",
                     sections: [{
 								"title": "All Menu Bot",
 								"rows": [
 									{
-										"title": "All Menu",
-										"description": "",
+										"title": "🚀All Menu",
+										"description": "Menampilkan Semua Menu Bot😁",
 										"rowId": `${prefix}allmenu`
 									}
 								]
@@ -3249,98 +3280,98 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 								"title": "List Menu Bot",
 								"rows": [
 									{
-										"title": "Group Menu",
-										"description": "",
+										"title": "👥Group Menu",
+										"description": "Menampilkan Semua Fitur Khusus Grub",
 										"rowId": `${prefix}groupmenu`
 									},
 									{
-										"title": "Download Menu",
-										"description": "",
+										"title": "📩Download Menu",
+										"description": "Menampilkan Menu Downloader",
 										"rowId": `${prefix}downloadmenu`
 									},
 										{
-										"title": "Search Menu",
-										"description": "",
+										"title": "🔍Search Menu",
+										"description": "Menampilkan Menu Searching",
 										"rowId": `${prefix}searchmenu`
 									},
 									{
-										"title": "Meme Menu",
-										"description": "",
+										"title": "😆Meme Menu",
+										"description": "Menampilkan Menu Meme Lucu",
 										"rowId": `${prefix}mememenu`
 										},
 										{
-											"title": "Random Menu",
-										"description": "",
+											"title": "🕺Random Menu",
+										"description": "Menampilkan Menu Acak",
 										"rowId": `${prefix}randommenu`
 										},
 											{
-											"title": "Text Pro Menu",
-										"description": "",
+											"title": "⭐Text Pro Menu",
+										"description": "Menampilkan Menu Text Pro",
 										"rowId": `${prefix}textpromenu`
 										},
 										{
-											"title": "Photo Oxy Menu",
-										"description": "",
+											"title": "🗿Photo Oxy Menu",
+										"description": "Menampilkan Menu Photo Oxy",
 										"rowId": `${prefix}photooxymenu`
 										},
 										{
-											"title": "Ephoto Menu",
-										"description": "",
+											"title": "😼Ephoto Menu",
+										"description": "Menampilkan Menu Ephoto",
 										"rowId": `${prefix}ephotomenu`
 										},
 										{
-											"title": "Fun Menu",
-										"description": "",
+											"title": "😂Fun Menu",
+										"description": "Menampilkan Menu Lucu",
 										"rowId": `${prefix}funmenu`
 										},
 										{
-											"title": "Primbon Menu",
-										"description": "",
+											"title": "⛩️Primbon Menu",
+										"description": "Menampilkan Menu Primbon",
 										"rowId": `${prefix}primbonmenu`
 										},
 										{
-											"title": "Convert Menu",
-										"description": "",
+											"title": "🎉Convert Menu",
+										"description": "Menampilkan Menu Convert",
 										"rowId": `${prefix}convertmenu`
 										},
 										{
-											"title": "Main Menu",
-										"description": "",
+											"title": "😻Main Menu",
+										"description": "Menampilkan Menu Utama",
 										"rowId": `${prefix}mainmenu`
 										},
 										{
-											"title": "Database Menu",
-										"description": "",
+											"title": "📁Database Menu",
+										"description": "Menampilkan Menu Database",
 										"rowId": `${prefix}databasemenu`
 										},
 										{
-											"title": "Anonymous Menu",
-										"description": "",
+											"title": "👽Anonymous Menu",
+										"description": "Menampilkan Menu Anonymous",
 										"rowId": `${prefix}anonymousmenu`
 										},
 										{
-											"title": "Islamic Menu",
-										"description": "",
+											"title": "😇Islamic Menu",
+										"description": "Menampilkan Menu Islamic",
 										"rowId": `${prefix}islamicmenu`
 										},
 										{
-											"title": "Voice Changer Menu",
-										"description": "",
+											"title": "🔊Voice Changer Menu",
+										"description": "Menampilkan Menu Pengubah Suara",
 										"rowId": `${prefix}voicemenu`
 										},
 										{
-											"title": "Owner Menu",
-										"description": "",
+											"title": "🤪Owner Menu",
+										"description": "Menampilkan Menu Khusus Owner",
 										"rowId": `${prefix}ownermenu`
 										}
 										]
 										},
 							{
-								"title": "Open Jasa Sewa Bot",
+								"title": "Jasa Sewa Bot",
 								"rows": [
 									{
-										"title": "Sewa Bot",
-										"description": "",
+										"title": "🎃Jasa Sewa Bot",
+										"description": "Menampilkan Menu SewaBot",
 										"rowId": `${prefix}sewabot`
 									}
 								]
@@ -3349,8 +3380,8 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 								"title": "Info Tentang Owner?",
 								"rows": [
 									{
-										"title": "Chat Owner",
-										"description": "",
+										"title": "🙀Chat Owner",
+										"description": "Yang Mau Nomer Owner",
 										"rowId": `${prefix}owner`
 									}
 								]
@@ -3359,8 +3390,8 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 								"title": "Thanks To",
 								"rows": [
 									{
-										"title": "Contributor",
-										"description": "",
+										"title": "😇Contributor",
+										"description": "Menampilkan Orang Yang Ngembangin AminBot",
 										"rowId": `${prefix}thanksto`
 									}
 								]
@@ -3386,15 +3417,16 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 > Nama Panggilan : *Amin*
 └───────⭓
  *SILAHKAN LIHAT MENU BOT DIBAWAH INI KAK^^*
- ┌──⭓ *Ｇｒｏｕｐ Ｍｅｎｕ*
+ ┌──⭓ *Main Menu*
  │⭔ ${prefix}menu
  │⭔ ${prefix}?
  │⭔ ${prefix}ʀᴜʟᴇs
  │⭔ ${prefix}sc
  │⭔ ${prefix}help
+ │⭔ ${prefix}thanksto
  │
  └───────⭓
-┌──⭓ *Ｇｒｏｕｐ Ｍｅｎｕ*
+┌──⭓ *Group Menu*
 │
 │⭔ ${prefix}ʟɪɴᴋɢʀᴏᴜᴘ
 │⭔ ${prefix}ᴇᴘʜᴇᴍᴇʀᴀʟ [option]
@@ -3420,7 +3452,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *Ｗｅｂｚｏｎｅ Ｍｅｎｕ*
+┌──⭓ *WebZone Menu*
 │
 │⭔ ${prefix}ᴘʟᴀʏsᴛᴏʀᴇ
 │⭔ ${prefix}ɢsᴍᴀʀᴇɴᴀ
@@ -3434,7 +3466,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 └───────⭓
 
 
-┌──⭓ *Ｄｏｗｎｌｏａｄｅｒ Ｍｅｎｕ*
+┌──⭓ *Downloader Menu*
 │
 │⭔ ${prefix}tɪᴋᴛᴏᴋɴᴏᴡᴍ [url]
 │⭔ ${prefix}ᴛɪᴋᴛᴏᴋᴡᴍ [url]
@@ -3454,7 +3486,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *Ｓｅａｒｃｈ Ｍｅｎｕ*
+┌──⭓ *Search Menu*
 │
 │⭔ ${prefix}ᴘʟᴀʏ [query]
 │⭔ ${prefix}ʏᴛs [query]
@@ -3469,7 +3501,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *Ｒａｎｄｏｍ Ｍｅｎｕ*
+┌──⭓ *Random Menu*
 │
 │⭔ ${prefix}ᴄᴏғғᴇ
 │⭔ ${prefix}ǫᴜᴏᴛᴇsᴀɴɪᴍᴇ
@@ -3491,7 +3523,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *ｔｅｘｔ Ｐｒｏ Ｍｅｎｕ*
+┌──⭓ *Text Pro Menu*
 │
 │⭔ ${prefix}3ᴅᴄʜʀɪsᴛᴍᴀs
 │⭔ ${prefix}3ᴅᴅᴇᴇᴘsᴇᴀ
@@ -3527,7 +3559,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *Ｐｈｏｔｏ Ｏｘｙ Ｍｅｎｕ*
+┌──⭓ *Photoshop Menu*
 │
 │⭔ ${prefix}sʜᴀᴅᴏᴡ
 │⭔ ${prefix}ʀᴏᴍᴀɴᴛɪᴄ
@@ -3544,7 +3576,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *Ｅｐｈｏｔｏ Ｍｅｎｕ*
+┌──⭓ *Ephoto Menu*
 │
 │⭔ ${prefix}ғғᴄᴏᴠᴇʀ
 │⭔ ${prefix}ᴄʀᴏssғɪʀᴇ
@@ -3558,7 +3590,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *Ｆｕｎ Ｍｅｎｕ*
+┌──⭓ *Fun Menu*
 │
 │⭔ ${prefix}sɪᴍɪʜ
 │⭔ ${prefix}ʜᴀʟᴀʜ
@@ -3577,7 +3609,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *Ｐｒｉｍｂｏｎ Ｍｅｎｕ*
+┌──⭓ *Primbon Menu*
 │
 │⭔ ${prefix}ɴᴏᴍᴏʀʜᴏᴋɪ
 │⭔ ${prefix}ᴀʀᴛɪᴍɪᴍᴘɪ
@@ -3612,7 +3644,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *Ｃｏｎｖｅｒｔ Ｍｅｎｕ*
+┌──⭓ *Convert Menu*
 │
 │⭔ ${prefix}ᴀᴛᴛᴘ
 │⭔ ${prefix}ᴛᴛᴘ
@@ -3635,22 +3667,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *Ｍａｉｎ Ｍｅｎｕ*
-│
-│⭔ ${prefix}ᴘɪɴɢ
-│⭔ ${prefix}ᴏᴡɴᴇʀ
-│⭔ ${prefix}ᴍᴇɴᴜ / ${prefix}ʜᴇʟᴘ / ${prefix}?
-│⭔ ${prefix}ᴅᴇʟᴇᴛᴇ
-│⭔ ${prefix}ɪɴғᴏᴄʜᴀᴛ
-│⭔ ${prefix}ǫᴜᴏᴛᴇᴅ
-│⭔ ${prefix}ʟɪsᴛᴘᴄ
-│⭔ ${prefix}ʟɪsᴛɢᴄ
-│⭔ ${prefix}ʟɪsᴛᴏɴʟɪɴᴇ
-│⭔ ${prefix}sᴘᴇᴇᴅᴛᴇsᴛ
-│
-└───────⭓
-
-┌──⭓ *Ｄａｔａｂａｓｅ Ｍｅｎｕ*
+┌──⭓ *Database Menu*
 │
 │⭔ ${prefix}sᴇᴛᴄᴍᴅ
 │⭔ ${prefix}ʟɪsᴛᴄᴍᴅ
@@ -3663,7 +3680,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *Ａｎｏｎｙｍｏｕｓ Ｍｅｎｕ*
+┌──⭓ *Anonymous Menu*
 │
 │⭔ ${prefix}ᴀɴᴏɴʏᴍᴏᴜs
 │⭔ ${prefix}sᴛᴀʀᴛ
@@ -3672,7 +3689,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *ｉｓｌａｍｉｃ Ｍｅｎｕ*
+┌──⭓ *Islamic Menu*
 │
 │⭔ ${prefix}ɪǫʀᴀ
 │⭔ ${prefix}ʜᴀᴅɪsᴛ
@@ -3681,7 +3698,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *Ｖｏｉｃｅ Ｃｈａｎｇｅｒ*
+┌──⭓ *Voice Changer Menu*
 │
 │⭔ ${prefix}ʙᴀss
 │⭔ ${prefix}ʙʟᴏᴡɴ
@@ -3697,19 +3714,20 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 │
 └───────⭓
 
-┌──⭓ *Ｏｗｎｅｒ Ｍｅｎｕ*
+┌──⭓ *Owner Menu*
 │
 │⭔ ${prefix}ʀᴇᴀᴄᴛ [emoji]
 │⭔ ${prefix}ᴄʜᴀᴛ [option]
 │⭔ ${prefix}ᴊᴏɪɴ [link]
 │⭔ ${prefix}ʟᴇᴀᴠᴇ
+│⭔ ${prefix}mode
 │⭔ ${prefix}ʙʟᴏᴄᴋ @user
 │⭔ ${prefix}ᴜɴʙʟᴏᴄᴋ @user
 │⭔ ${prefix}ʙᴄɢʀᴏᴜᴘ [text]
 │⭔ ${prefix}ʙᴄᴀʟʟ [text]
 │⭔ ${prefix}ʙᴄᴍ [media]
 │⭔ ${prefix}ʙᴄᴍᴇᴅɪᴀ [media]
-│⭔ ${prefix}sᴇᴛᴘᴘʙᴏᴛ [image]
+│⭔ ${prefix}sᴇᴛᴘᴘʙᴏᴛ 'panjang'
 │⭔ ${prefix}sᴇᴛᴇxɪғ
 │⭔ ${prefix}sᴇᴛᴍᴇɴᴜ [option]
 │⭔ ${prefix}ᴀɴᴛɪᴄᴀʟʟ [on/off]
@@ -3718,7 +3736,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
                 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -3795,7 +3813,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
                 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -3868,7 +3886,7 @@ case 'downloadmenu': {
          let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -3936,7 +3954,7 @@ case 'searchmenu': {
        let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4131,7 +4149,7 @@ case 'textpromenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4201,7 +4219,7 @@ case 'photooxymenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4268,7 +4286,7 @@ case 'ephotomenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4351,7 +4369,7 @@ case 'funmenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4439,7 +4457,7 @@ case 'primbonmenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4513,7 +4531,7 @@ case 'convertmenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4577,12 +4595,13 @@ case 'mainmenu': {
 │⭔ ${prefix}listgc
 │⭔ ${prefix}listonline
 │⭔ ${prefix}speedtest
+│⭔ ${prefix}thanksto
 │
 └───────⭓`
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4648,7 +4667,7 @@ case 'databasemenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4711,7 +4730,7 @@ case 'anonymousmenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4774,7 +4793,7 @@ case 'islamicmenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4843,7 +4862,7 @@ case 'voicechangermenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4900,6 +4919,7 @@ case 'ownermenu': {
 │⭔ ${prefix}chat [option]
 │⭔ ${prefix}join [link]
 │⭔ ${prefix}leave
+│⭔ ${prefix}mode
 │⭔ ${prefix}block @user
 │⭔ ${prefix}unblock @user
 │⭔ ${prefix}bcgroup [text]
@@ -4911,7 +4931,7 @@ case 'ownermenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {
@@ -4957,12 +4977,18 @@ case 'thanksto': {
 │⭔ Ortu Saya
 │⭔ Dika Ardnt (Pemilik Base)
 │⭔ RzkiUhuy
-│⭔ Fatih Arridho
+│⭔ Dani Md
 │⭔ Putraa
 │⭔ Nisaa
 │⭔ Inuuu
 │⭔ Saad Bn
+│⭔ Denpa
 │⭔ Raisya Ronove
+│⭔ Fatih A
+│⭔ Kevin Tod
+│⭔ Uhuyers
+│⭔ X-None Team
+│⭔ Asrori Amin
 │⭔ Penyedia Module
 │⭔ Penyedia Rest Api
 │
@@ -4970,7 +4996,7 @@ case 'thanksto': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://www.asroriamin.my.id'
+                                    url: 'https://asroriamin-api.herokuapp.com/'
                                 }
                             }, {
                                 urlButton: {

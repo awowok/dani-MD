@@ -1,9 +1,3 @@
-/**
-   * Create By Dani Official
-   * Contact Me on wa.me/6288227248988
-   * Follow https://github.com/YTDANIBOTZ
-*/
-
 const fs = require('fs')
 const chalk = require('chalk')
 
@@ -19,7 +13,7 @@ global.APIKeys = {
 }
 
 // Other
-global.owner =['6288227248988', '6285335877178']
+global.owner =['6288227248988']
 global.premium = ['6288227248988']
 global.packname = 'Asrori Amin'
 global.author = ''
@@ -52,14 +46,14 @@ global.mess = {
     group: 'Fitur Digunakan Hanya Untuk Group!',
     private: 'Fitur Digunakan Hanya Untuk Private Chat!',
     bot: 'Fitur Khusus Pengguna Nomor Bot',
-    wait: 'Loading...',
+    wait: '⏳Sedang Di Proses....',
     endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12',
 }
 global.limitawal = {
     premium: "Infinity",
     free: 100
 }
-global.thumb = fs.readFileSync('./lib/Dani.jpg')
+global.thumb = fs.readFileSync('./lib/Amin.jpg')
 global.visoka = { url: 'https://telegra.ph/file/15209657f9d4f59c7ca1e.mp4' }
 
 let file = require.resolve(__filename)
