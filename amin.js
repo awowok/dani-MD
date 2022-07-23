@@ -1358,7 +1358,19 @@ break
                 reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }
             break
-            case 'bc': case 'broadcast': case 'bcall': {
+            case prefix+'bc':{
+            if (!isCreator && !fromMe) return reply(mess.OnlyOwner)
+            if (args.length < 2) return reply(`Gunakan dengan cara ${command} *teks*\n\n_Contoh_\n\n${command} feature updated`)
+            var bece = await store.chats.all()
+            for (let x of bece) {
+                var bc = [{ urlButton: { displayText: 'Share Bot', url: 'https://wa.me/?text=Hai+sekarang+whatsapp+ada+botnya+loh,+Yuk+bergabung+menjadi+user+di+bot+kami+https://api.whatsapp.com/send?phone='+ botNumber.split('@')[0] } }]
+                hisoka.sendMessage(x.id, { location: { jpegThumbnail: thumb }, caption: q, footer: 'BROADCAST', templateButtons: bc })
+                await sleep(1000)
+            }
+            reply(`Successfully sent a broadcast message to ${anu.length} chat`)
+            }
+            break
+            case 'broadcast': case 'bcall': {
                 if (!isCreator) throw mess.owner
                 if (!text) throw `Text mana?\n\nExample : ${prefix + command} fatih-san`
                 let anu = await store.chats.all().map(v => v.id)
