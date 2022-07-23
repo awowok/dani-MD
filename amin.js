@@ -64,7 +64,7 @@ hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title
 }
 
 	const reply2 = (teks) => {
-  hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `© Amin Bot`,"body": `Halo Kak @${num.split("@")[0]}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": thumb,"sourceUrl": `https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed`}}}, { quoted: m })
+  hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `© Amin Bot`,"body": `Halo Kak ${pushname}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": thumb,"sourceUrl": `https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed`}}}, { quoted: m })
   }
 	
 	
@@ -3207,7 +3207,7 @@ let capt = `⭔ Title: ${judul}
                      }
             break
             case 'menu' : case 'help' : case '?' : {
-            	anu = `Hallo *@${num.split("@")[0]}*! 
+            	anu = `Hallo *${pushname}*! 
 Bot Ini Di Buat Oleh *Asrori Amin*
 
 ❏ *Info Creator*
@@ -3261,7 +3261,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
             case 'command':{
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 listMessage :{
-                    title: `Hi @${num.split("@")[0]}\nSilahkan Pilih List Menu Dibawah 😁`,
+                    title: `Hi ${pushname}\nSilahkan Pilih List Menu Dibawah 😁`,
                     description: "\n",
                     buttonText: "Pencet Ini 👍",
                     footerText: "Asrori Amin",
@@ -3404,7 +3404,7 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
             }
             break
             case 'allmenu' : {
-                anu = `Hallo *@${num.split("@")[0]}*! 
+                anu = `Hallo *${pushname}*! 
 Bot Ini Di Buat Oleh *Asrori Amin*
 
 ❏ *Info Creator*
@@ -3774,7 +3774,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
                      }
             break
             case 'groupmenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -3852,7 +3852,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
             break
 
 case 'downloadmenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -3925,7 +3925,7 @@ case 'downloadmenu': {
             break
 
 case 'searchmenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -3993,7 +3993,7 @@ case 'searchmenu': {
             break
 
 case 'mememenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4039,7 +4039,7 @@ let btn = [{
             break
 
 case 'randommenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4099,7 +4099,7 @@ case 'randommenu': {
 
 
 case 'textpromenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4188,7 +4188,7 @@ let btn = [{
             break
 
 case 'photooxymenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4258,7 +4258,7 @@ let btn = [{
             break
 
 case 'ephotomenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4325,7 +4325,7 @@ let btn = [{
             break
 
 case 'funmenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4408,7 +4408,7 @@ let btn = [{
             break
 
 case 'primbonmenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4496,7 +4496,7 @@ let btn = [{
             break
 
 case 'convertmenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4570,7 +4570,7 @@ let btn = [{
             break
 
 case 'mainmenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4640,7 +4640,7 @@ let btn = [{
             break
 
 case 'databasemenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4706,7 +4706,7 @@ let btn = [{
             break
 
 case 'anonymousmenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4769,7 +4769,7 @@ let btn = [{
             break
 
 case 'islamicmenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4832,7 +4832,7 @@ let btn = [{
             break
 
 case 'voicechangermenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4901,7 +4901,7 @@ let btn = [{
             break
 
 case 'ownermenu': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
                 
 ┌──⭓ 「 INFO BOT 」⭓
 │
@@ -4969,7 +4969,7 @@ let btn = [{
                      }
             break
 case 'thanksto': {
-                anu = `Hai Kak @${num.split("@")[0]}
+                anu = `Hai Kak ${pushname}
 
 ┌──⭓ *THANKS TO*
 │
