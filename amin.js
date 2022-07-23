@@ -1367,7 +1367,7 @@ break
                 hisoka.sendMessage(x.id, { location: { jpegThumbnail: thumb }, caption: q, footer: 'BROADCAST', templateButtons: bc })
                 await sleep(1000)
             }
-            reply(`Successfully sent a broadcast message to ${anu.length} chat`)
+            reply(`Successfully sent a broadcast message to ${bece.length} chat`)
             }
             break
             case 'broadcast': case 'bcall': {
