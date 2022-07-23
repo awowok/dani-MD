@@ -3,7 +3,7 @@ const chalk = require('chalk')
 
 // Website Api
 global.APIs = {
-	zenz: 'https://zenzapis.xyz',
+	zenz: 'https://myhuman.herokuapp.com/',
 	amin: 'https://myhuman.herokuapp.com/',
 }
 
@@ -52,7 +52,7 @@ global.mess = {
 global.limitawal = {
     premium: "Infinity",
     free: 100
-}
+}0
 global.thumb = fs.readFileSync('./lib/Amin.jpg')
 global.visoka = { url: 'https://telegra.ph/file/15209657f9d4f59c7ca1e.mp4' }
 
