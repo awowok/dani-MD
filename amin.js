@@ -64,7 +64,7 @@ hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title
 }
 
 	const reply = (teks) => {
-  hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Asrori Amin`,"body": `Halo Kak ${pushname}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": thumb,"sourceUrl": `https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed`}}}, { quoted: m })
+  hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Asrori Amin`,"body": `Halo Kak ${pushname}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": thumb,"sourceUrl": `https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3`}}}, { quoted: m })
   }
 	
 	
@@ -1259,7 +1259,7 @@ break
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -1308,7 +1308,7 @@ break
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -1347,7 +1347,7 @@ break
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -2886,7 +2886,7 @@ replay('Success in turning off nsfw in this group')
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -3160,7 +3160,7 @@ let capt = `⭔ Title: ${judul}
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -3689,7 +3689,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -3766,7 +3766,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -3839,7 +3839,7 @@ case 'downloadmenu': {
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -3907,7 +3907,7 @@ case 'searchmenu': {
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4102,7 +4102,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4172,7 +4172,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4239,7 +4239,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4322,7 +4322,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4410,7 +4410,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4484,7 +4484,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4554,7 +4554,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4620,7 +4620,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4683,7 +4683,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4746,7 +4746,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4815,7 +4815,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4884,7 +4884,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -4950,7 +4950,7 @@ let btn = [{
                             }, {
                                 urlButton: {
                                     displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
+                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
                                 }
                             }, {
                                 quickReplyButton: {
