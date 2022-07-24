@@ -1292,12 +1292,12 @@ break
                      }
             break
             case 'bcgc': case 'bcgroup': {
-                if (!isCreator) return replay(`${mess.owner}`)
-                if (!text) return replay(`Mana Text Nya?\n\nContoh : ${prefix + command} Raisya Sepuh`)
+                if (!isCreator) throw mess.owner
+                if (!text) throw `Text mana?\n\nExample : ${prefix + command} Amin Anak Baik`
                 let getGroups = await hisoka.groupFetchAllParticipating()
                 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
                 let anu = groups.map(v => v.id)
-                reply(`Sent Broadcast To ${anu.length} Group Chat, Finish Time ${anu.length * 1.5} Seconds`)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
                 for (let i of anu) {
                     await sleep(1500)
                     let btn = [{
@@ -1326,25 +1326,17 @@ break
                                     id: 'donasi'
                                 }
                             }]
-                         let setbot = db.data.settings[botNumber]
-                        if (setbot.templateImage) {
-                        hisoka.send5ButImg(m.chat, anu, hisoka.user.name, global.thumb, btn, global.thumb)
-                        } else if (setbot.templateGif) {
-                        hisoka.send5ButGif(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
-                        } else if (setbot.templateVid) {
-                        hisoka.send5ButVid(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
-                        } else if (setbot.templateMsg) {
-                        hisoka.send5ButMsg(m.chat, anu, hisoka.user.name, btn)
-                        } else if (setbot.templateLocation) {
-                        hisoka.send5ButLoc(m.chat, anu, hisoka.user.name, global.thumb, btn)
-                        }
-                     }
+                      let txt = `「 Broadcast Bot 」\n\n${text}`
+                      hisoka.send5ButImg(i, txt, hisoka.user.name, global.thumb, btn)
+                    }
+                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+            }
             break
             case 'bc': case 'broadcast': case 'bcall': {
-                if (!isCreator) return replay(`${mess.owner}`)
-                if (!text) return replay(`Mana Text Nya?\n\nContoh : ${prefix + command} Raisya Spuh`)
+                if (!isCreator) throw mess.owner
+                if (!text) throw `Text mana?\n\nExample : ${prefix + command} Amin Anak Baik`
                 let anu = await store.chats.all().map(v => v.id)
-                reply(`Send Broadcast To ${anu.length} Chat\nFinish Time ${anu.length * 1.5} Seconds`)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Chat\nWaktu Selesai ${anu.length * 1.5} detik`)
 		for (let yoi of anu) {
 		    await sleep(1500)
 		    let btn = [{
@@ -1373,19 +1365,11 @@ break
                                     id: 'donasi'
                                 }
                             }]
-                         let setbot = db.data.settings[botNumber]
-                        if (setbot.templateImage) {
-                        hisoka.send5ButImg(m.chat, anu, hisoka.user.name, global.thumb, btn, global.thumb)
-                        } else if (setbot.templateGif) {
-                        hisoka.send5ButGif(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
-                        } else if (setbot.templateVid) {
-                        hisoka.send5ButVid(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
-                        } else if (setbot.templateMsg) {
-                        hisoka.send5ButMsg(m.chat, anu, hisoka.user.name, btn)
-                        } else if (setbot.templateLocation) {
-                        hisoka.send5ButLoc(m.chat, anu, hisoka.user.name, global.thumb, btn)
-                        }
-                     }
+                      let txt = `「 Broadcast Bot 」\n\n${text}`
+                      hisoka.send5ButImg(yoi, txt, hisoka.user.name, global.thumb, btn)
+		}
+		m.reply('Sukses Broadcast')
+            }
             break
             case prefix+'bcs':{
             if (!isCreator && !fromMe) return reply(mess.OnlyOwner)
