@@ -1292,12 +1292,12 @@ break
                      }
             break
             case 'bcgc': case 'bcgroup': {
-                if (!isCreator) throw mess.owner
-                if (!text) throw `Text mana?\n\nExample : ${prefix + command} fatih-san`
+                if (!isCreator) return replay(`${mess.owner}`)
+                if (!text) return replay(`Mana Text Nya?\n\nContoh : ${prefix + command} Raisya Sepuh`)
                 let getGroups = await hisoka.groupFetchAllParticipating()
                 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
                 let anu = groups.map(v => v.id)
-                reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                reply(`Sent Broadcast To ${anu.length} Group Chat, Finish Time ${anu.length * 1.5} Seconds`)
                 for (let i of anu) {
                     await sleep(1500)
                     let btn = [{
@@ -1317,7 +1317,7 @@ break
                                 }
                             }, {
                                 quickReplyButton: {
-                                    displayText:  'Contact Owner',
+                                    displayText: 'Contact Owner',
                                     id: 'owner'
                                 }  
                             }, {
@@ -1326,32 +1326,28 @@ break
                                     id: 'donasi'
                                 }
                             }]
-                      let txt = `「 Broadcast Bot 」\n\n${text}`
-                      hisoka.send5ButImg(i, txt, hisoka.user.name, global.thumb, btn)
-                    }
-                reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
-            }
+                         let setbot = db.data.settings[botNumber]
+                        if (setbot.templateImage) {
+                        hisoka.send5ButImg(m.chat, anu, hisoka.user.name, global.thumb, btn, global.thumb)
+                        } else if (setbot.templateGif) {
+                        hisoka.send5ButGif(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
+                        } else if (setbot.templateVid) {
+                        hisoka.send5ButVid(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
+                        } else if (setbot.templateMsg) {
+                        hisoka.send5ButMsg(m.chat, anu, hisoka.user.name, btn)
+                        } else if (setbot.templateLocation) {
+                        hisoka.send5ButLoc(m.chat, anu, hisoka.user.name, global.thumb, btn)
+                        }
+                     }
             break
-            case prefix+'bc':{
-            if (!isCreator && !fromMe) return reply(mess.OnlyOwner)
-            if (args.length < 2) return reply(`Gunakan dengan cara ${command} *teks*\n\n_Contoh_\n\n${command} feature updated`)
-            var bece = await store.chats.all()
-            for (let x of bece) {
-                var bc = [{ urlButton: { displayText: 'Share Bot', url: 'https://wa.me/?text=Hai+sekarang+whatsapp+ada+botnya+loh,+Yuk+bergabung+menjadi+user+di+bot+kami+https://api.whatsapp.com/send?phone='+ botNumber.split('@')[0] } }]
-                hisoka.sendMessage(x.id, { location: { jpegThumbnail: thumb }, caption: q, footer: 'Asrori Amin', templateButtons: bc })
-                await sleep(1000)
-            }
-            reply(`Successfully sent a broadcast message to ${bece.length} chat`)
-            }
-            break
-            case 'broadcast': case 'bcall': {
-                if (!isCreator) throw mess.owner
-                if (!text) throw `Text mana?\n\nExample : ${prefix + command} fatih-san`
+            case 'bc': case 'broadcast': case 'bcall': {
+                if (!isCreator) return replay(`${mess.owner}`)
+                if (!text) return replay(`Mana Text Nya?\n\nContoh : ${prefix + command} Raisya Spuh`)
                 let anu = await store.chats.all().map(v => v.id)
-                reply(`Mengirim Broadcast Ke ${anu.length} Chat\nWaktu Selesai ${anu.length * 1.5} detik`)
+                reply(`Send Broadcast To ${anu.length} Chat\nFinish Time ${anu.length * 1.5} Seconds`)
 		for (let yoi of anu) {
 		    await sleep(1500)
-            let btn = [{
+		    let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
                                     url: 'https://asroriamin-api.herokuapp.com/'
@@ -1363,8 +1359,8 @@ break
                                 }
                             }, {
                                 quickReplyButton: {
-                                    displayText: 'MENU',
-                                    id: 'allmenu'
+                                    displayText: 'Status Bot',
+                                    id: 'ping'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -1377,23 +1373,43 @@ break
                                     id: 'donasi'
                                 }
                             }]
-                         let txt = `「 Broadcast Bot 」\n\n${text}`
-                      hisoka.send5ButImg(yoi, txt, 'Asrori Amin', global.thumb, btn)
-		}
-		reply('Sukses Broadcast')
+                         let setbot = db.data.settings[botNumber]
+                        if (setbot.templateImage) {
+                        hisoka.send5ButImg(m.chat, anu, hisoka.user.name, global.thumb, btn, global.thumb)
+                        } else if (setbot.templateGif) {
+                        hisoka.send5ButGif(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
+                        } else if (setbot.templateVid) {
+                        hisoka.send5ButVid(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
+                        } else if (setbot.templateMsg) {
+                        hisoka.send5ButMsg(m.chat, anu, hisoka.user.name, btn)
+                        } else if (setbot.templateLocation) {
+                        hisoka.send5ButLoc(m.chat, anu, hisoka.user.name, global.thumb, btn)
+                        }
+                     }
+            break
+            case prefix+'bcs':{
+            if (!isCreator && !fromMe) return reply(mess.OnlyOwner)
+            if (args.length < 2) return reply(`Gunakan dengan cara ${command} *teks*\n\n_Contoh_\n\n${command} feature updated`)
+            var bece = await store.chats.all()
+            for (let x of bece) {
+                var bc = [{ urlButton: { displayText: 'Share Bot', url: 'https://wa.me/?text=Hai+sekarang+whatsapp+ada+botnya+loh,+Yuk+bergabung+menjadi+user+di+bot+kami+https://api.whatsapp.com/send?phone='+ botNumber.split('@')[0] } }]
+                hisoka.sendMessage(x.id, { location: { jpegThumbnail: thumb }, caption: q, footer: 'Asrori Amin', templateButtons: bc })
+                await sleep(1000)
+            }
+            reply(`Successfully sent a broadcast message to ${bece.length} chat`)
             }
             break
-            case 'infochat': {
-                if (!m.quoted) reply('Reply Pesan')
+            case 'chatinfo': case 'infochat': {
+                if (!m.quoted) return reply(`Reply Message`)
                 let msg = await m.getQuotedObj()
-                if (!m.quoted.isBaileys) throw 'ᴘᴇsᴀɴ ᴛᴇʀsᴇʙᴜᴛ ʙᴜᴋᴀɴ ᴅɪᴋɪʀɪᴍ ᴏʟᴇʜ ʙᴏᴛ!'
+                if (!m.quoted.isBaileys) return replay(`The Message Was Not Sent By A Bot!`)
                 let teks = ''
                 for (let i of msg.userReceipt) {
                     let read = i.readTimestamp
                     let unread = i.receiptTimestamp
                     let waktu = read ? read : unread
-                    teks += `⭔ @${i.userJid.split('@')[0]}\n`
-                    teks += ` ┗━⭔ *Waktu :* ${moment(waktu * 1000).format('DD/MM/YY HH:mm:ss')} ⭔ *Status :* ${read ? 'Dibaca' : 'Terkirim'}\n\n`
+                    teks += `🐦 @${i.userJid.split('@')[0]}\n`
+                    teks += ` ┗━🐦 *Time :* ${moment(waktu * 1000).format('DD/MM/YY HH:mm:ss')} 🐦 *Status :* ${read ? 'Read' : 'Sent'}\n\n`
                 }
                 hisoka.sendTextWithMentions(m.chat, teks, m)
             }
