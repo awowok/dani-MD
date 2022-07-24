@@ -1556,7 +1556,7 @@ break
 	       break     
 	        case 'simih': case 'simisimi': {
             if (!text) throw `Example : ${prefix + command} text`
-            hm = await fetchJson(api('zenz', '/api/simisimi', { text : text }, 'apikey'))
+            hm = await fetchJson(api('zenz', '/api/simisimi', { text : text }, '27380c26a2'))
             reply(hm.result.message)
             }
             break
@@ -1816,7 +1816,7 @@ hisoka.sendmessage(m.chat, { image: anu, caption: `nih  kak` }, { quoted: m})
 break 
             case 'anime': case 'waifu': case 'husbu': case 'neko': case 'shinobu': case 'megumin': case 'waifus': case 'nekos': case 'trap': case 'blowjob': {
                 reply(mess.wait)
-                hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/api/random/'+command, {}, 'apikey') }, caption: 'Generate Random ' + command }, { quoted: m })
+                hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/api/random/'+command, {}, '27380c26a2') }, caption: 'Generate Random ' + command }, { quoted: m })
             }
             break
 case 'masturbation': case 'jahy': case 'hentai': case 'glasses': case 'gangbang': case 'foot': 
@@ -2026,7 +2026,7 @@ break
             }
             break
 	        case 'motivasi': case 'dilanquote': case 'bucinquote': case 'katasenja': case 'puisi': {
-                let anu = await fetchJson(api('zenz', '/api/'+command, {}, 'apikey'))
+                let anu = await fetchJson(api('zenz', '/api/'+command, {}, '27380c26a2'))
                 let buttons = [
                     {buttonId: `motivasi`, buttonText: {displayText: 'Next'}, type: 1}
                 ]
@@ -2042,19 +2042,19 @@ break
             case '3dchristmas': case '3ddeepsea': case 'americanflag': case '3dscifi': case '3drainbow': case '3dwaterpipe': case 'halloweenskeleton': case 'sketch': case 'bluecircuit': case 'space': case 'metallic': case 'fiction': case 'greenhorror': case 'transformer': case 'berry': case 'thunder': case 'magma': case '3dcrackedstone': case '3dneonlight': case 'impressiveglitch': case 'naturalleaves': case 'fireworksparkle': case 'matrix': case 'dropwater':  case 'harrypotter': case 'foggywindow': case 'neondevils': case 'christmasholiday': case '3dgradient': case 'blackpink': case 'gluetext': {
                 if (!text) throw `Example : ${prefix + command} text`
                 reply(mess.wait)
-                hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/textpro/' + command, { text: text }, 'apikey') }, caption: `Text Pro ${command}` }, { quoted: m})
+                hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/textpro/' + command, { text: text }, '27380c26a2') }, caption: `Text Pro ${command}` }, { quoted: m})
 	    }
             break
 	    case 'shadow': case 'romantic': case 'smoke': case 'burnpapper': case 'naruto': case 'lovemsg': case 'grassmsg': case 'lovetext': case 'coffecup': case 'butterfly': case 'harrypotter': case 'retrolol': {
                 if (!text) throw 'No Query Text'
                 reply(mess.wait)
-                hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/photooxy/' + command, { text: text }, 'apikey') }, caption: `Photo Oxy ${command}` }, { quoted: m })
+                hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/photooxy/' + command, { text: text }, '27380c26a2') }, caption: `Photo Oxy ${command}` }, { quoted: m })
             }
             break
             case 'ffcover': case 'crossfire': case 'galaxy': case 'glass': case 'neon': case 'beach': case 'blackpink': case 'igcertificate': case 'ytcertificate': {
                 if (!text) throw 'No Query Text'
                 reply(mess.wait)
-                hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/ephoto/' + command, { text: text }, 'apikey') }, caption: `Ephoto ${command}` }, { quoted: m })
+                hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/ephoto/' + command, { text: text }, '27380c26a2') }, caption: `Ephoto ${command}` }, { quoted: m })
             }
             break
 	    case 'nomerhoki': case 'nomorhoki': {
@@ -2357,13 +2357,13 @@ break
 		    db.data.users[m.sender].limit -= 1
                 } else if (type.toLowerCase() == 'ig') {
                     if (!id) throw `No Query username, Example : ${prefix + command} ig cak_haho`
-                    let { result: anu } = await fetchJson(api('zenz', '/api/stalker/ig', { username: id }, 'apikey'))
+                    let { result: anu } = await fetchJson(api('zenz', '/api/stalker/ig', { username: id }, '27380c26a2'))
                     if (anu.status == false) return reply(anu.result.message)
                     hisoka.sendMedia(m.chat, anu.caption.profile_hd, '', `⭔ Full Name : ${anu.caption.full_name}\n⭔ User Name : ${anu.caption.user_name}\n⭔ ID ${anu.caption.user_id}\n⭔ Followers : ${anu.caption.followers}\n⭔ Following : ${anu.caption.following}\n⭔ Bussines : ${anu.caption.bussines}\n⭔ Profesional : ${anu.caption.profesional}\n⭔ Verified : ${anu.caption.verified}\n⭔ Private : ${anu.caption.private}\n⭔ Bio : ${anu.caption.biography}\n⭔ Bio Url : ${anu.caption.bio_url}`, m)
 		    db.data.users[m.sender].limit -= 1
                 } else if (type.toLowerCase() == 'npm') {
                     if (!id) throw `No Query username, Example : ${prefix + command} npm scrape-primbon`
-                    let { result: anu } = await fetchJson(api('zenz', '/api/stalker/npm', { query: id }, 'apikey'))
+                    let { result: anu } = await fetchJson(api('zenz', '/api/stalker/npm', { query: id }, '27380c26a2'))
                     if (anu.status == false) return reply(anu.result.message)
                     reply(`⭔ Name : ${anu.name}\n⭔ Version : ${Object.keys(anu.versions)}\n⭔ Created : ${tanggal(anu.time.created)}\n⭔ Modified : ${tanggal(anu.time.modified)}\n⭔ Maintainers :\n ${anu.maintainers.map(v => `- ${v.name} : ${v.email}`).join('\n')}\n\n⭔ Description : ${anu.description}\n⭔ Homepage : ${anu.homepage}\n⭔ Keywords : ${anu.keywords}\n⭔ Author : ${anu.author.name}\n⭔ License : ${anu.license}\n⭔ Readme : ${anu.readme}`)
 		    db.data.users[m.sender].limit -= 1
@@ -2372,25 +2372,10 @@ break
                 }
             }
             break
-            case prefix+'ttdl': case prefix+'tiktokdl': {
-            if (args.length < 2) return reply(`Gunakan dengan cara ${command} *url*\n\n_Contoh_\n\n${command} https://vt.tiktok.com/ZSduDmwCq/?k=1`)
-            if (!isUrl(args[1])) return reply(mess.error.Iv)
-            if (!args[1].includes('tiktok.com')) return reply(mess.error.Iv)
-            reply(mess.wait)
-            scrp.Tiktok(args[1]).then(async(data) => {
-                var bt = [ { buttonId: `${prefix}ttmp3 ${args[1]}`, buttonText: { displayText: "🎧 Audio" }, type: 1 } ]
-                hisoka.sendMessage(from, { video: { url: data.nowm }, caption: `*TIKTOK-DOWNLOADERS*\n\n• Title : ${data.title}\n• Author : ${data.author}`, footer: 'Asrori Amin', buttons: bt }, { quoted: msg })
-                limitAdd(sender, limit)
-            }).catch((e) => {
-                reply(mess.error.api)
-                console.log(color('[ TIKTOK ]', 'red'), e)
-                hisoka.sendMessage(ownerNumber, { text: `${command} ${e}` })
-            })
-            break
 	        case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'Masukkan Query Link!'
                 reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/Downloader API/Tiktok Downloader', { url: text }, 'apikey'))
+                let anu = await fetchJson(api('zenz', '/Downloader API/Tiktok Downloader', { url: text }, '27380c26a2'))
                 let buttons = [
                     {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1},
                     {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
@@ -2408,7 +2393,7 @@ break
             case 'tiktokwm': case 'tiktokwatermark': {
                 if (!text) throw 'Masukkan Query Link!'
                 reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, 'apikey'))
+                let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, '27380c26a2'))
                 let buttons = [
                     {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
                     {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
@@ -2426,7 +2411,7 @@ break
             case 'tiktokmp3': case 'tiktokaudio': {
                 if (!text) throw 'Masukkan Query Link!'
                 reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/downloader/musically', { url: text }, 'apikey'))
+                let anu = await fetchJson(api('zenz', '/downloader/musically', { url: text }, '27380c26a2'))
                 let buttons = [
                     {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
                     {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1}
@@ -2445,10 +2430,10 @@ break
                 if (!text) throw 'No Query Url!'
                 reply(mess.wait)
                 if (/(?:\/p\/|\/reel\/|\/tv\/)([^\s&]+)/.test(isUrl(text)[0])) {
-                    let anu = await fetchJson(api('zenz', '/downloader/instagram2', { url: isUrl(text)[0] }, 'apikey'))
+                    let anu = await fetchJson(api('zenz', '/downloader/instagram2', { url: isUrl(text)[0] }, '27380c26a2'))
                     for (let media of anu.data) hisoka.sendFileUrl(m.chat, media, `Download Url Instagram From ${isUrl(text)[0]}`, m)
                 } else if (/\/stories\/([^\s&]+)/.test(isUrl(text)[0])) {
-                    let anu = await fetchJson(api('zenz', '/downloader/instastory', { url: isUrl(text)[0] }, 'apikey'))
+                    let anu = await fetchJson(api('zenz', '/downloader/instastory', { url: isUrl(text)[0] }, '27380c26a2'))
                     hisoka.sendFileUrl(m.chat, anu.media[0].url, `Download Url Instagram From ${isUrl(text)[0]}`, m)
                 }
             }
@@ -2456,7 +2441,7 @@ break
             case 'joox': case 'jooxdl': {
                 if (!text) throw 'No Query Title'
                 reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/downloader/joox', { query: text }, 'apikey'))
+                let anu = await fetchJson(api('zenz', '/downloader/joox', { query: text }, '27380c26a2'))
                 let msg = await hisoka.sendImage(m.chat, anu.result.img, `⭔ Title : ${anu.result.lagu}\n⭔ Album : ${anu.result.album}\n⭔ Singer : ${anu.result.penyanyi}\n⭔ Publish : ${anu.result.publish}\n⭔ Lirik :\n${anu.result.lirik.result}`, m)
                 hisoka.sendMessage(m.chat, { audio: { url: anu.result.mp4aLink }, mimetype: 'audio/mpeg', fileName: anu.result.lagu+'.m4a' }, { quoted: msg })
             }
@@ -2464,7 +2449,7 @@ break
             case 'soundcloud': case 'scdl': {
                 if (!text) throw 'No Query Title'
                 reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/downloader/soundcloud', { url: isUrl(text)[0] }, 'apikey'))
+                let anu = await fetchJson(api('zenz', '/downloader/soundcloud', { url: isUrl(text)[0] }, '27380c26a2'))
                 let msg = await hisoka.sendImage(m.chat, anu.result.thumb, `⭔ Title : ${anu.result.title}\n⭔ Url : ${isUrl(text)[0]}`)
                 hisoka.sendMessage(m.chat, { audio: { url: anu.result.url }, mimetype: 'audio/mpeg', fileName: anu.result.title+'.m4a' }, { quoted: msg })
             }
@@ -2472,7 +2457,7 @@ break
 	        case 'twitdl': case 'twitter': {
                 if (!text) throw 'Masukkan Query Link!'
                 reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/api/downloader/twitter', { url: text }, 'apikey'))
+                let anu = await fetchJson(api('zenz', '/api/downloader/twitter', { url: text }, '27380c26a2'))
                 let buttons = [
                     {buttonId: `twittermp3 ${text}`, buttonText: {displayText: '► Audio'}, type: 1}
                 ]
@@ -2489,7 +2474,7 @@ break
             case 'twittermp3': case 'twitteraudio': {
                 if (!text) throw 'Masukkan Query Link!'
                 reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/api/downloader/twitter', { url: text }, 'apikey'))
+                let anu = await fetchJson(api('zenz', '/api/downloader/twitter', { url: text }, '27380c26a2'))
                 let buttons = [
                     {buttonId: `twitter ${text}`, buttonText: {displayText: '► Video'}, type: 1}
                 ]
@@ -2507,14 +2492,14 @@ break
 	        case 'fbdl': case 'fb': case 'facebook': {
                 if (!text) throw 'Masukkan Query Link!'
                 reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/api/downloader/facebook', { url: text }, 'apikey'))
+                let anu = await fetchJson(api('zenz', '/api/downloader/facebook', { url: text }, '27380c26a2'))
                 hisoka.sendMessage(m.chat, { video: { url: anu.result.url }, caption: `⭔ Title : ${anu.result.title}`}, { quoted: m })
             }
             break
 	        case 'pindl': case 'pinterestdl': {
                 if (!text) throw 'Masukkan Query Link!'
                 reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/api/downloader/pinterestdl', { url: text }, 'apikey'))
+                let anu = await fetchJson(api('zenz', '/api/downloader/pinterestdl', { url: text }, '27380c26a2'))
                 hisoka.sendMessage(m.chat, { video: { url: anu.result }, caption: `Download From ${text}` }, { quoted: m })
             }
             break
@@ -2998,7 +2983,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             break
             case 'playstore': {
             if (!text) throw `Example : ${prefix + command} clash of clans`
-            let res = await fetchJson(api('zenz', '/webzone/playstore', { query: text }, 'apikey'))
+            let res = await fetchJson(api('zenz', '/webzone/playstore', { query: text }, '27380c26a2'))
             let teks = `⭔ Playstore Search From : ${text}\n\n`
             for (let i of res.result) {
             teks += `⭔ Name : ${i.name}\n`
@@ -3011,7 +2996,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             break
             case 'gsmarena': {
             if (!text) throw `Example : ${prefix + command} samsung`
-            let res = await fetchJson(api('zenz', '/webzone/gsmarena', { query: text }, 'apikey'))
+            let res = await fetchJson(api('zenz', '/webzone/gsmarena', { query: text }, '27380c26a2'))
             let { judul, rilis, thumb, ukuran, type, storage, display, inchi, pixel, videoPixel, ram, chipset, batrai, merek_batre, detail } = res.result
 let capt = `⭔ Title: ${judul}
 ⭔ Realease: ${rilis}
@@ -3032,7 +3017,7 @@ let capt = `⭔ Title: ${judul}
             break
             case 'jadwalbioskop': {
             if (!text) throw `Example: ${prefix + command} jakarta`
-            let res = await fetchJson(api('zenz', '/webzone/jadwalbioskop', { kota: text }, 'apikey'))
+            let res = await fetchJson(api('zenz', '/webzone/jadwalbioskop', { kota: text }, '27380c26a2'))
             let capt = `Jadwal Bioskop From : ${text}\n\n`
             for (let i of res.result){
             capt += `⭔ Title: ${i.title}\n`
@@ -3043,7 +3028,7 @@ let capt = `⭔ Title: ${judul}
             }
             break
             case 'nowplayingbioskop': {
-            let res = await fetchJson(api('zenz', '/webzone/nowplayingbioskop', {}, 'apikey'))
+            let res = await fetchJson(api('zenz', '/webzone/nowplayingbioskop', {}, '27380c26a2'))
             let capt = `Now Playing Bioskop\n\n`
             for (let i of res.result){
             capt += `⭔ Title: ${i.title}\n`
@@ -3055,7 +3040,7 @@ let capt = `⭔ Title: ${judul}
             break
             case 'aminio': {
             if (!text) throw `Example: ${prefix + command} free fire`
-            let res = await fetchJson(api('zenz', '/webzone/amino', { query: text }, 'apikey'))
+            let res = await fetchJson(api('zenz', '/webzone/amino', { query: text }, '27380c26a2'))
             let capt = `Aminio Search From : ${text}\n\n`
             for (let i of res.result){
             capt += `⭔ Community: ${i.community}\n`
@@ -3069,7 +3054,7 @@ let capt = `⭔ Title: ${judul}
             break
             case 'wattpad': {
             if (!text) throw `Example : ${prefix + command} love`
-            let res = await fetchJson(api('zenz', '/webzone/wattpad', { query: text }, 'apikey'))
+            let res = await fetchJson(api('zenz', '/webzone/wattpad', { query: text }, '27380c26a2'))
             let { judul, dibaca, divote, bab, waktu, url, thumb, description } = res.result[0]
             let capt = `Wattpad From ${text}\n\n`
             capt += `⭔ Judul: ${judul}\n`
@@ -3084,7 +3069,7 @@ let capt = `⭔ Title: ${judul}
             break
             case 'webtoons': {
             if (!text) throw `Example : ${prefix + command} love`
-            let res = await fetchJson(api('zenz', '/webzone/webtoons', { query: text }, 'apikey'))
+            let res = await fetchJson(api('zenz', '/webzone/webtoons', { query: text }, '27380c26a2'))
             let capt = `Webtoons Search From : ${text}\n\n`
             for (let i of res.result) {
             capt += `⭔ Judul: ${i.judul}\n`
@@ -3098,7 +3083,7 @@ let capt = `⭔ Title: ${judul}
             break
             case 'drakor': {
             if (!text) throw `Example : ${prefix + command} love`
-            let res = await fetchJson(api('zenz', '/webzone/drakor', { query: text }, 'apikey'))
+            let res = await fetchJson(api('zenz', '/webzone/drakor', { query: text }, '27380c26a2'))
             let capt = `Drakor Search From : ${text}\n\n`
             for (let i of res.result) {
             capt += `⭔ Judul: ${i.judul}\n`

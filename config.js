@@ -3,7 +3,7 @@ const chalk = require('chalk')
 
 // Website Api
 global.APIs = {
-	zenz: 'https://fatiharridho.herokuapp.com/docs',
+	zenz: 'https://zenzapis.xyz',
 	amin: 'https://myhuman.herokuapp.com/',
 }
 
