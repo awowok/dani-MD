@@ -59,12 +59,12 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
 	
 	//Fake Reply 
 	
-	const reply = (teks) => {
-hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Amin Bot`,"body": `Amin Bot`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./lib/Amin.jpg`),"sourceUrl": "https://asroriamin-api.herokuapp.com/"}}}, { quoted: m})
+	const reply2 = (teks) => {
+hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Asrori Amin`,"body": `Amin Bot`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./lib/Amin.jpg`),"sourceUrl": "https://asroriamin-api.herokuapp.com/"}}}, { quoted: m})
 }
 
-	const reply2 = (teks) => {
-  hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `© Amin Bot`,"body": `Halo Kak ${pushname}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": thumb,"sourceUrl": `https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed`}}}, { quoted: m })
+	const reply = (teks) => {
+  hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Asrori Amin`,"body": `Halo Kak ${pushname}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": thumb,"sourceUrl": `https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed`}}}, { quoted: m })
   }
 	
 	
@@ -548,46 +548,20 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             }
             break
             case 'sc' : case 'script' : {
-            	anu = 'Script : https://github.com/DikaArdnt/Hisoka-Morou'
-            let btn = [{
-                                urlButton: {
-                                    displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
-                                }
-                            }, {
-                                urlButton: {
-                                    displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Status Bot',
-                                    id: 'ping'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Contact Owner',
-                                    id: 'owner'
-                                }  
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Sewa Bot',
-                                    id: 'donasi'
-                                }
-                            }]
-                         let setbot = db.data.settings[botNumber]
-                        if (setbot.templateImage) {
-                        hisoka.send5ButImg(m.chat, anu, hisoka.user.name, global.thumb, btn, global.thumb)
-                        } else if (setbot.templateGif) {
-                        hisoka.send5ButGif(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
-                        } else if (setbot.templateVid) {
-                        hisoka.send5ButVid(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
-                        } else if (setbot.templateMsg) {
-                        hisoka.send5ButMsg(m.chat, anu, hisoka.user.name, btn)
-                        } else if (setbot.templateLocation) {
-                        hisoka.send5ButLoc(m.chat, anu, hisoka.user.name, global.thumb, btn)
-                        }
-                     }
+            	anuan = `Hallo *@${m.sender.split("@")[0]}*! 
+Bot Ini Di Buat Dengan Base = https://github.com/DikaArdnt/Hisoka-Morou
+
+Bot Ini Dibuat Oleh @6288227248988
+
+❏ *Info Creator*
+> Name : *Asrori Amin*
+> Umur : *15*
+> Kesukaan : *Loli*,*Chitoge*
+> Alamat : *Kudus,Jateng,Indonesia🇮🇩*
+> Hobyy : *Belajar,Membaca*
+> Nama Panggilan : *Amin*`
+hisoka.sendButtonText(m.chat, [{"buttonId": `${prefix}donasi`,"buttonText": {"displayText": "SEWA BOT"},"type": "RESPONSE"},{"buttonId": `${prefix}allmenu`,"buttonText": {"displayText": "MENU"},"type": "RESPONSE"}], anuan, `Asrori Amin`, m, {mentions: ["6288227248988@s.whatsapp.net"]})
+            }
             break
             case 'chat': {
                 if (!isCreator) throw mess.owner
@@ -3219,55 +3193,17 @@ let capt = `⭔ Title: ${judul}
                      }
             break
             case 'menu' : case 'help' : case '?' : {
-            	anu = `Hallo *${pushname}*! 
-Bot Ini Di Buat Oleh *Asrori Amin*
+            	anuan = `Hallo *@${m.sender.split("@")[0]}*! 
+Bot Ini Di Buat Oleh @6288227248988
 
 ❏ *Info Creator*
 > Name : *Asrori Amin*
-> Nomor : *https://wa.me/6288227248988*
 > Umur : *15*
 > Kesukaan : *Loli*,*Chitoge*
 > Alamat : *Kudus,Jateng,Indonesia🇮🇩*
 > Hobyy : *Belajar,Membaca*
 > Nama Panggilan : *Amin*`
-            let btn = [{
-                                urlButton: {
-                                    displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
-                                }
-                            }, {
-                                urlButton: {
-                                    displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/ID36jYZjlYz7E4zus4SBed'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'MENU',
-                                    id: 'allmenu'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Contact Owner',
-                                    id: 'owner'
-                                }  
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Sewa Bot',
-                                    id: 'donasi'
-                                }
-                            }]
-                         let setbot = db.data.settings[botNumber]
-                        if (setbot.templateImage) {
-                        hisoka.send5ButImg(m.chat, anu, hisoka.user.name, global.thumb, btn, global.thumb)
-                        } else if (setbot.templateGif) {
-                        hisoka.send5ButGif(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
-                        } else if (setbot.templateVid) {
-                        hisoka.send5ButVid(m.chat, anu, hisoka.user.name, global.visoka, btn, global.thumb)
-                        } else if (setbot.templateMsg) {
-                        hisoka.send5ButMsg(m.chat, anu, hisoka.user.name, btn)
-                        } else if (setbot.templateLocation) {
-                        hisoka.send5ButLoc(m.chat, anu, hisoka.user.name, global.thumb, btn)
-                        }
+hisoka.sendButtonText(m.chat, [{"buttonId": `${prefix}donasi`,"buttonText": {"displayText": "SEWA BOT"},"type": "RESPONSE"},{"buttonId": `${prefix}allmenu`,"buttonText": {"displayText": "MENU"},"type": "RESPONSE"}], anuan, `Asrori Amin`, m, {mentions: ["6288227248988@s.whatsapp.net"]})             
                      }
             break
             case 'command':{
@@ -4993,6 +4929,7 @@ case 'thanksto': {
 │⭔ Putraa
 │⭔ Nisaa
 │⭔ Inuuu
+│⭔ Dimas
 │⭔ Saad Bn
 │⭔ Denpa
 │⭔ Raisya Ronove
