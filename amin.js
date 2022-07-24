@@ -2372,6 +2372,22 @@ break
                 }
             }
             break
+            case prefix+'ttdl': case prefix+'tiktokdl':
+            if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+            if (args.length < 2) return reply(`Gunakan dengan cara ${command} *url*\n\n_Contoh_\n\n${command} https://vt.tiktok.com/ZSduDmwCq/?k=1`)
+            if (!isUrl(args[1])) return reply(mess.error.Iv)
+            if (!args[1].includes('tiktok.com')) return reply(mess.error.Iv)
+            reply(mess.wait)
+            scrp.Tiktok(args[1]).then(async(data) => {
+                var bt = [ { buttonId: `${prefix}ttmp3 ${args[1]}`, buttonText: { displayText: "🎧 Audio" }, type: 1 } ]
+                hisoka.sendMessage(from, { video: { url: data.nowm }, caption: `*TIKTOK-DOWNLOADERS*\n\n• Title : ${data.title}\n• Author : ${data.author}`, footer: 'Asrori Amin', buttons: bt }, { quoted: msg })
+                limitAdd(sender, limit)
+            }).catch((e) => {
+                reply(mess.error.api)
+                console.log(color('[ TIKTOK ]', 'red'), e)
+                hisoka.sendMessage(ownerNumber, { text: `${command} ${e}` })
+            })
+            break
 	        case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'Masukkan Query Link!'
                 reply(mess.wait)
