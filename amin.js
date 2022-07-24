@@ -1364,7 +1364,7 @@ break
             var bece = await store.chats.all()
             for (let x of bece) {
                 var bc = [{ urlButton: { displayText: 'Share Bot', url: 'https://wa.me/?text=Hai+sekarang+whatsapp+ada+botnya+loh,+Yuk+bergabung+menjadi+user+di+bot+kami+https://api.whatsapp.com/send?phone='+ botNumber.split('@')[0] } }]
-                hisoka.sendMessage(x.id, { location: { jpegThumbnail: thumb }, caption: q, footer: 'BROADCAST', templateButtons: bc })
+                hisoka.sendMessage(x.id, { location: { jpegThumbnail: thumb }, caption: q, footer: 'Asrori Amin', templateButtons: bc })
                 await sleep(1000)
             }
             reply(`Successfully sent a broadcast message to ${bece.length} chat`)
@@ -2401,7 +2401,7 @@ break
 	        case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'Masukkan Query Link!'
                 reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, 'apikey'))
+                let anu = await fetchJson(api('zenz', '/Downloader API/Tiktok Downloader', { url: text }, 'apikey'))
                 let buttons = [
                     {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1},
                     {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
