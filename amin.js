@@ -2372,8 +2372,7 @@ break
                 }
             }
             break
-            case prefix+'ttdl': case prefix+'tiktokdl':
-            if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+            case prefix+'ttdl': case prefix+'tiktokdl': {
             if (args.length < 2) return reply(`Gunakan dengan cara ${command} *url*\n\n_Contoh_\n\n${command} https://vt.tiktok.com/ZSduDmwCq/?k=1`)
             if (!isUrl(args[1])) return reply(mess.error.Iv)
             if (!args[1].includes('tiktok.com')) return reply(mess.error.Iv)
