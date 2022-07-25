@@ -7,6 +7,7 @@ const { exec, spawn, execSync } = require("child_process")
 const axios = require('axios')
 const path = require('path')
 const os = require('os')
+const Jimp = require('jimp')
 const moment = require('moment-timezone')
 const { JSDOM } = require('jsdom')
 const speed = require('performance-now')
@@ -66,7 +67,6 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
 }
 const foto = fs.readFileSync('./lib/Amin.jpg')
 const thumb = await reSize(foto, 200, 200)
-const Jimp = require('jimp')
 
          
 	//Fake Reply
