@@ -167,7 +167,7 @@ async function startHisoka() {
 ]
 let buttonMessage = {
 image: { url: ppuser },
-caption: `Welcome To ${metadata.subject} @${num.split("@")[0]}\nDescription: ${metadata.desc}`,
+caption: `Welcome To ${metadata.subject} @${num.split("@")[0]}\nJangan Lupa Intro😇`,
 footer: "Asrori Amin",
 mentions:[num],
 buttons: buttons,

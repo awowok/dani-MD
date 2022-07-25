@@ -56,9 +56,19 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
     	const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
     	const isPremium = isCreator || global.premium.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || false
 	
-	
-	//Fake Reply 
-	
+	//resize
+       const reSize = async(buffer, ukur1, ukur2) => {
+    return new Promise(async(resolve, reject) => {
+        var baper = await Jimp.read(buffer);
+        var ab = await baper.resize(ukur1, ukur2).getBufferAsync(Jimp.MIME_JPEG)
+        resolve(ab)
+    })
+}
+const foto = fs.readFileSync('./lib/Amin.jpg')
+const thumb = await reSize(foto, 200, 200)
+
+         
+	//Fake Reply
 	const reply2 = (teks) => {
 hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Asrori Amin`,"body": `Amin Bot`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./lib/Amin.jpg`),"sourceUrl": "https://asroriamin-api.herokuapp.com/"}}}, { quoted: m})
 }
@@ -900,7 +910,7 @@ hisoka.sendButtonText(m.chat, [{"buttonId": `${prefix}donasi`,"buttonText": {"di
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
-let teks = `══✪〘 *👥 Tag All* 〙✪══
+let teks = `══✪〘 *👥 Babu Grub👇* 〙✪══
  
  ➲ *Pesan : ${q ? q : 'kosong'}*\n\n`
                 for (let mem of participants) {
@@ -1627,28 +1637,28 @@ break
         })
         }
         break
-	    case 'play': case 'ytplay': {
-                if (!text) throw `Example : ${prefix + command} story wa anime`
+	    case 'play': case 'song': case 'ytplay': {
+                if (!text) return reply(`Example : ${prefix + command} Stay`)
                 let yts = require("yt-search")
                 let search = await yts(text)
                 let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
                 let buttons = [
-                    {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: '♫ Audio'}, type: 1},
-                    {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: '► Video'}, type: 1}
+                    {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: '🎶Audio🎶'}, type: 1},
+                    {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: '📽️Video📽️'}, type: 1}
                 ]
                 let buttonMessage = {
                     image: { url: anu.thumbnail },
                     caption: `
-⭔ Title : ${anu.title}
-⭔ Ext : Search
-⭔ ID : ${anu.videoId}
-⭔ Duration : ${anu.timestamp}
-⭔ Viewers : ${anu.views}
-⭔ Upload At : ${anu.ago}
-⭔ Author : ${anu.author.name}
-⭔ Channel : ${anu.author.url}
-⭔ Description : ${anu.description}
-⭔ Url : ${anu.url}`,
+🐦 Title : ${anu.title}
+🐦 Ext : Search
+🐦 ID : ${anu.videoId}
+🐦 Duration : ${anu.timestamp}
+🐦 Viewes : ${anu.views}
+🐦 Uploaded On : ${anu.ago}
+🐦 Author : ${anu.author.name}
+🐦 Channel : ${anu.author.url}
+🐦 Description : ${anu.description}
+🐦 Url : ${anu.url}`,
                     footer: hisoka.user.name,
                     buttons: buttons,
                     headerType: 4
@@ -1734,7 +1744,7 @@ let anu = await getbuffer(`https://api.lolhuman.xyz/api/meme/memeindo?apikey=you
 hisoka.sendmessage(m.chat, { image: anu, caption: `nih  kak` }, { quoted: m})
 }
 break 
-            case 'anime': case 'waifu': case 'husbu': case 'neko': case 'shinobu': case 'megumin': case 'waifus': case 'nekos': case 'trap': case 'blowjob': {
+            case 'anime': case 'husbu': case 'neko': case 'shinobu': case 'megumin': case 'waifus': case 'nekos': case 'trap': case 'blowjob': {
                 reply(mess.wait)
                 hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/api/random/'+command, {}, '27380c26a2') }, caption: 'Generate Random ' + command }, { quoted: m })
             }
@@ -1959,6 +1969,13 @@ break
                 hisoka.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             break
+            case 'waifu': case 'loli':
+					reply(mess.wait)
+					axios.get(`https://api.waifu.pics/sfw/waifu`)
+					.then(({data}) => {
+					hisoka.sendImage(m.chat, data.url, mess.success, m)
+					})
+					break
             case '3dchristmas': case '3ddeepsea': case 'americanflag': case '3dscifi': case '3drainbow': case '3dwaterpipe': case 'halloweenskeleton': case 'sketch': case 'bluecircuit': case 'space': case 'metallic': case 'fiction': case 'greenhorror': case 'transformer': case 'berry': case 'thunder': case 'magma': case '3dcrackedstone': case '3dneonlight': case 'impressiveglitch': case 'naturalleaves': case 'fireworksparkle': case 'matrix': case 'dropwater':  case 'harrypotter': case 'foggywindow': case 'neondevils': case 'christmasholiday': case '3dgradient': case 'blackpink': case 'gluetext': {
                 if (!text) throw `Example : ${prefix + command} text`
                 reply(mess.wait)
@@ -2383,6 +2400,13 @@ break
                 hisoka.sendMessage(m.chat, { video: { url: anu.result }, caption: `Download From ${text}` }, { quoted: m })
             }
             break
+            case 'cry':case 'kill':case 'hug':case 'pat':case 'lick':case 'kiss':case 'bite':case 'yeet':case 'neko':case 'bully':case 'bonk':case 'wink':case 'poke':case 'nom':case 'slap':case 'smile':case 'wave':case 'awoo':case 'blush':case 'smug':case 'glomp':case 'happy':case 'dance':case 'cringe':case 'cuddle':case 'highfive':case 'shinobu':case 'megumin':case 'handhold':
+					reply(mess.wait)
+					axios.get(`https://api.waifu.pics/sfw/${command}`)
+					.then(({data}) => {
+						hisoka.sendImageAsSticker(m.chat, data.url, m, { packname: global.packname, author: global.author })
+					})
+					break
             case 'umma': case 'ummadl': {
 	        if (!text) throw `Example : ${prefix + command} https://umma.id/channel/video/post/gus-arafat-sumber-kecewa-84464612933698`
                 let { umma } = require('./lib) scraper')
@@ -2423,18 +2447,38 @@ Untuk Download Media Silahkan Klik salah satu Button dibawah ini atau masukkan c
 	    }
 	    break
 		case 'iqra': {
-		oh = `Example : ${prefix + command} 3\n\nIQRA Yang tersedia : 1,2,3,4,5,6`
-		if (!text) throw oh
+		oh = `Example : ${prefix + command} 3\n\nIQRA Which Is Available : 1,2,3,4,5,6`
+		if (!text) return reply(oh)
 		yy = await getBuffer(`https://islamic-api-indonesia.herokuapp.com/api/data/pdf/iqra${text}`)
 		hisoka.sendMessage(m.chat, {document: yy, mimetype: 'application/pdf', fileName: `iqra${text}.pdf`}, {quoted:m}).catch ((err) => reply(oh))
 		}
 		break
-		case 'hadits': case 'hadis': case 'hadist': {
-		if (!args[0]) throw `Contoh:
+		case 'juzamma': {
+		if (args[0] === 'pdf') {
+		reply(mess.wait)
+		hisoka.sendMessage(m.chat, {document: {url: 'https://fatiharridho.my.id/database/islam/juz-amma-arab-latin-indonesia.pdf'}, mimetype: 'application/pdf', fileName: 'juz-amma-arab-latin-indonesia.pdf'}, {quoted:m})
+		} else if (args[0] === 'docx') {
+		reply(mess.wait)
+		hisoka.sendMessage(m.chat, {document: {url: 'https://fatiharridho.my.id/database/islam/juz-amma-arab-latin-indonesia.docx'}, mimetype: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', fileName: 'juz-amma-arab-latin-indonesia.docx'}, {quoted:m})
+		} else if (args[0] === 'pptx') {
+		reply(mess.wait)
+		hisoka.sendMessage(m.chat, {document: {url: 'https://fatiharridho.my.id/database/islam/juz-amma-arab-latin-indonesia.pptx'}, mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation', fileName: 'juz-amma-arab-latin-indonesia.pptx'}, {quoted:m})
+		} else if (args[0] === 'xlsx') {
+		reply(mess.wait)
+		hisoka.sendMessage(m.chat, {document: {url: 'https://fatiharridho.my.id/database/islam/juz-amma-arab-latin-indonesia.xlsx'}, mimetype: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', fileName: 'juz-amma-arab-latin-indonesia.xlsx'}, {quoted:m})
+		} else {
+		reply(`What Format Do You Want? ? Example : ${prefix + command} pdf
+
+Available Formats: pdf, docx, pptx, xlsx`)
+		}
+		}
+		break
+		case 'hadis': case 'hadist': {
+		if (!args[0]) return reply(`Example:
 ${prefix + command} bukhari 1
 ${prefix + command} abu-daud 1
 
-Pilihan tersedia:
+Options Available:
 abu-daud
 1 - 4590
 ahmad
@@ -2443,33 +2487,31 @@ bukhari
 1 - 7008
 darimi
 1 - 3367
-tirmidzi
-1 - 3891
-ibnu-majah
+ibu-majah
 1 - 4331
 nasai
 1 - 5662
 malik
 1 - 1594
 muslim
-1 - 5362`
-		if (!args[1]) throw `Hadis yang ke berapa?\n\ncontoh:\n${prefix + command} muslim 1`
+1 - 5362`)
+		if (!args[1]) return reply(`Which Hadith??\n\nExample:\n${prefix + command} muslim 1`)
 		try {
-		let res = await fetchJson(`https://fatiharridho.herokuapp.com/api/islamic/hadits?list=${args[0]}`)
-		let { number, arab, id } = res.result.find(v => v.number == args[1])
+		let res = await fetchJson(`https://islamic-api-indonesia.herokuapp.com/api/data/json/hadith/${args[0]}`)
+		let { number, arab, id } = res.find(v => v.number == args[1])
 		reply(`No. ${number}
 
 ${arab}
 
 ${id}`)
 		} catch (e) {
-		reply(`Hadis tidak ditemukan !`)
+		reply(`Hadith Not Found !`)
 		}
 		}
 		break
 		case 'alquran': {
-		if (!args[0]) throw `Contoh penggunaan:\n${prefix + command} 1 2\n\nmaka hasilnya adalah surah Al-Fatihah ayat 2 beserta audionya, dan ayatnya 1 aja`
-		if (!args[1]) throw `Contoh penggunaan:\n${prefix + command} 1 2\n\nmaka hasilnya adalah surah Al-Fatihah ayat 2 beserta audionya, dan ayatnya 1 aja`
+		if (!args[0]) return reply(`Usage Examples:\n${prefix + command} 1 2\n\nThen The Result Is Surah Al-Fatihah Verse 2 Along With The Audio, And The Verse Is Just 1`)
+		if (!args[1]) return reply(`Usage Examples:\n${prefix + command} 1 2\n\nThen The Result Is Surah Al-Fatihah Verse 2 Along With The Audio, And The Verse Is Just 1`)
 		let res = await fetchJson(`https://islamic-api-indonesia.herokuapp.com/api/data/quran?surah=${args[0]}&ayat=${args[1]}`)
 		let txt = `*Arab* : ${res.result.data.text.arab}
 *English* : ${res.result.data.translation.en}
@@ -2481,14 +2523,14 @@ ${id}`)
 		}
 		break
 		case 'tafsirsurah': {
-		if (!args[0]) throw `Contoh penggunaan:\n${prefix + command} 1 2\n\nmaka hasilnya adalah tafsir surah Al-Fatihah ayat 2`
-		if (!args[1]) throw `Contoh penggunaan:\n${prefix + command} 1 2\n\nmaka hasilnya adalah tafsir surah Al-Fatihah ayat 2`
+		if (!args[0]) return reply(`Usage Examples:\n${prefix + command} 1 2\n\nThen The Result Is The Interpretation Of Surah Al-Fatihah Verse 2`)
+		if (!args[1]) return reply(`Usage Examples:\n${prefix + command} 1 2\n\nThen The Result Is The Interpretation Of Surah Al-Fatihah Verse 2`)
 		let res = await fetchJson(`https://islamic-api-indonesia.herokuapp.com/api/data/quran?surah=${args[0]}&ayat=${args[1]}`)
 		let txt = `「 *Tafsir Surah*  」
 
-*Pendek* : ${res.result.data.tafsir.id.short}
+*Short* : ${res.result.data.tafsir.id.short}
 
-*Panjang* : ${res.result.data.tafsir.id.long}
+*Long* : ${res.result.data.tafsir.id.long}
 
 ( Q.S ${res.result.data.surah.name.transliteration.id} : ${res.result.data.number.inSurah} )`
 		reply(txt)
@@ -3083,13 +3125,35 @@ Bot Ini Di Buat Oleh @6288227248988
 > Alamat : *Kudus,Jateng,Indonesia🇮🇩*
 > Hobyy : *Belajar,Membaca*
 > Nama Panggilan : *Amin*`
-hisoka.sendButtonText(m.chat, [{"buttonId": `${prefix}donasi`,"buttonText": {"displayText": "SEWA BOT"},"type": "RESPONSE"},{"buttonId": `${prefix}allmenu`,"buttonText": {"displayText": "MENU"},"type": "RESPONSE"}], anuan, `Asrori Amin`, m, {mentions: ["6288227248988@s.whatsapp.net"]})             
+let buttons = [
+{buttonId: `allmenu`, buttonText: {displayText: 'All Menu'}, type: 1},{buttonId: `donasi`, buttonText: {displayText: 'SEWA BOT'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/Amin.xlsx'),
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+jpegThumbnail:thumb,
+fileName: `Asrori Amin`,
+fileLength: 99999999999999,
+caption: anuan,
+footer: `Asrori Amin`,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`AminBot By Asrori Amin`,
+body:`Follow Instagram @saya_asroriamin`,
+thumbnail: fs.readFileSync('./lib/Amin.jpg'),
+mediaType:2,
+mediaUrl: `instagram.com/saya_asroriamin`,
+sourceUrl: `instagram.com/saya_asroriamin`,
+}}
+}
+hisoka.sendMessage(m.chat, buttonMessage, {quoted: m})       
                      }
             break
             case 'command':{
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 listMessage :{
-                    title: `Hi ${pushname}\nSilahkan Pilih List Menu Dibawah 😁`,
+                    title: `Hi ${pushname}\nSilahkan Pilih List Menu Dibawah`,
                     description: "\n",
                     buttonText: "Pencet Ini 👍",
                     footerText: "Asrori Amin",
@@ -3244,323 +3308,276 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 > Hobyy : *Belajar,Membaca*
 > Nama Panggilan : *Amin*
 └───────⭓
- *SILAHKAN LIHAT MENU BOT DIBAWAH INI KAK^^*
- ┌──⭓ *Main Menu*
- │⭔ ${prefix}menu
- │⭔ ${prefix}?
- │⭔ ${prefix}ʀᴜʟᴇs
- │⭔ ${prefix}sc
- │⭔ ${prefix}help
- │⭔ ${prefix}thanksto
- │
- └───────⭓
-┌──⭓ *Group Menu*
-│
-│⭔ ${prefix}ʟɪɴᴋɢʀᴏᴜᴘ
-│⭔ ${prefix}ᴇᴘʜᴇᴍᴇʀᴀʟ [option]
-│⭔ ${prefix}sᴇᴛᴘᴘɢᴄ [image]
-│⭔ ${prefix}sᴇᴛɴᴀᴍᴇ [text]
-│⭔ ${prefix}sᴇᴛᴅᴇsᴄ [text]
-│⭔ ${prefix}ɢʀᴏᴜᴘ [option]
-│⭔ ${prefix}ᴇᴅɪᴛɪɴғᴏ [option]
-│⭔ ${prefix}ᴀᴅᴅ @user
-│⭔ ${prefix}ᴋɪᴄᴋ @user
-│⭔ ${prefix}ʜɪᴅᴇᴛᴀɢ [text]
-│⭔ ${prefix}ᴛᴀɢᴀʟʟ [text]
-│⭔ ${prefix}ᴛᴏᴛᴀɢ [reply]
-│⭔ ${prefix}ᴀɴᴛɪʟɪɴᴋ [on/off]
-│⭔ ${prefix}ᴍᴜᴛᴇ [on/off]
-│⭔ ${prefix}ᴘʀᴏᴍᴏᴛᴇ @user
-│⭔ ${prefix}ᴅᴇᴍᴏᴛᴇ @user
-│⭔ ${prefix}ᴠᴏᴛᴇ [text]
-│⭔ ${prefix}ᴅᴇᴠᴏᴛᴇ
-│⭔ ${prefix}ᴜᴘᴠᴏᴛᴇ
-│⭔ ${prefix}ᴄᴇᴋᴠᴏᴛᴇ
-│⭔ ${prefix}ʜᴀᴘᴜsᴠᴏᴛᴇ
-│
-└───────⭓
-
-┌──⭓ *WebZone Menu*
-│
-│⭔ ${prefix}ᴘʟᴀʏsᴛᴏʀᴇ
-│⭔ ${prefix}ɢsᴍᴀʀᴇɴᴀ
-│⭔ ${prefix}ᴊᴀᴅᴡᴀʟʙɪᴏsᴋᴏᴘ
-│⭔ ${prefix}ɴᴏᴡᴘʟᴀʏɪɴɢʙɪᴏsᴋᴏᴘ
-│⭔ ${prefix}ᴀᴍɪɴɪᴏ
-│⭔ ${prefix}ᴡᴀᴛᴛᴘᴀᴅ
-│⭔ ${prefix}ᴡᴇᴛᴏᴏɴs
-│⭔ ${prefix}ᴅʀᴀᴋᴏʀ
-│
-└───────⭓
-
-
-┌──⭓ *Downloader Menu*
-│
-│⭔ ${prefix}tɪᴋᴛᴏᴋɴᴏᴡᴍ [url]
-│⭔ ${prefix}ᴛɪᴋᴛᴏᴋᴡᴍ [url]
-│⭔ ${prefix}tᴛɪᴋᴛɪᴋᴍᴘ3 [url]
-│⭔ ${prefix}ɪɴsᴛᴀɢʀᴀᴍ [url]
-│⭔ ${prefix}ᴛᴡɪᴛᴛᴇʀ [url]
-│⭔ ${prefix}ᴛᴡɪᴛᴛᴇʀᴍᴘ3 [url]
-│⭔ ${prefix}ғᴀᴄᴇʙᴏᴏᴋ [url]
-│⭔ ${prefix}ᴘɪɴᴛᴇʀᴇsᴛᴅʟ [url]
-│⭔ ${prefix}ʏᴛᴍᴘ3 [url]
-│⭔ ${prefix}ʏᴛᴍᴘ4 [url]
-│⭔ ${prefix}ɢᴇᴛᴍᴜsɪᴄ [query]
-│⭔ ${prefix}ɢᴇᴛᴠɪᴅᴇᴏ [query]
-│⭔ ${prefix}ᴜᴍᴍᴀ [url]
-│⭔ ${prefix}ᴊᴏᴏx [query]
-│⭔ ${prefix}sᴏᴜɴᴅᴄʟᴏᴜᴅ [url]
-│
-└───────⭓
-
-┌──⭓ *Search Menu*
-│
-│⭔ ${prefix}ᴘʟᴀʏ [query]
-│⭔ ${prefix}ʏᴛs [query]
-│⭔ ${prefix}ɢᴇᴏᴏɢʟᴇ [query]
-│⭔ ${prefix}ɢɪᴍᴀɢᴇ [query]
-│⭔ ${prefix}ᴘɪɴᴛᴇʀᴇsᴛ [query]
-│⭔ ${prefix}ᴡᴀʟʟᴘᴀᴘᴇʀ [query]
-│⭔ ${prefix}ᴡɪᴋɪᴍᴇᴅɪᴀ [query]
-│⭔ ${prefix}ʏᴛsᴇᴀʀᴄʜ [query]
-│⭔ ${prefix}ʀɪɴɢᴛᴏɴᴇ [query]
-│⭔ ${prefix}sᴛᴀʟᴋ [option] [query]
-│
-└───────⭓
-
-┌──⭓ *Random Menu*
-│
-│⭔ ${prefix}ᴄᴏғғᴇ
-│⭔ ${prefix}ǫᴜᴏᴛᴇsᴀɴɪᴍᴇ
-│⭔ ${prefix}ᴍᴏᴛɪᴠᴀsɪ
-│⭔ ${prefix}ᴅɪʟᴀɴǫᴜᴏᴛᴇ
-│⭔ ${prefix}ʙᴜᴄɪɴǫᴜᴏᴛᴇ
-│⭔ ${prefix}ᴋᴀᴛᴀsᴇɴᴊᴀ
-│⭔ ${prefix}ᴘᴜɪsɪ
-│⭔ ${prefix}ᴄᴏᴜᴘʟᴇ
-│⭔ ${prefix}ᴀɴɪᴍᴇ
-│⭔ ${prefix}ᴡᴀɪғᴜ
-│⭔ ${prefix}ʜᴜsʙᴜ
-│⭔ ${prefix}ɴᴇᴋᴏ
-│⭔ ${prefix}sʜɪɴᴏʙᴜ
-│⭔ ${prefix}waifus (nsfw)
-│⭔ ${prefix}ɴᴇᴋᴏs (nsfw)
-│⭔ ${prefix}ᴛʀᴀᴘ (nsfw)
-│⭔ ${prefix}ʙʟᴏᴡᴊᴏʙ (nsfw)
-│
-└───────⭓
-
-┌──⭓ *Text Pro Menu*
-│
-│⭔ ${prefix}3ᴅᴄʜʀɪsᴛᴍᴀs
-│⭔ ${prefix}3ᴅᴅᴇᴇᴘsᴇᴀ
-│⭔ ${prefix}ᴀᴍᴇʀɪᴄᴀɴғʟᴀɢ
-│⭔ ${prefix}3ᴅsᴄɪғɪ
-│⭔ ${prefix}3ᴅʀᴀɪɴʙᴏᴡ
-│⭔ ${prefix}3ᴅᴡᴀᴛᴇʀᴘɪᴘᴇ
-│⭔ ${prefix}ʜᴀʟʟᴏᴡᴇᴇɴsᴋᴇʟᴇᴛᴏɴ
-│⭔ ${prefix}sᴋᴇᴛᴄʜ
-│⭔ ${prefix}ʙʟᴜᴇᴄɪʀᴄᴜɪᴛ
-│⭔ ${prefix}sᴘᴀᴄᴇ
-│⭔ ${prefix}ᴍᴇᴛᴀʟʟɪᴄ
-│⭔ ${prefix}ғɪᴄᴛɪᴏɴ
-│⭔ ${prefix}ɢʀᴇᴇɴʜᴏʀʀᴏʀ
-│⭔ ${prefix}ᴛʀᴀɴsғᴏʀᴍᴇʀ
-│⭔ ${prefix}ʙᴇʀʀʏ
-│⭔ ${prefix}ᴛʜᴜɴᴅᴇʀ
-│⭔ ${prefix}ᴍᴀɢᴍᴀ
-│⭔ ${prefix}3ᴅᴄʀᴀᴄᴋᴇᴅsᴛᴏɴᴇ
-│⭔ ${prefix}3ᴅɴᴇᴏɴʟɪɢʜᴛ
-│⭔ ${prefix}ɪᴍᴘʀᴇssɪᴠᴇɢʟɪᴛᴄʜ
-│⭔ ${prefix}ɴᴀᴛᴜʀᴀʟʟᴇᴀᴠᴇs
-│⭔ ${prefix}ғɪʀᴇᴡᴏʀᴋsᴘᴀʀᴋʟᴇ
-│⭔ ${prefix}ᴍᴀᴛʀɪx
-│⭔ ${prefix}ᴅʀᴏᴘᴡᴀᴛᴇʀ
-│⭔ ${prefix}ʜᴀʀʀʏᴘᴏᴛᴛᴇʀ
-│⭔ ${prefix}ғᴏɢɢʏᴡɪɴᴅᴏᴡ
-│⭔ ${prefix}ɴᴇᴏɴᴅᴇᴠɪʟs
-│⭔ ${prefix}ᴄʜʀɪsᴛᴍᴀsʜᴏʟɪᴅᴀʏ
-│⭔ ${prefix}3ᴅɢʀᴀᴅɪᴇɴᴛ
-│⭔ ${prefix}ʙʟᴀᴄᴋᴘɪɴᴋ
-│⭔ ${prefix}ɢʟᴜᴇᴛᴇxᴛ
-│
-└───────⭓
-
-┌──⭓ *Photoshop Menu*
-│
-│⭔ ${prefix}sʜᴀᴅᴏᴡ
-│⭔ ${prefix}ʀᴏᴍᴀɴᴛɪᴄ
-│⭔ ${prefix}sᴍᴏᴋᴇ
-│⭔ ${prefix}ʙᴜʀɴᴘᴀᴘᴘᴇʀ
-│⭔ ${prefix}ɴᴀʀᴜᴛᴏ
-│⭔ ${prefix}ʟᴏᴠᴇᴍsɢ
-│⭔ ${prefix}ɢʀᴀssᴍsɢ
-│⭔ ${prefix}ʟᴏᴠᴇᴛᴇxᴛ
-│⭔ ${prefix}ᴄᴏғғᴇᴄᴜᴘ
-│⭔ ${prefix}ʙᴜᴛᴛᴇʀғʟʏ
-│⭔ ${prefix}ʜᴀʀʀʏᴘᴏᴛᴛᴇʀ
-│⭔ ${prefix}ʀᴇᴛʀᴏʟᴏʟ
-│
-└───────⭓
-
-┌──⭓ *Ephoto Menu*
-│
-│⭔ ${prefix}ғғᴄᴏᴠᴇʀ
-│⭔ ${prefix}ᴄʀᴏssғɪʀᴇ
-│⭔ ${prefix}ɢᴀʟᴀxʏ
-│⭔ ${prefix}ɢʟᴀss
-│⭔ ${prefix}ɴᴇᴏɴ
-│⭔ ${prefix}ʙᴇᴀᴄʜ
-│⭔ ${prefix}ʙʟᴀᴄᴋᴘɪɴᴋ
-│⭔ ${prefix}ɪɢᴄᴇʀᴛɪғɪᴄᴀᴛᴇ
-│⭔ ${prefix}ʏᴛᴄᴇʀᴛɪғɪᴄaᴛᴇ
-│
-└───────⭓
-
-┌──⭓ *Fun Menu*
-│
-│⭔ ${prefix}sɪᴍɪʜ
-│⭔ ${prefix}ʜᴀʟᴀʜ
-│⭔ ${prefix}ʜɪʟɪʜ
-│⭔ ${prefix}ʜᴜʟᴜʜ
-│⭔ ${prefix}ʜᴇʟᴇʜ
-│⭔ ${prefix}ʜᴏʟᴏʜ
-│⭔ ${prefix}ᴊᴀᴅɪᴀɴ
-│⭔ ${prefix}ᴊᴏᴅᴏʜᴋᴜ
-│⭔ ${prefix}ᴅᴇʟᴛᴛᴛ
-│⭔ ${prefix}ᴛɪᴄᴛᴀᴄᴛᴏᴇ
-│⭔ ${prefix}ғᴀᴍɪʟʏ100
-│⭔ ${prefix}ᴛᴇʙᴀᴋ [option]
-│⭔ ${prefix}ᴍᴀᴛʜ [mode]
-│⭔ ${prefix}sᴜɪᴛᴘᴠᴘ [@tag]
-│
-└───────⭓
-
-┌──⭓ *Primbon Menu*
-│
-│⭔ ${prefix}ɴᴏᴍᴏʀʜᴏᴋɪ
-│⭔ ${prefix}ᴀʀᴛɪᴍɪᴍᴘɪ
-│⭔ ${prefix}ᴀʀᴛɪɴᴀᴍᴀ
-│⭔ ${prefix}ʀᴀᴍᴀʟᴊᴏᴅᴏʜ
-│⭔ ${prefix}ʀᴀᴍᴀʟᴊᴏᴅᴏʜʙᴀʟɪ
-│⭔ ${prefix}sᴜᴀᴍɪɪsᴛʀɪ
-│⭔ ${prefix}ʀᴀᴍᴀʟᴄɪɴᴛᴀ
-│⭔ ${prefix}ᴄᴏᴄᴏᴋɴᴀᴍᴀ
-│⭔ ${prefix}ᴘᴀsᴀɴɢᴀɴ
-│⭔ ${prefix}ᴊᴀᴅɪᴀɴɴɪᴋᴀʜ
-│⭔ ${prefix}sɪғᴀᴛᴜsᴀʜᴀ
-│⭔ ${prefix}ʀᴇᴢᴇᴋɪ
-│⭔ ${prefix}ᴘᴇᴋᴇʀᴊᴀᴀɴ
-│⭔ ${prefix}ɴᴀsɪʙ
-│⭔ ${prefix}ᴘᴇɴʏᴀᴋɪᴛ
-│⭔ ${prefix}ᴛᴀʀᴏᴛ
-│⭔ ${prefix}ғᴇɴɢsʜᴜɪ
-│⭔ ${prefix}ʜᴀʀɪʙᴀɪᴋ
-│⭔ ${prefix}ʜᴀʀɪsᴀɴɢᴀʀ
-│⭔ ${prefix}ʜᴀʀɪsɪᴀʟ
-│⭔ ${prefix}ɴᴀɢᴀʜᴀʀɪ
-│⭔ ${prefix}ᴀʀᴀʜʀᴇᴢᴇᴋɪ
-│⭔ ${prefix}ᴘᴇʀᴜɴtᴜɴɢᴀɴ
-│⭔ ${prefix}ᴡᴇᴛᴏɴ
-│⭔ ${prefix}ᴋᴀʀᴀᴋᴛᴇʀ
-│⭔ ${prefix}ᴋᴇʙᴇʀᴜɴᴛᴜɴɢᴀɴ
-│⭔ ${prefix}ᴍᴇᴍᴀɴᴄɪɴɢ
-│⭔ ${prefix}ᴍᴀsᴀsᴜʙᴜʀ
-│⭔ ${prefix}ᴢᴏᴅɪᴀᴋ
-│⭔ ${prefix}sʜɪᴏ
-│
-└───────⭓
-
-┌──⭓ *Convert Menu*
-│
-│⭔ ${prefix}ᴀᴛᴛᴘ
-│⭔ ${prefix}ᴛᴛᴘ
-│⭔ ${prefix}ᴛᴏɪᴍᴀɢᴇ
-│⭔ ${prefix}ʀᴇᴍᴏᴠᴇʙɢ
-│⭔ ${prefix}sᴛɪᴄᴋᴇʀ
-│⭔ ${prefix}sᴛɪᴄᴋᴇʀᴡᴍ
-│⭔ ${prefix}ᴇᴍᴏᴊɪᴍɪx
-│⭔ ${prefix}ᴇᴍᴏᴊɪᴍɪx2
-│⭔ ${prefix}ᴛᴏᴠɪᴅᴇᴏ
-│⭔ ${prefix}ᴛᴏɢɪғ
-│⭔ ${prefix}ᴛᴏᴜʀʟ
-│⭔ ${prefix}ᴛᴏᴠɴ
-│⭔ ${prefix}ᴛᴏᴍᴘ3
-│⭔ ${prefix}ᴛᴏᴀᴜᴅɪᴏ
-│⭔ ${prefix}ᴇʙɪɴᴀʀʏ
-│⭔ ${prefix}ᴅʙɪɴᴀʀʏ
-│⭔ ${prefix}sᴛʏʟᴇᴛᴇxᴛ
-│⭔ ${prefix}sᴍᴇᴍᴇ
-│
-└───────⭓
-
-┌──⭓ *Database Menu*
-│
-│⭔ ${prefix}sᴇᴛᴄᴍᴅ
-│⭔ ${prefix}ʟɪsᴛᴄᴍᴅ
-│⭔ ${prefix}ᴅᴇʟᴄᴍᴅ
-│⭔ ${prefix}ʟᴏᴄᴋᴄᴍᴅ
-│⭔ ${prefix}ᴀᴅᴅᴍsɢ
-│⭔ ${prefix}ʟɪsᴛᴍsɢ
-│⭔ ${prefix}ɢᴇᴛᴍsɢ
-│⭔ ${prefix}ᴅᴇʟᴍsɢ
-│
-└───────⭓
-
-┌──⭓ *Anonymous Menu*
-│
-│⭔ ${prefix}ᴀɴᴏɴʏᴍᴏᴜs
-│⭔ ${prefix}sᴛᴀʀᴛ
-│⭔ ${prefix}ɴᴇxᴛ
-│⭔ ${prefix}ᴋᴇʟᴜᴀʀ
-│
-└───────⭓
-
-┌──⭓ *Islamic Menu*
-│
-│⭔ ${prefix}ɪǫʀᴀ
-│⭔ ${prefix}ʜᴀᴅɪsᴛ
-│⭔ ${prefix}ᴀʟǫᴜʀᴀɴ
-│⭔ ${prefix}ᴛᴀғsɪʀsᴜʀᴀʜ
-│
-└───────⭓
-
-┌──⭓ *Voice Changer Menu*
-│
-│⭔ ${prefix}ʙᴀss
-│⭔ ${prefix}ʙʟᴏᴡɴ
-│⭔ ${prefix}ᴅᴇᴇᴘ
-│⭔ ${prefix}ᴀᴇʀʀᴀᴘᴇ
-│⭔ ${prefix}ғᴀsᴛ
-│⭔ ${prefix}ғᴀᴛ
-│⭔ ${prefix}ɴɪɢʜᴛᴄᴏʀᴇ
-│⭔ ${prefix}ʀᴇᴠᴇʀᴄᴇ
-│⭔ ${prefix}ʀᴏʙᴏᴛ
-│⭔ ${prefix}sʟᴏᴡ
-│⭔ ${prefix}ᴛᴜᴘᴀɪ
-│
-└───────⭓
-
-┌──⭓ *Owner Menu*
-│
-│⭔ ${prefix}ʀᴇᴀᴄᴛ [emoji]
-│⭔ ${prefix}ᴄʜᴀᴛ [option]
-│⭔ ${prefix}ᴊᴏɪɴ [link]
-│⭔ ${prefix}ʟᴇᴀᴠᴇ
-│⭔ ${prefix}mode
-│⭔ ${prefix}ʙʟᴏᴄᴋ @user
-│⭔ ${prefix}ᴜɴʙʟᴏᴄᴋ @user
-│⭔ ${prefix}ʙᴄɢʀᴏᴜᴘ [text]
-│⭔ ${prefix}ʙᴄᴀʟʟ [text]
-│⭔ ${prefix}ʙᴄᴍ [media]
-│⭔ ${prefix}ʙᴄᴍᴇᴅɪᴀ [media]
-│⭔ ${prefix}sᴇᴛᴘᴘʙᴏᴛ 'panjang'
-│⭔ ${prefix}sᴇᴛᴇxɪғ
-│⭔ ${prefix}sᴇᴛᴍᴇɴᴜ [option]
-│⭔ ${prefix}ᴀɴᴛɪᴄᴀʟʟ [on/off]
-│
-└───────⭓`
+┏━「 *AminBot* 」━━⭓ 
+┃╔══☯︎「 MAIN 」☯︎
+┃╠ ${prefix}alive
+┃╠ ${prefix}script
+┃╠ ${prefix}speedtest
+┃╠ ${prefix}ping
+┃╠ ${prefix}owner
+┃╠ ${prefix}menu
+┃╠ ${prefix}delete
+┃╠ ${prefix}chatinfo
+┃╠ ${prefix}quoted
+┃╠ ${prefix}listpc
+┃╠ ${prefix}listgc
+┃╠ ${prefix}donate
+┃╠ ${prefix}report [bug]
+┃╠
+┃╠
+┃╠══✪
+┃╠
+┃╠
+┃╠
+┃╠══✪「 OWNER 」 ☯︎
+┃╠ ${prefix}chat [option]
+┃╠ ${prefix}join [link]
+┃╠ ${prefix}leave
+┃╠ ${prefix}block [user]
+┃╠ ${prefix}unblock [user]
+┃╠ ${prefix}bcgroup [text]
+┃╠ ${prefix}bcall [text]
+┃╠ ${prefix}setppbot [image]
+┃╠ ${prefix}setexif
+┃╠
+┃╠
+┃╠
+┃╠══✪「 GROUP 」 ☯︎      
+┃╠${prefix}grouplink
+┃╠${prefix}ephemeral [option]
+┃╠${prefix}setgcpp [image]
+┃╠${prefix}setname [text]
+┃╠${prefix}setdesc [text]
+┃╠${prefix}group [text]
+┃╠${prefix}editinfo [option]
+┃╠${prefix}add [user]
+┃╠${prefix}kick [reply/tag]
+┃╠${prefix}hidetag [text]
+┃╠${prefix}tagall [text]
+┃╠${prefix}antilink [on/off]
+┃╠${prefix}mute [on/off]
+┃╠${prefix}promote [reply/tag]
+┃╠${prefix}demote [reply/tag]
+┃╠${prefix}vote
+┃╠${prefix}devote
+┃╠${prefix}upvote
+┃╠${prefix}checkvote
+┃╠${prefix}delvote
+┃╠
+┃╠
+┃╠
+┃╠══☯︎「 RPG 」 ☯︎
+┃╠${prefix}hunting
+┃╠${prefix}mining
+┃╠${prefix}heal
+┃╠${prefix}userlimit
+┃╠${prefix}profile
+┃╠${prefix}inventory
+┃╠${prefix}leaderboard
+┃╠${prefix}buy [option]
+┃╠${prefix}sell [option]
+┃╠
+┃╠
+┃╠
+┃╠═✪「 DOWNLOADER 」☯︎
+┃╠${prefix}ytmp3 [url|quality]
+┃╠${prefix}ytmp4 [url|quality]
+┃╠${prefix}getmusic [yt link]
+┃╠${prefix}getvideo [yt link]
+┃╠${prefix}umma [query]
+┃╠${prefix}joox [query]
+┃╠${prefix}soundcloud [url]
+┃╠
+┃╠
+┃╠
+┃╠══✪「 SEARCHER 」 ☯︎
+┃╠${prefix}play [query]
+┃╠${prefix}song [query]
+┃╠${prefix}yts [query]
+┃╠${prefix}google [query]
+┃╠${prefix}gimage [query]
+┃╠${prefix}pinterest [query]
+┃╠${prefix}wallpaper [query]
+┃╠${prefix}wikimedia [query]
+┃╠${prefix}ytsearch [query]
+┃╠${prefix}ringtone [query]
+┃╠${prefix}webtoon [query]
+┃╠
+┃╠
+┃╠
+┃╠══✪「 RANDOM 」☯︎
+┃╠${prefix}coffee
+┃╠${prefix}animequote (indo)
+┃╠${prefix}couplepp
+┃╠
+┃╠
+┃╠
+┃╠═✪「 RANDOM ANIME 」☯︎
+┃╠${prefix}loli
+┃╠${prefix}bully
+┃╠${prefix}cuddle
+┃╠${prefix}cry
+┃╠${prefix}hug
+┃╠${prefix}awoo
+┃╠${prefix}kiss
+┃╠${prefix}lick
+┃╠${prefix}pat
+┃╠${prefix}smug
+┃╠${prefix}bonk
+┃╠${prefix}yeet
+┃╠${prefix}blush
+┃╠${prefix}smile
+┃╠${prefix}wave
+┃╠${prefix}highfive
+┃╠${prefix}handhold
+┃╠${prefix}nom
+┃╠${prefix}glomp
+┃╠${prefix}bite
+┃╠${prefix}slap
+┃╠${prefix}kill
+┃╠${prefix}happy
+┃╠${prefix}wink
+┃╠${prefix}poke
+┃╠${prefix}dance
+┃╠${prefix}cringe
+┃╠
+┃╠
+┃╠
+┃╠══✪「 FUN 」 ☯︎
+┃╠ ${prefix}how [text
+┃╠ ${prefix}when [text]
+┃╠ ${prefix}is [text]
+┃╠ ${prefix}what [text]
+┃╠ ${prefix}can [text]
+┃╠ ${prefix}rate [text]
+┃╠ ${prefix}wangy [text]
+┃╠ ${prefix}beautifulcheck [tag]
+┃╠ ${prefix}awesomecheck [tag]
+┃╠ ${prefix}prettycheck [tag]
+┃╠ ${prefix}lesbiancheck [tag]
+┃╠ ${prefix}gaycheck [tag]
+┃╠ ${prefix}cutecheck [tag]
+┃╠ ${prefix}uglycheck [tag]
+┃╠ ${prefix}hornycheck [tag]
+┃╠ ${prefix}charactercheck [tag]
+┃╠ ${prefix}lovelycheck [tag]
+┃╠ ${prefix}couple
+┃╠ ${prefix}mysoulmate
+┃╠ ${prefix}hot
+┃╠ ${prefix}sexy
+┃╠ ${prefix}kind
+┃╠ ${prefix}idiot
+┃╠ ${prefix}handsome
+┃╠ ${prefix}beautiful
+┃╠ ${prefix}cute
+┃╠ ${prefix}pretty
+┃╠ ${prefix}lesbian
+┃╠ ${prefix}noob
+┃╠ ${prefix}bastard
+┃╠ ${prefix}foolish
+┃╠ ${prefix}nerd
+┃╠ ${prefix}asshole
+┃╠ ${prefix}gay
+┃╠ ${prefix}smart
+┃╠ ${prefix}stubble
+┃╠ ${prefix}dog
+┃╠ ${prefix}horny
+┃╠ ${prefix}cunt
+┃╠ ${prefix}wibu
+┃╠ ${prefix}tictactoe
+┃╠ ${prefix}delttt
+┃╠ ${prefix}guess [option]
+┃╠ ${prefix}math [mode]
+┃╠ ${prefix}suitpvp [tag]
+┃╠
+┃╠
+┃╠
+┃╠═══✪「 CONVERTER 」 ☯︎
+┃╠ ${prefix}toimage [reply stick]
+┃╠ ${prefix}sticker [reply img|gif]
+┃╠ ${prefix}emojimix [moji+moji]
+┃╠ ${prefix}tovideo [reply img]
+┃╠ ${prefix}togif [reply stick]
+┃╠ ${prefix}tourl [reply img]
+┃╠ ${prefix}tovn [reply aud]
+┃╠ ${prefix}tomp3 [reply vn]
+┃╠ ${prefix}toaudio [reply vid]
+┃╠ ${prefix}ebinary [reply txt]
+┃╠ ${prefix}dbinary [reply txt]
+┃╠ ${prefix}styletext [text]
+┃╠
+┃╠
+┃╠
+┃╠══✪「 DATABASE 」 ☯︎
+┃╠ ${prefix}setcmd
+┃╠ ${prefix}listcmd
+┃╠ ${prefix}delcmd
+┃╠ ${prefix}lockcmd
+┃╠ ${prefix}addmsg
+┃╠ ${prefix}listmsg
+┃╠ ${prefix}getmsg
+┃╠ ${prefix}delmsg
+┃╠
+┃╠
+┃╠
+┃╠═✪「 ANONYMOUS CHAT 」☯︎
+┃╠${prefix}anonymous
+┃╠${prefix}start
+┃╠${prefix}next
+┃╠${prefix}leave
+┃╠
+┃╠
+┃╠
+┃╠═✪「 VOICE CHANGER 」☯︎
+┃╠${prefix}bass [reply aud]
+┃╠${prefix}blown [reply aud]
+┃╠${prefix}deep [reply aud]
+┃╠${prefix}earrape [reply aud]
+┃╠${prefix}fast [reply aud]
+┃╠${prefix}fat [reply aud]
+┃╠${prefix}nightcore [reply aud]
+┃╠${prefix}reverse [reply aud]
+┃╠${prefix}robot [reply aud]
+┃╠${prefix}slow [reply aud]
+┃╠${prefix}squirrel [reply aud]
+┃╠
+┃╠
+┃╠
+┃╠══✪「 ISLAMIC 」☯︎
+┃╠${prefix}juzammam 
+┃╠══✪「 HOROSCOPE 」☯︎
+┃╠${prefix}nomorhoki (indo)
+┃╠${prefix}artimimpi (indo)
+┃╠${prefix}artinama (indo)
+┃╠${prefix}ramaljodoh (indo)
+┃╠${prefix}ramaljodohbali (indo)
+┃╠${prefix}suamiistri (indo)
+┃╠${prefix}ramalcinta (indo)
+┃╠${prefix}cocoknama (indo)
+┃╠${prefix}pasangan (indo)
+┃╠${prefix}jadiannikah (indo)
+┃╠${prefix}sifatusaha (indo)
+┃╠${prefix}rezeki (indo)
+┃╠${prefix}pekerjaan (indo)
+┃╠${prefix}nasib (indo)
+┃╠${prefix}penyakit (indo)
+┃╠${prefix}tarot (indo)
+┃╠${prefix}fengshui (indo)
+┃╠${prefix}haribaik (indo)
+┃╠${prefix}harisangar (indo)
+┃╠${prefix}harisial (indo)
+┃╠${prefix}nagahari (indo)
+┃╠${prefix}arahrezeki (indo)
+┃╠${prefix}peruntungan (indo)
+┃╠${prefix}weton (indo)
+┃╠${prefix}karakter (indo)
+┃╠${prefix}keberuntungan (indo)
+┃╠${prefix}memancing (indo)
+┃╠${prefix}masasubur (indo)
+┃╠${prefix}zodiak (indo)
+┃╠${prefix}shio (indo)
+┃╚═══════✍︎AMINBOT
+┗━「 *Created By *Asrori Amin*  𖠌」━`
                 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
@@ -4815,6 +4832,7 @@ case 'thanksto': {
 │⭔ Raisya Ronove
 │⭔ Fatih A
 │⭔ Kevin Tod
+│⭔ Arull
 │⭔ Uhuyers
 │⭔ X-None Team
 │⭔ Asrori Amin
