@@ -66,6 +66,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
 }
 const foto = fs.readFileSync('./lib/Amin.jpg')
 const thumb = await reSize(foto, 200, 200)
+const Jimp = require('jimp')
 
          
 	//Fake Reply
