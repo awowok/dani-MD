@@ -2372,42 +2372,22 @@ break
                 }
             }
             break
-	        case 'tiktok': case 'tiktoknowm': {
-                if (!text) throw 'Masukkan Query Link!'
-                reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/Downloader API/Tiktok Downloader', { url: text }, '27380c26a2'))
-                let buttons = [
-                    {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1},
-                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
-                ]
-                let buttonMessage = {
-                    video: { url: anu.result.nowatermark },
-                    caption: `Download From ${text}`,
-                    footer: 'Press The Button Below',
-                    buttons: buttons,
-                    headerType: 5
-                }
-                hisoka.sendMessage(m.chat, buttonMessage, { quoted: m })
+	        case prefix+'tiktoknowm': case prefix+'ttnowm':{
+                if ((sender, isPremium)) return reply(mess.limit)
+                if (args.length < 2) return reply(`Penggunaan ${command} _link tiktok_`)
+                if (!isUrl(args[1]) && !args[1].includes('tiktok.com')) return reply(mess.error.Iv)
+                textImg(mess.wait)
+                tiktokdl(args[1])
+                .then((res) => {
+                    hisoka.sendFileFromUrl(from, res.result.nowatermark, '', m)
+                    limitAdd(sender, limit)
+                })
+                .catch((err) => {
+                    hisoka.sendMess(ownerNumber[0], 'Tiktok Error : ' + err)
+                    reply(mess.error.api)
+                })
             }
-            break
-            case 'tiktokwm': case 'tiktokwatermark': {
-                if (!text) throw 'Masukkan Query Link!'
-                reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, '27380c26a2'))
-                let buttons = [
-                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
-                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
-                ]
-                let buttonMessage = {
-                    video: { url: anu.result.watermark },
-                    caption: `Download From ${text}`,
-                    footer: 'Press The Button Below',
-                    buttons: buttons,
-                    headerType: 5
-                }
-                hisoka.sendMessage(m.chat, buttonMessage, { quoted: m })
-            }
-            break
+                break
             case 'tiktokmp3': case 'tiktokaudio': {
                 if (!text) throw 'Masukkan Query Link!'
                 reply(mess.wait)
