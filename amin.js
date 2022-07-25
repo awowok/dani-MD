@@ -1291,89 +1291,9 @@ break
                         }
                      }
             break
-            case 'bcgc': case 'bcgroup': {
-                if (!isCreator) throw mess.owner
-                if (!text) throw `Text mana?\n\nExample : ${prefix + command} Amin Anak Baik`
-                let getGroups = await hisoka.groupFetchAllParticipating()
-                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
-                let anu = groups.map(v => v.id)
-                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
-                for (let i of anu) {
-                    await sleep(1500)
-                    let btn = [{
-                                urlButton: {
-                                    displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
-                                }
-                            }, {
-                                urlButton: {
-                                    displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Status Bot',
-                                    id: 'ping'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Contact Owner',
-                                    id: 'owner'
-                                }  
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Sewa Bot',
-                                    id: 'donasi'
-                                }
-                            }]
-                      let txt = `「 Broadcast Bot 」\n\n${text}`
-                      hisoka.send5ButImg(i, txt, hisoka.user.name, global.thumb, btn)
-                    }
-                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
-            }
-            break
-            case 'bc': case 'broadcast': case 'bcall': {
-                if (!isCreator) throw mess.owner
-                if (!text) throw `Text mana?\n\nExample : ${prefix + command} Amin Anak Baik`
-                let anu = await store.chats.all().map(v => v.id)
-                m.reply(`Mengirim Broadcast Ke ${anu.length} Chat\nWaktu Selesai ${anu.length * 1.5} detik`)
-		for (let yoi of anu) {
-		    await sleep(1500)
-		    let btn = [{
-                                urlButton: {
-                                    displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
-                                }
-                            }, {
-                                urlButton: {
-                                    displayText: 'Grub',
-                                    url: 'https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Status Bot',
-                                    id: 'ping'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Contact Owner',
-                                    id: 'owner'
-                                }  
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Sewa Bot',
-                                    id: 'donasi'
-                                }
-                            }]
-                      let txt = `「 Broadcast Bot 」\n\n${text}`
-                      hisoka.send5ButImg(yoi, txt, hisoka.user.name, global.thumb, btn)
-		}
-		m.reply('Sukses Broadcast')
-            }
-            break
-            case prefix+'bcs':{
+            case prefix+'bc':{
             if (!isCreator && !fromMe) return reply(mess.OnlyOwner)
-            if (args.length < 2) return reply(`Gunakan dengan cara ${command} *teks*\n\n_Contoh_\n\n${command} feature updated`)
+            if (args.length < 2) return reply(`Gunakan dengan cara ${command} *teks*\n\n_Contoh_\n\n${command} Amin Ganteng`)
             var bece = await store.chats.all()
             for (let x of bece) {
                 var bc = [{ urlButton: { displayText: 'Share Bot', url: 'https://wa.me/?text=Hai+sekarang+whatsapp+ada+botnya+loh,+Yuk+bergabung+menjadi+user+di+bot+kami+https://api.whatsapp.com/send?phone='+ botNumber.split('@')[0] } }]
@@ -2372,15 +2292,13 @@ break
                 }
             }
             break
-	        case prefix+'tiktoknowm': case prefix+'ttnowm':{
-                if ((sender, isPremium)) return reply(mess.limit)
-                if (args.length < 2) return reply(`Penggunaan ${command} _link tiktok_`)
-                if (!isUrl(args[1]) && !args[1].includes('tiktok.com')) return reply(mess.error.Iv)
-                textImg(mess.wait)
-                tiktokdl(args[1])
+	        case 'tiktoknowm': case 'ttnowm':{
+                if (args.length < 1) return reply(`Penggunaan ${command} _link tiktok_`)
+                if (!isUrl(args[0]) && !args[0].includes('tiktok.com')) return reply(mess.error.Iv)
+                m.reply(mess.wait)
+                tiktokdl(args[0])
                 .then((res) => {
                     hisoka.sendFileFromUrl(from, res.result.nowatermark, '', m)
-                    limitAdd(sender, limit)
                 })
                 .catch((err) => {
                     hisoka.sendMess(ownerNumber[0], 'Tiktok Error : ' + err)
@@ -2388,24 +2306,6 @@ break
                 })
             }
                 break
-            case 'tiktokmp3': case 'tiktokaudio': {
-                if (!text) throw 'Masukkan Query Link!'
-                reply(mess.wait)
-                let anu = await fetchJson(api('zenz', '/downloader/musically', { url: text }, '27380c26a2'))
-                let buttons = [
-                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
-                    {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1}
-                ]
-                let buttonMessage = {
-                    text: `Download From ${text}`,
-                    footer: 'Press The Button Below',
-                    buttons: buttons,
-                    headerType: 2
-                }
-                let msg = await hisoka.sendMessage(m.chat, buttonMessage, { quoted: m })
-                hisoka.sendMessage(m.chat, { audio: { url: anu.result.audio }, mimetype: 'audio/mpeg'}, { quoted: msg })
-            }
-            break
 	        case 'instagram': case 'ig': case 'igdl': {
                 if (!text) throw 'No Query Url!'
                 reply(mess.wait)
