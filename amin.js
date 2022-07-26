@@ -3116,7 +3116,7 @@ let capt = `⭔ Title: ${judul}
                      }
             break
             case 'menu' : case 'help' : case '?' : {
-            	anuan = `Hallo *${pushname}*! 
+            	anuan = `Hallo ${pushname}
 Bot Ini Di Buat Oleh @6288227248988
 
 ❏ *Info Creator*
@@ -3139,7 +3139,7 @@ caption: anuan,
 footer: `Asrori Amin`,
 buttons: buttons,
 headerType: 4,
-mentions: [m.sender, "6288227248988@s.whatsapp.net"]
+mentions: [m.sender, "6288227248988@s.whatsapp.net"],
 contextInfo:{externalAdReply:{
 title:`AminBot By Asrori Amin`,
 body:`Follow Instagram @saya_asroriamin`,
