@@ -1,5 +1,5 @@
 {
-  "name": "hisoka-morou",
+  "name": "Asrori-Amin",
   "version": "2.4.6",
   "description": "WhatsApp Using Lib Baileys Multi Device",
   "main": "index.js",
@@ -21,7 +21,7 @@
   "author": "Dika Ardnt.",
   "license": "MIT",
   "dependencies": {
-    "@adiwajshing/baileys" : "^4.1.0",
+    "@adiwajshing/baileys" : "github:adiwajshing/Baileys",
     "@adiwajshing/keyed-db": "^0.2.4",
     "awesome-phonenumber": "^2.64.0",
     "axios": "^0.24.0",
