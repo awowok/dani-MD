@@ -1314,6 +1314,47 @@ break
             reply(`Successfully sent a broadcast message to ${bece.length} chat`)
             }
             break
+            case prefix+'bcm': case prefix+'bcmedia':{
+if (!isCreator) return m.reply(mess.owner)
+if (!m.quoted) return m.reply(`*Reply Media Dengan Kunci ${command} video|teks\n\nList:\n\n1. video\n2. image\n3. videotag\n4. imagetag\n5. butvd\n6. butima*`)
+let getGroups = await hisoka.groupFetchAllParticipating()
+let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+let anu = groups.map(v => v.id)
+let media = await quoted.download()
+inilogo4 = args.join(" ")
+inilogo9 = args.join(" ")
+var logo4 = inilogo4.split('|')[0]
+var logo9 = inilogo9.split('|')[1]
+m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 2.5} detik`)
+for (let i of anu) {
+var groupe = await hisoka.groupMetadata(i)
+var members = groupe['participants']
+var mems = []
+members.map(async adm => {
+mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
+})
+await sleep(2500)
+let txt = `❏  *B R O A D C A S T*\n\n${logo9}`
+if (logo4 == `video`) {
+hisoka.sendMessage(i, {caption:txt, video:media})
+} else if (logo4 == `image`) {
+hisoka.sendMessage(i, {caption:txt, image:media})
+} else if (logo4 == `videotag`) {
+hisoka.sendMessage(i, {caption:txt, video:media, mentions:mems})
+} else if (logo4 == `imagetag`) {
+hisoka.sendMessage(i, {caption:txt, image:media, mentions:mems})
+} else if (logo4 == `butvd`) {
+var buttons = [{ urlButton: { displayText: buttdisp, url : buttlink } },]
+				hisoka.sendMessage(i, { caption: txt, video:media, templateButtons: buttons, footer: '‎', mentions: [sender]} )
+} else if (logo4 == `butima`) {
+var buttons = [{ urlButton: { displayText: buttdisp, url : buttlink } },]
+				hisoka.sendMessage(i, { caption: txt, image:media, templateButtons: buttons, footer: '‎', mentions: [sender]} )
+}
+//quoted.copyNForward(i, true)
+}
+m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+}
+break
             case 'chatinfo': case 'infochat': {
                 if (!m.quoted) return reply(`Reply Message`)
                 let msg = await m.getQuotedObj()
@@ -1333,7 +1374,7 @@ break
 if (isBan) return reply(mess.ban)
 if (!isCreator) return reply(mess.owner)
 if (!m.quoted) return reply(`*Reply Media Dengan Kunci ${command} video|teks\n\nList:\n\n1. video\n2. image\n3. butvd\n4. butima*`)
-let getGroups = await rzki.groupFetchAllParticipating()
+let getGroups = await hisoka.groupFetchAllParticipating()
 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
 let anu = groups.map(v => v.id)
 let media = await quoted.download()
