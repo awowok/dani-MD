@@ -23,7 +23,7 @@ const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, 
       addDarah, 
       kurangDarah, 
      getDarah 
-   }  = require('./src/user/darah.js')
+   }  = require('./src/darah.js')
    const { 
      cekInventoryAdaAtauGak, 
       addInventori,  
@@ -42,21 +42,21 @@ const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, 
      getEmerald,
      getUmpan,
     getPotion
-   } = require('./src/user/alat_tukar.js')
+   } = require('./src/alat_tukar.js')
    const { 
     addInventoriMonay, 
     cekDuluJoinAdaApaKagaMonaynyaDiJson, 
     addMonay, 
     kurangMonay, 
    getMonay 
-   } = require('./src/user/monay.js')
+   } = require('./src/monay.js')
    const { 
     addInventoriLimit, 
     cekDuluJoinAdaApaKagaLimitnyaDiJson, 
     addLimit, 
     kurangLimit, 
     getLimit 
-   } = require('./src/user/limit.js')
+   } = require('./src/limit.js')
    const { 
     cekDuluHasilBuruanNya, 
      addInventoriBuruan, 
@@ -78,7 +78,7 @@ const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, 
       getDomba,
      getSapi,
     getGajah
-   } = require('./src/user/buruan.js')
+   } = require('./src/buruan.js')
    let DarahAwal =  global.rpg.darahawal
    const isDarah = cekDuluJoinAdaApaKagaDiJson(m.sender)   
    const isCekDarah = getDarah(m.sender)
@@ -102,9 +102,9 @@ const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, 
    const ikan = ['🐟','🐠','🐡']   
 
 //rpg database\\
- let _limit = JSON.parse(fs.readFileSync('./src/user/limit.json'));
- let _buruan = JSON.parse(fs.readFileSync('./src/user/hasil_buruan.json'));
- let _darahOrg = JSON.parse(fs.readFileSync('./src/user/darah.json'))
+ let _limit = JSON.parse(fs.readFileSync('./src/limit.json'));
+ let _buruan = JSON.parse(fs.readFileSync('./src/hasil_buruan.json'));
+ let _darahOrg = JSON.parse(fs.readFileSync('./src/darah.json'))
 
 // read database
 let tebaklagu = db.data.game.tebaklagu = []
