@@ -163,30 +163,7 @@ hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title
 		setting.status = new Date() * 1
 	    }
 	}
-	//auto read whatsapp status
-if (autoreadsw) {
-		if (from === 'status@broadcast') {
-		hisoka.chatRead(from)
-	}
-	  //auto recording all
-    if (true) { if (m.chat) { hisoka.sendPresenceUpdate('recording', m.chat) }
-}
-//autotyper all
-  if (true) { if (m.chat) { hisoka.sendPresenceUpdate('composing', m.chat) }
-}
- 
-        //Autosticker pc
-                if (isAutoStick) {
-            if (/image/.test(mime) && !/webp/.test(mime)) {
-                let mediac = await quoted.download()
-                await hisoka.sendImageAsSticker(from, mediac, m, { packname: global.packname, author: global.author })
-                console.log(`Auto sticker detected`)
-            } else if (/video/.test(mime)) {
-                if ((quoted.msg || quoted).seconds > 11) return
-                let mediac = await quoted.download()
-                await hisoka.sendVideoAsSticker(from, mediac, m, { packname: global.packname, author: global.author })
-            }
-        }
+	
 	    
 	  // Anti Link
         if (db.data.chats[m.chat].antilink) {
