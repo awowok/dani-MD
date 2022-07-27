@@ -23,7 +23,7 @@ const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, 
       addDarah, 
       kurangDarah, 
      getDarah 
-   }  = require('./storage/user/darah.js')
+   }  = require('./src/user/darah.js')
    const { 
      cekInventoryAdaAtauGak, 
       addInventori,  
@@ -42,21 +42,21 @@ const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, 
      getEmerald,
      getUmpan,
     getPotion
-   } = require('./storage/user/alat_tukar.js')
+   } = require('./src/user/alat_tukar.js')
    const { 
     addInventoriMonay, 
     cekDuluJoinAdaApaKagaMonaynyaDiJson, 
     addMonay, 
     kurangMonay, 
    getMonay 
-   } = require('./storage/user/monay.js')
+   } = require('./src/user/monay.js')
    const { 
     addInventoriLimit, 
     cekDuluJoinAdaApaKagaLimitnyaDiJson, 
     addLimit, 
     kurangLimit, 
     getLimit 
-   } = require('./storage/user/limit.js')
+   } = require('./src/user/limit.js')
    const { 
     cekDuluHasilBuruanNya, 
      addInventoriBuruan, 
@@ -78,7 +78,7 @@ const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, 
       getDomba,
      getSapi,
     getGajah
-   } = require('./storage/user/buruan.js')
+   } = require('./src/user/buruan.js')
    let DarahAwal =  global.rpg.darahawal
    const isDarah = cekDuluJoinAdaApaKagaDiJson(m.sender)   
    const isCekDarah = getDarah(m.sender)
@@ -102,9 +102,9 @@ const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, 
    const ikan = ['🐟','🐠','🐡']   
 
 //rpg database\\
- let _limit = JSON.parse(fs.readFileSync('./storage/user/limit.json'));
- let _buruan = JSON.parse(fs.readFileSync('./storage/user/hasil_buruan.json'));
- let _darahOrg = JSON.parse(fs.readFileSync('./storage/user/darah.json'))
+ let _limit = JSON.parse(fs.readFileSync('./src/user/limit.json'));
+ let _buruan = JSON.parse(fs.readFileSync('./src/user/hasil_buruan.json'));
+ let _darahOrg = JSON.parse(fs.readFileSync('./src/user/darah.json'))
 
 // read database
 let tebaklagu = db.data.game.tebaklagu = []
