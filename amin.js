@@ -169,14 +169,11 @@ if (autoreadsw) {
 		hisoka.chatRead(from)
 	}
 	  //auto recording all
-    if (global.autoRecord) { if (m.chat) { hisoka.sendPresenceUpdate('recording', m.chat) }
+    if (true) { if (m.chat) { hisoka.sendPresenceUpdate('recording', m.chat) }
 }
 //autotyper all
-  if (global.autoTyping) { if (m.chat) { hisoka.sendPresenceUpdate('composing', m.chat) }
+  if (true) { if (m.chat) { hisoka.sendPresenceUpdate('composing', m.chat) }
 }
-//auto available all
-  if (global.available) { if (m.chat) { hisoka.sendPresenceUpdate('available', m.chat) }
-  }
  
         //Autosticker pc
                 if (isAutoStick) {

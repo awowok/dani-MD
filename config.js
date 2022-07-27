@@ -12,13 +12,6 @@ global.APIKeys = {
 	'https://zenzapis.xyz': 'https://myhuman.herokuapp.com/',
 }
 
-//aumto functioner
-global.autoTyping = true //auto tying in gc (true to on, false to off)
-global.autoreadpmngc = false //auto reading in gc and pm (true to on, false to off)
-global.autoReadGc = false //auto reading in gc (true to on, false to off)
-global.autoRecord = true //auto recording (true to on, false to off)
-global.available = true //auto available (true to on, false to off)
-
 // Other
 global.owner =['6288227248988']
 global.premium = ['6288227248988']
