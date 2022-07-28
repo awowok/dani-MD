@@ -2832,7 +2832,7 @@ case 'list':
             delResponList(from, q, db_respon_list)
             m.reply(`Sukses delete list message dengan key *${q}*`)
             break
-        case 'updatelist': case prefixl+'update':
+        case 'updatelist': case 'update':
             if (!m.isGroup) return replay(mess.group)
             if (!isAdmins && !isCreator) return replay(mess.admin)
             var args1 = q.split("@")[0]
