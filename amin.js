@@ -1604,18 +1604,18 @@ break
                         }
                      }
             break
-            case 'bc':{
-            if (!isCreator && !fromMe) return reply(mess.OnlyOwner)
-            if (args.length < 2) return reply(`Gunakan dengan cara ${command} *teks*\n\n_Contoh_\n\n${command} Amin Ganteng`)
-            var bece = await store.chats.all()
-            for (let x of bece) {
-                var bc = [{ urlButton: { displayText: 'Share Bot', url: 'https://wa.me/?text=Hai+sekarang+whatsapp+ada+botnya+loh,+Yuk+bergabung+menjadi+user+di+bot+kami+https://api.whatsapp.com/send?phone='+ botNumber.split('@')[0] } }]
-                hisoka.sendMessage(x.id, { location: { jpegThumbnail: thumb }, caption: q, footer: 'Asrori Amin', templateButtons: bc })
-                await sleep(1000)
-            }
-            reply(`Successfully sent a broadcast message to ${bece.length} chat`)
-            }
-            break
+            case 'bc': case 'broadcast': {
+                if (!isCreator) return reply(mess.OnlyOwner)
+                if (args.length < 2) return reply(`Masukkan isi pesannya`)
+                var data = await store.chats.all()
+                for (let i of data) {
+                    let bc = [ { buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }, { buttonId: `donasi`, buttonText: { displayText: 'Sewa Bot' }, type: 1 } ]
+                    hisoka.sendMessage(i.id, { text: `${q}`, buttons: bc, footer: 'Asrori Amin' })
+                    await sleep(1000)
+                }
+                    reply(`Successfully Sending Broadcast`)
+                }
+                break
             case 'bcm': case 'bcmedia':{
 if (!isCreator) return m.reply(mess.owner)
 if (!m.quoted) return m.reply(`*Reply Media Dengan Kunci ${command} video|teks\n\nList:\n\n1. video\n2. image\n3. videotag\n4. imagetag\n5. butvd\n6. butima*`)
