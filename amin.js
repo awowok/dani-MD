@@ -2789,14 +2789,14 @@ case 'list':
                 }
             }
             var listMsg = {
-                text: 'SILAHKAN KLIK UNTUK MELIHAT MAPELNYA',
+                text: 'SILAHKAN KLIK UNTUK MELIHAT LIST NYA',
                 buttonText: 'Klik Disini Untuk Melihat!',
                 footer: 'Asrori Amin',
                 sections: [{
                     title: groupMetadata.subject, rows: arr_rows
                 }]
             }
-            hisoka.sendMessage(m.chat, listMsg)
+            hisoka.sendMessage(from, listMsg)
             break
         case 'addlist':
             if (!m.isGroup) return replay(mess.group)
@@ -3749,7 +3749,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 ┃╠ ${prefix}listgc
 ┃╠ ${prefix}donate
 ┃╠ ${prefix}report [bug]
-┃╠
+┃╠${prefix}list
 ┃╠
 ┃╠══✪
 ┃╠
@@ -3765,7 +3765,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 ┃╠ ${prefix}bcall [text]
 ┃╠ ${prefix}setppbot [image]
 ┃╠ ${prefix}setexif
-┃╠
+┃╠${prefix}addlist
 ┃╠
 ┃╠
 ┃╠══✪「 GROUP 」 ☯︎      
@@ -3789,8 +3789,8 @@ Bot Ini Di Buat Oleh *Asrori Amin*
 ┃╠${prefix}upvote
 ┃╠${prefix}checkvote
 ┃╠${prefix}delvote
-┃╠
-┃╠
+┃╠${prefix}addlist [admin]
+┃╠${prefix}list
 ┃╠
 ┃╠══☯︎「 RPG 」 ☯︎
 ┃╠${prefix}hunting
