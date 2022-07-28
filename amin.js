@@ -91,7 +91,7 @@ hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title
 }
 
 	const reply = (teks) => {
-  hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Asrori Amin`,"body": `Halo Kak ${pushname}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": thumb,"sourceUrl": `https://chat.whatsapp.com/DxNGTCpVlyDH6HVWE1BmX3`}}}, { quoted: m })
+  hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Asrori Amin`,"body": `Halo Kak ${pushname}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": thumb,"sourceUrl": `https://chat.whatsapp.com/EBEr4oM06Mr1xhewe2BDKO`}}}, { quoted: m })
   }
 	
 	
@@ -1826,6 +1826,16 @@ break
                 await fs.unlinkSync(media)
             }
             break
+            case 'senin' : {
+            	m.reply('Jam Ke 1 : Character Building (*Gus Anam*)
+Jam Ke 2 : Aswaja (*Pak Sumandi*)
+Jam Ke 3 : Penjas (*Bu Evi*)
+Jam Ke 4 : Penjas (*Bu Evi*)
+Jam Ke 5 : Informatika (*Bu Ana*)
+Jam Ke 6 : Informatika (*Bu Ana*)
+Jam Ke 7 : Ipas IPS (*Bu Aisyiyah*)
+Jam Ke 8 : Ipas IPS (*Bu Aisyiyah*)')
+            break
             case 'toaud': case 'toaudio': {
             if (!/video/.test(mime) && !/audio/.test(mime)) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan Audio Dengan Caption ${prefix + command}`
             reply(mess.wait)
@@ -2799,8 +2809,8 @@ case 'list':
             hisoka.sendMessage(from, listMsg)
             break
         case 'addlist':
-            if (!m.isGroup) return replay(mess.group)
-            if (!isAdmins && !isCreator) return replay(mess.admin)
+            if (!m.isGroup) return reply(mess.group)
+            if (!isAdmins && !isCreator) return reply(mess.admin)
             var args1 = q.split("@")[0]
             var args2 = q.split("@")[1]                
             if (!q.includes("@")) return m.reply(`Gunakan dengan cara ${prefix + command} *key@response*\n\n_Contoh_\n\n${prefix + command} tes@apa`)
@@ -2824,8 +2834,8 @@ case 'list':
             }
             break
         case 'dellist':
-            if (!m.isGroup) return replay(mess.group)
-            if (!isAdmins && !isCreator) return replay(mess.admin)
+            if (!m.isGroup) return reply(mess.group)
+            if (!isAdmins && !isCreator) return reply(mess.admin)
             if (db_respon_list.length === 0) return m.reply(`Belum ada list message di database`)
             if (!q) return m.reply(`Gunakan dengan cara ${prefix + command} *key*\n\n_Contoh_\n\n${prefix + command} hello`)
             if (!isAlreadyResponList(from, q, db_respon_list)) return m.reply(`List respon dengan key *${q}* tidak ada di database!`)
@@ -2833,8 +2843,8 @@ case 'list':
             m.reply(`Sukses delete list message dengan key *${q}*`)
             break
         case 'updatelist': case 'update':
-            if (!m.isGroup) return replay(mess.group)
-            if (!isAdmins && !isCreator) return replay(mess.admin)
+            if (!m.isGroup) return reply(mess.group)
+            if (!isAdmins && !isCreator) return reply(mess.admin)
             var args1 = q.split("@")[0]
             var args2 = q.split("@")[1]
             if (!q.includes("@")) return m.reply(`Gunakan dengan cara ${prefix + command} *key@response*\n\n_Contoh_\n\n${prefix + command} tes@apa`)
@@ -3575,6 +3585,151 @@ sourceUrl: `instagram.com/saya_asroriamin`,
 }
 hisoka.sendMessage(m.chat, buttonMessage, {quoted: m})       
                      }
+            break
+            case 'mapel':{
+let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+                listMessage :{
+                    title: `Hi ${pushname}\nSilahkan Pilih Hari Jadwal Pelajaran DiBawah Ini`,
+                    description: "\n",
+                    buttonText: "Pencet Ini 👍",
+                    footerText: "Asrori Amin",
+                    listType: "SINGLE_SELECT",
+                    sections: [{
+								"title": "All Menu Bot",
+								"rows": [
+									{
+										"title": "senin",
+										"description": "Menampilkan Semua Menu Bot😁",
+										"rowId": `${prefix}senin`
+									}
+								]
+							},
+							{
+								"title": "List Menu Bot",
+								"rows": [
+									{
+										"title": "👥Group Menu",
+										"description": "Menampilkan Semua Fitur Khusus Grub",
+										"rowId": `${prefix}groupmenu`
+									},
+									{
+										"title": "📩Download Menu",
+										"description": "Menampilkan Menu Downloader",
+										"rowId": `${prefix}downloadmenu`
+									},
+										{
+										"title": "🔍Search Menu",
+										"description": "Menampilkan Menu Searching",
+										"rowId": `${prefix}searchmenu`
+									},
+									{
+										"title": "😆Meme Menu",
+										"description": "Menampilkan Menu Meme Lucu",
+										"rowId": `${prefix}mememenu`
+										},
+										{
+											"title": "🕺Random Menu",
+										"description": "Menampilkan Menu Acak",
+										"rowId": `${prefix}randommenu`
+										},
+											{
+											"title": "⭐Text Pro Menu",
+										"description": "Menampilkan Menu Text Pro",
+										"rowId": `${prefix}textpromenu`
+										},
+										{
+											"title": "🗿Photo Oxy Menu",
+										"description": "Menampilkan Menu Photo Oxy",
+										"rowId": `${prefix}photooxymenu`
+										},
+										{
+											"title": "😼Ephoto Menu",
+										"description": "Menampilkan Menu Ephoto",
+										"rowId": `${prefix}ephotomenu`
+										},
+										{
+											"title": "😂Fun Menu",
+										"description": "Menampilkan Menu Lucu",
+										"rowId": `${prefix}funmenu`
+										},
+										{
+											"title": "⛩️Primbon Menu",
+										"description": "Menampilkan Menu Primbon",
+										"rowId": `${prefix}primbonmenu`
+										},
+										{
+											"title": "🎉Convert Menu",
+										"description": "Menampilkan Menu Convert",
+										"rowId": `${prefix}convertmenu`
+										},
+										{
+											"title": "😻Main Menu",
+										"description": "Menampilkan Menu Utama",
+										"rowId": `${prefix}mainmenu`
+										},
+										{
+											"title": "📁Database Menu",
+										"description": "Menampilkan Menu Database",
+										"rowId": `${prefix}databasemenu`
+										},
+										{
+											"title": "👽Anonymous Menu",
+										"description": "Menampilkan Menu Anonymous",
+										"rowId": `${prefix}anonymousmenu`
+										},
+										{
+											"title": "😇Islamic Menu",
+										"description": "Menampilkan Menu Islamic",
+										"rowId": `${prefix}islamicmenu`
+										},
+										{
+											"title": "🔊Voice Changer Menu",
+										"description": "Menampilkan Menu Pengubah Suara",
+										"rowId": `${prefix}voicemenu`
+										},
+										{
+											"title": "🤪Owner Menu",
+										"description": "Menampilkan Menu Khusus Owner",
+										"rowId": `${prefix}ownermenu`
+										}
+										]
+										},
+							{
+								"title": "Jasa Sewa Bot",
+								"rows": [
+									{
+										"title": "🎃Jasa Sewa Bot",
+										"description": "Menampilkan Menu SewaBot",
+										"rowId": `${prefix}sewabot`
+									}
+								]
+							},
+							{
+								"title": "Info Tentang Owner?",
+								"rows": [
+									{
+										"title": "🙀Chat Owner",
+										"description": "Yang Mau Nomer Owner",
+										"rowId": `${prefix}owner`
+									}
+								]
+							},
+							{
+								"title": "Thanks To",
+								"rows": [
+									{
+										"title": "😇Contributor",
+										"description": "Menampilkan Orang Yang Ngembangin AminBot",
+										"rowId": `${prefix}thanksto`
+									}
+								]
+							}
+						],
+          listType: 1
+                }
+            }), { userJid: m.chat, quoted: m })
+            hisoka.relayMessage(m.chat, template.message, { messageId: template.key.id })
+            }
             break
             case 'command':{
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
