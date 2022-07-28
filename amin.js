@@ -14,12 +14,12 @@ const speed = require('performance-now')
 const { performance } = require('perf_hooks')
 const { Primbon } = require('scrape-primbon')
 const primbon = new Primbon()
-const { addResponList, delResponList, isAlreadyResponList, isAlreadyResponListGroup, sendResponList, updateResponList, getDataResponList } = require('./lib/respon-list')
+const { addResponList, delResponList, isAlreadyResponList, isAlreadyResponListGroup, sendResponList, updateResponList, getDataResponList } = require('./src/respon-list')
 const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom, getGroupAdmins, generateProfilePicture } = require('./lib/myfunc')
 
 // read database
-let listStore = JSON.parse(fs.readFileSync('./database/list-message.json'));
-let responDB = JSON.parse(fs.readFileSync('./database/respon.json'));
+let listStore = JSON.parse(fs.readFileSync('./src/list-message.json'));
+let responDB = JSON.parse(fs.readFileSync('./src/respon.json'));
 let tebaklagu = db.data.game.tebaklagu = []
 let _family100 = db.data.game.family100 = []
 let kuismath = db.data.game.math = []

@@ -18,7 +18,7 @@ const _ = require('lodash')
 const axios = require('axios')
 const PhoneNumber = require('awesome-phonenumber')
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/exif')
-let db_respon_list = JSON.parse(fs.readFileSync('./database/list-message.json'));
+let db_respon_list = JSON.parse(fs.readFileSync('./src/list-message.json'));
 const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('./lib/myfunc')
 
 var low
