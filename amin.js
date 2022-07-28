@@ -14,9 +14,12 @@ const speed = require('performance-now')
 const { performance } = require('perf_hooks')
 const { Primbon } = require('scrape-primbon')
 const primbon = new Primbon()
+const { addResponList, delResponList, isAlreadyResponList, isAlreadyResponListGroup, sendResponList, updateResponList, getDataResponList } = require('./lib/respon-list')
 const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom, getGroupAdmins, generateProfilePicture } = require('./lib/myfunc')
 
 // read database
+let listStore = JSON.parse(fs.readFileSync('./database/list-message.json'));
+let responDB = JSON.parse(fs.readFileSync('./database/respon.json'));
 let tebaklagu = db.data.game.tebaklagu = []
 let _family100 = db.data.game.family100 = []
 let kuismath = db.data.game.math = []
@@ -29,7 +32,7 @@ let tebaklirik = db.data.game.lirik = []
 let tebaktebakan = db.data.game.tebakan = []
 let vote = db.data.others.vote = []
 
-module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
+module.exports = hisoka = async (hisoka, m, chatUpdate, db_respon_list, store) => {
     try {
         var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : ''
         var budy = (typeof m.text == 'string' ? m.text : '')
@@ -37,6 +40,9 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
         const isCmd = body.startsWith(prefix)
         const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
         const args = body.trim().split(/ +/).slice(1)
+        const from = m.key.remoteJid
+        const type = Object.keys(m.message)[0]
+        const content = JSON.stringify(m.message)
         const pushname = m.pushName || "No Name"
         const botNumber = await hisoka.decodeJid(hisoka.user.id)
         const isCreator = [botNumber, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
@@ -56,6 +62,16 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
     	const isBotAdmins = m.isGroup ? groupAdmins.includes(botNumber) : false
     	const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
     	const isPremium = isCreator || global.premium.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || false
+
+const isImage = (type == 'imageMessage')
+        const isVideo = (type == 'videoMessage')
+        const isSticker = (type == 'stickerMessage')
+        const isQuotedMsg = (type == 'extendedTextMessage')
+        const isQuotedImage = isQuotedMsg ? content.includes('imageMessage') ? true : false : false
+        const isQuotedAudio = isQuotedMsg ? content.includes('audioMessage') ? true : false : false
+        const isQuotedDocument = isQuotedMsg ? content.includes('documentMessage') ? true : false : false
+        const isQuotedVideo = isQuotedMsg ? content.includes('videoMessage') ? true : false : false
+        const isQuotedSticker = isQuotedMsg ? content.includes('stickerMessage') ? true : false : false
 	
 	//resize
        const reSize = async(buffer, ukur1, ukur2) => {
@@ -186,6 +202,20 @@ hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title
       if (db.data.chats[m.chat].mute && !isAdmins && !isCreator) {
       return
       }
+      
+      // Store
+        if (!isCmd && m.isGroup && isAlreadyResponList(m.chat, body, db_respon_list)) {
+            var get_data_respon = getDataResponList(m.chat, body, db_respon_list)
+            if (get_data_respon.isImage === false) {
+                hisoka.sendMessage(m.chat, { text: sendResponList(m.chat, body, db_respon_list) }, {
+                    quoted: m
+                })
+            } else {
+                hisoka.sendMessage(m.chat, { image: await getBuffer(get_data_respon.image_url), caption: get_data_respon.response }, {
+                    quoted: m
+                })
+            }
+        }
 
         // Respon Cmd with media
         if (isMedia && m.msg.fileSha256 && (m.msg.fileSha256.toString('base64') in global.db.data.sticker)) {
@@ -2742,6 +2772,93 @@ Untuk Download Media Silahkan Klik salah satu Button dibawah ini atau masukkan c
 		}
 	    }
 	    break
+
+
+// Store
+case 'list':
+            if (!m.isGroup) return m.reply(`Hanya Group`)
+            if (db_respon_list.length === 0) return m.reply(`Belum ada list message di database`)
+            if (!isAlreadyResponListGroup(from, db_respon_list)) return m.reply(`Belum ada list message yang terdaftar di group ini`)
+            var arr_rows = [];
+            for (let x of db_respon_list) {
+                if (x.id === from) {
+                    arr_rows.push({
+                        title: x.key,
+                        rowId: x.key
+                    })
+                }
+            }
+            var listMsg = {
+                text: 'SILAHKAN KLIK UNTUK MELIHAT MAPELNYA',
+                buttonText: 'Klik Disini Untuk Melihat!',
+                footer: footxt,
+                sections: [{
+                    title: groupMetadata.subject, rows: arr_rows
+                }]
+            }
+            hisoka.sendMessage(m.chat, listMsg)
+            break
+        case prefix+'addlist':
+            if (!m.isGroup) return replay(mess.group)
+            if (!isAdmins && !isCreator) return replay(mess.admin)
+            var args1 = q.split("@")[0]
+            var args2 = q.split("@")[1]                
+            if (!q.includes("@")) return m.reply(`Gunakan dengan cara ${prefix + command} *key@response*\n\n_Contoh_\n\n${prefix + command} tes@apa`)
+            if (isAlreadyResponList(from, args1, db_respon_list)) return m.reply(`List respon dengan key : *${args1}* sudah ada di group ini.`)
+            if (isImage || isQuotedImage) {
+                let media = await hisoka.downloadAndSaveMediaMessage(quoted)
+                const fd = new FormData();
+                fd.append('file', fs.readFileSync(media), '.tmp', '.jpg')
+                fetch('https://telegra.ph/upload', {
+                    method: 'POST',
+                    body: fd
+                }).then(res => res.json())
+                    .then((json) => {
+                        addResponList(from, args1, args2, true, `https://telegra.ph${json[0].src}`, db_respon_list)
+                        m.reply(`Sukses set list message dengan key : *${args1}*`)
+                        if (fs.existsSync(media)) fs.unlinkSync(media)
+                    })
+            } else {
+                addResponList(from, args1, args2, false, '-', db_respon_list)
+                m.reply(`Sukses set list message dengan key : *${args1}*`)
+            }
+            break
+        case prefix+'dellist':
+            if (!m.isGroup) return replay(mess.group)
+            if (!isAdmins && !isCreator) return replay(mess.admin)
+            if (db_respon_list.length === 0) return m.reply(`Belum ada list message di database`)
+            if (!q) return m.reply(`Gunakan dengan cara ${prefix + command} *key*\n\n_Contoh_\n\n${prefix + command} hello`)
+            if (!isAlreadyResponList(from, q, db_respon_list)) return m.reply(`List respon dengan key *${q}* tidak ada di database!`)
+            delResponList(from, q, db_respon_list)
+            m.reply(`Sukses delete list message dengan key *${q}*`)
+            break
+        case prefix+'updatelist': case prefix+'update':
+            if (!m.isGroup) return replay(mess.group)
+            if (!isAdmins && !isCreator) return replay(mess.admin)
+            var args1 = q.split("@")[0]
+            var args2 = q.split("@")[1]
+            if (!q.includes("@")) return m.reply(`Gunakan dengan cara ${prefix + command} *key@response*\n\n_Contoh_\n\n${prefix + command} tes@apa`)
+            if (!isAlreadyResponListGroup(from, db_respon_list)) return m.reply(`Maaf, untuk key *${args1}* belum terdaftar di group ini`)
+            if (isImage || isQuotedImage) {
+                let media = await hisoka.downloadAndSaveMediaMessage(quoted)
+                const fd = new FormData();
+                fd.append('file', fs.readFileSync(media), '.tmp', '.jpg')
+                fetch('https://telegra.ph/upload', {
+                    method: 'POST',
+                    body: fd
+                }).then(res => res.json())
+                    .then((json) => {
+                        updateResponList(from, args1, args2, true, `https://telegra.ph${json[0].src}`, db_respon_list)
+                        m.reply(`Sukses update list message dengan key : *${args1}*`)
+                        if (fs.existsSync(media)) fs.unlinkSync(media)
+                    })
+            } else {
+                updateResponList(from, args1, args2, false, '-', db_respon_list)
+                m.rreply(`Sukses update respon list dengan key *${args1}*`)
+            }
+            break
+
+
         case 'ringtone': {
 		if (!text) throw `Example : ${prefix + command} black rover`
         let { ringtone } = require('./lib/scraper')

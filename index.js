@@ -18,6 +18,7 @@ const _ = require('lodash')
 const axios = require('axios')
 const PhoneNumber = require('awesome-phonenumber')
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/exif')
+let db_respon_list = JSON.parse(fs.readFileSync('./database/list-message.json'));
 const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('./lib/myfunc')
 
 var low
@@ -106,7 +107,7 @@ async function startHisoka() {
         if (!hisoka.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
         if (mek.key.id.startsWith('BAE5') && mek.key.id.length === 16) return
         m = smsg(hisoka, mek, store)
-        require("./amin")(hisoka, m, chatUpdate, store)
+        require("./amin")(hisoka, m, chatUpdate, db_respon_list, store)
         } catch (err) {
             console.log(err)
         }
