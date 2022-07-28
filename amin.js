@@ -3603,54 +3603,54 @@ hisoka.sendMessage(m.chat, buttonMessage, {quoted: m})
             case 'mapel':{
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 listMessage :{
-                    title: `Hi ${pushname}\nSilahkan Pilih Hari Jadwal Pelajaran Atau Seragam  DiBawah Ini`,
-                    description: "",
+                    title: `Hi ${pushname}\nSilahkan Pilih Malel Atau Seragam Hari Apa`,
+                    description: "\n",
                     buttonText: "Pencet Ini 👍",
                     footerText: "Asrori Amin",
                     listType: "SINGLE_SELECT",
                     sections: [{
-								"title": "OWNER GANTENG",
+								"title": "OWNER",
 								"rows": [
 									{
-										"title": "Asrori Amin",
-										"description": "Yang Mau Chat Yang Buat Bot",
+										"title": "ASRORI AMIN",
+										"description": "Pembuat AminBot",
 										"rowId": `${prefix}owner`
 									}
 								]
 							},
 							{
-								"title": "MATA PELAJARAN 10 A SMK ASSA'IDIYYAH",
+								"title": "MAPELL",
 								"rows": [
 									{
 										"title": "Senin",
-										"description": "Menampilkan Semua Mapel Hari Senin",
+										"description": "",
 										"rowId": `${prefix}senin`
 									},
 									{
 										"title": "Selasa",
-										"description": "Menampilkan Semua Mapel Hari Selasa",
+										"description": "",
 										"rowId": `${prefix}selasa`
 									},
 										{
 										"title": "Rabu",
-										"description": "Menampilkan Semua Mapel Hari Rabu",
+										"description": "",
 										"rowId": `${prefix}rabu`
 									},
 									{
 										"title": "Kamis",
-										"description": "Menampilkan Semua Mapel Hari Kamis",
+										"description": "",
 										"rowId": `${prefix}kamis`
 										},
 										{
-											"title": "Jum'at",
-										"description": "Menampilkan Semua Mapel Hari Jum'at",
+											"title": "Jumat",
+										"description": "",
 										"rowId": `${prefix}jumat`
 										},
 											{
 											"title": "Sabtu",
-										"description": "Menampilkan Semua Mapel Hari Sabtu",
+										"description": "",
 										"rowId": `${prefix}sabtu`
-										}
+										},
 										]
 										},
 							{
@@ -3660,6 +3660,16 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 										"title": "🎃Jasa Sewa Bot",
 										"description": "Menampilkan Menu SewaBot",
 										"rowId": `${prefix}sewabot`
+									}
+								]
+							},
+							{
+								"title": "Info Tentang Owner?",
+								"rows": [
+									{
+										"title": "🙀Chat Owner",
+										"description": "Yang Mau Nomer Owner",
+										"rowId": `${prefix}owner`
 									}
 								]
 							},
