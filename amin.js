@@ -1826,15 +1826,8 @@ break
                 await fs.unlinkSync(media)
             }
             break
-            case 'senin' : {
-            	m.reply('Jam Ke 1 : Character Building *Gus Anam*
-Jam Ke 2 : Aswaja *Pak Sumandi*
-Jam Ke 3 : Penjas *Bu Evi*
-Jam Ke 4 : Penjas *Bu Evi*
-Jam Ke 5 : Informatika *Bu Ana*
-Jam Ke 6 : Informatika *Bu Ana*
-Jam Ke 7 : Ipas IPS *Bu Aisyiyah*
-Jam Ke 8 : Ipas IPS *Bu Aisyiyah*')
+            case 'senin': {
+                m.reply('Jam Ke 1 : Character Building *Gus Anam*\nJam Ke 2 : Aswaja *Pak Sumandi*\nJam Ke 3 : Penjas *Bu Evi*\nJam Ke 4 : Penjas *Bu Evi*\nJam Ke 5 : Informatika *Bu Ana*\nJam Ke 6 : Informatika *Bu Ana*\nJam Ke 7 : Ipas IPS *Bu Aisyiyah*\nJam Ke 8 : Ipas IPS *Bu Aisyiyah*')
             }
             break
             case 'toaud': case 'toaudio': {
