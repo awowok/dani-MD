@@ -3650,8 +3650,9 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 											"title": "Sabtu",
 										"description": "Menampilkan Semua Mapel Hari Sabtu",
 										"rowId": `${prefix}sabtu`
+										}
+										]
 										},
-										{
 							{
 								"title": "Jasa Sewa Bot",
 								"rows": [
