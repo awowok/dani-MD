@@ -2791,7 +2791,7 @@ case 'list':
             var listMsg = {
                 text: 'SILAHKAN KLIK UNTUK MELIHAT MAPELNYA',
                 buttonText: 'Klik Disini Untuk Melihat!',
-                footer: footxt,
+                footer: 'Asrori Amin',
                 sections: [{
                     title: groupMetadata.subject, rows: arr_rows
                 }]
