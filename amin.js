@@ -1830,6 +1830,26 @@ break
                 m.reply('Jam Ke 1 : Character Building *Gus Anam*\nJam Ke 2 : Aswaja *Pak Sumandi*\nJam Ke 3 : Penjas *Bu Evi*\nJam Ke 4 : Penjas *Bu Evi*\nJam Ke 5 : Informatika *Bu Ana*\nJam Ke 6 : Informatika *Bu Ana*\nJam Ke 7 : Ipas IPS *Bu Aisyiyah*\nJam Ke 8 : Ipas IPS *Bu Aisyiyah*')
             }
             break
+            case 'selasa': {
+                m.reply('Jam Ke 1 : B.Jawa *Pak Syaeful*\nJam Ke 2 : Pkn *Pak Wahyu*\nJam Ke 3 : Seni Rupa *Pak Wahyu*\nJam Ke 4 : Seni Ripa *Pak Wahyu*\nJam Ke 5 : B.Ing *Bu Ami*\nJam Ke 6 : B.Ing *Bu Ami*\nJam Ke 7 : Agama *Pak Ali*\nJam Ke 8 : Agama *Pak Ali*')
+            }
+            break
+            case 'rabu': {
+                m.reply('Jam Ke 1 : MTK *Bu Dina*\nJam Ke 2 : MTK *Bu Dina*\nJam Ke 3 : B.indo *Pak Irul*\nJam Ke 4 : B.indo *Pak Irul*\nJam Ke 5 : iPas Kimia *Bu Isma*\nJam Ke 6 : iPas Kimia *Bu Isma*\nJam Ke 7 : Tjkt *Pak Abdilla*\nJam Ke 8 : Tjkt *Pak Abdilla*')
+            }
+            break
+            case 'kamis': {
+                m.reply('Jam Ke 1 : B.indo *Pak Irul*\nJam Ke 2 : B.indo *Pak Irul*\nJam Ke 3 : Ipas Fisika *Bu Dina*\nJam Ke 4 : Ipas Fisika *Bu Dina*\nJam Ke 5 : Informatika *Bu Ana*\nJam Ke 6 : informatika *Bu Ana*\nJam Ke 7 : B.jawa *Pak Pak Syaiful*\nJam Ke 8 : Pkn *Pak Wahyu*')
+            }
+            break
+            case 'jumat': {
+                m.reply('Jam Ke 1 : TJKT *Pak Abdilla*\nJam Ke 2 : TJKT *Pak Abdilla*\nJam Ke 3 : TJKT *Pak Abdilla*\nJam Ke 4 : TJKT *Pak Abdilla*\nJam Ke 5 : Informatika *Pak Ali*')
+            }
+            break
+            case 'sabtu': {
+                m.reply('Jam Ke 1 : B.ing *Bu Amy*\Jam Ke 2 : B.ing *Bu Amy*\nJam Ke 3 : Tjkt *Pak Abdilla*\nJam Ke 4 : Tjkt *Pak Abdilla*\nJam Ke 5 : Sejarah *Bu Evi*\nJam Ke 6 : Sejarah *Bu Evi*\nJam Ke 7 : Mtk *Bu Dina*\nJam Ke 8 : Mtk *Bu Dina*')
+            }
+            break
             case 'toaud': case 'toaudio': {
             if (!/video/.test(mime) && !/audio/.test(mime)) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan Audio Dengan Caption ${prefix + command}`
             reply(mess.wait)
@@ -3583,111 +3603,55 @@ hisoka.sendMessage(m.chat, buttonMessage, {quoted: m})
             case 'mapel':{
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 listMessage :{
-                    title: `Hi ${pushname}\nSilahkan Pilih Hari Jadwal Pelajaran DiBawah Ini`,
-                    description: "\n",
+                    title: `Hi ${pushname}\nSilahkan Pilih Hari Jadwal Pelajaran Atau Seragam  DiBawah Ini`,
+                    description: "",
                     buttonText: "Pencet Ini 👍",
                     footerText: "Asrori Amin",
                     listType: "SINGLE_SELECT",
                     sections: [{
-								"title": "All Menu Bot",
+								"title": "OWNER GANTENG",
 								"rows": [
 									{
-										"title": "senin",
-										"description": "Menampilkan Semua Menu Bot😁",
-										"rowId": `${prefix}senin`
+										"title": "Asrori Amin",
+										"description": "Yang Mau Chat Yang Buat Bot",
+										"rowId": `${prefix}owner`
 									}
 								]
 							},
 							{
-								"title": "List Menu Bot",
+								"title": "MATA PELAJARAN 10 A SMK ASSA'IDIYYAH",
 								"rows": [
 									{
-										"title": "👥Group Menu",
-										"description": "Menampilkan Semua Fitur Khusus Grub",
-										"rowId": `${prefix}groupmenu`
+										"title": "Senin",
+										"description": "Menampilkan Semua Mapel Hari Senin",
+										"rowId": `${prefix}senin`
 									},
 									{
-										"title": "📩Download Menu",
-										"description": "Menampilkan Menu Downloader",
-										"rowId": `${prefix}downloadmenu`
+										"title": "Selasa",
+										"description": "Menampilkan Semua Mapel Hari Selasa",
+										"rowId": `${prefix}selasa`
 									},
 										{
-										"title": "🔍Search Menu",
-										"description": "Menampilkan Menu Searching",
-										"rowId": `${prefix}searchmenu`
+										"title": "Rabu",
+										"description": "Menampilkan Semua Mapel Hari Rabu",
+										"rowId": `${prefix}rabu`
 									},
 									{
-										"title": "😆Meme Menu",
-										"description": "Menampilkan Menu Meme Lucu",
-										"rowId": `${prefix}mememenu`
+										"title": "Kamis",
+										"description": "Menampilkan Semua Mapel Hari Kamis",
+										"rowId": `${prefix}kamis`
 										},
 										{
-											"title": "🕺Random Menu",
-										"description": "Menampilkan Menu Acak",
-										"rowId": `${prefix}randommenu`
+											"title": "Jum'at",
+										"description": "Menampilkan Semua Mapel Hari Jum'at",
+										"rowId": `${prefix}jumat`
 										},
 											{
-											"title": "⭐Text Pro Menu",
-										"description": "Menampilkan Menu Text Pro",
-										"rowId": `${prefix}textpromenu`
+											"title": "Sabtu",
+										"description": "Menampilkan Semua Mapel Hari Sabtu",
+										"rowId": `${prefix}sabtu`
 										},
 										{
-											"title": "🗿Photo Oxy Menu",
-										"description": "Menampilkan Menu Photo Oxy",
-										"rowId": `${prefix}photooxymenu`
-										},
-										{
-											"title": "😼Ephoto Menu",
-										"description": "Menampilkan Menu Ephoto",
-										"rowId": `${prefix}ephotomenu`
-										},
-										{
-											"title": "😂Fun Menu",
-										"description": "Menampilkan Menu Lucu",
-										"rowId": `${prefix}funmenu`
-										},
-										{
-											"title": "⛩️Primbon Menu",
-										"description": "Menampilkan Menu Primbon",
-										"rowId": `${prefix}primbonmenu`
-										},
-										{
-											"title": "🎉Convert Menu",
-										"description": "Menampilkan Menu Convert",
-										"rowId": `${prefix}convertmenu`
-										},
-										{
-											"title": "😻Main Menu",
-										"description": "Menampilkan Menu Utama",
-										"rowId": `${prefix}mainmenu`
-										},
-										{
-											"title": "📁Database Menu",
-										"description": "Menampilkan Menu Database",
-										"rowId": `${prefix}databasemenu`
-										},
-										{
-											"title": "👽Anonymous Menu",
-										"description": "Menampilkan Menu Anonymous",
-										"rowId": `${prefix}anonymousmenu`
-										},
-										{
-											"title": "😇Islamic Menu",
-										"description": "Menampilkan Menu Islamic",
-										"rowId": `${prefix}islamicmenu`
-										},
-										{
-											"title": "🔊Voice Changer Menu",
-										"description": "Menampilkan Menu Pengubah Suara",
-										"rowId": `${prefix}voicemenu`
-										},
-										{
-											"title": "🤪Owner Menu",
-										"description": "Menampilkan Menu Khusus Owner",
-										"rowId": `${prefix}ownermenu`
-										}
-										]
-										},
 							{
 								"title": "Jasa Sewa Bot",
 								"rows": [
@@ -3695,16 +3659,6 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 										"title": "🎃Jasa Sewa Bot",
 										"description": "Menampilkan Menu SewaBot",
 										"rowId": `${prefix}sewabot`
-									}
-								]
-							},
-							{
-								"title": "Info Tentang Owner?",
-								"rows": [
-									{
-										"title": "🙀Chat Owner",
-										"description": "Yang Mau Nomer Owner",
-										"rowId": `${prefix}owner`
 									}
 								]
 							},
