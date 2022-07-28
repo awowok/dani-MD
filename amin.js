@@ -1827,14 +1827,15 @@ break
             }
             break
             case 'senin' : {
-            	m.reply('Jam Ke 1 : Character Building (*Gus Anam*)
-Jam Ke 2 : Aswaja (*Pak Sumandi*)
-Jam Ke 3 : Penjas (*Bu Evi*)
-Jam Ke 4 : Penjas (*Bu Evi*)
-Jam Ke 5 : Informatika (*Bu Ana*)
-Jam Ke 6 : Informatika (*Bu Ana*)
-Jam Ke 7 : Ipas IPS (*Bu Aisyiyah*)
-Jam Ke 8 : Ipas IPS (*Bu Aisyiyah*)')
+            	m.reply('Jam Ke 1 : Character Building *Gus Anam*
+Jam Ke 2 : Aswaja *Pak Sumandi*
+Jam Ke 3 : Penjas *Bu Evi*
+Jam Ke 4 : Penjas *Bu Evi*
+Jam Ke 5 : Informatika *Bu Ana*
+Jam Ke 6 : Informatika *Bu Ana*
+Jam Ke 7 : Ipas IPS *Bu Aisyiyah*
+Jam Ke 8 : Ipas IPS *Bu Aisyiyah*')
+            }
             break
             case 'toaud': case 'toaudio': {
             if (!/video/.test(mime) && !/audio/.test(mime)) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan Audio Dengan Caption ${prefix + command}`
