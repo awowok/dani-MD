@@ -87,7 +87,7 @@ const thumb = await reSize(foto, 200, 200)
          
 	//Fake Reply
 	const reply2 = (teks) => {
-hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Asrori Amin`,"body": `Amin Bot`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./lib/Amin.jpg`),"sourceUrl": "https://asroriamin-api.herokuapp.com/"}}}, { quoted: m})
+hisoka.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Asrori Amin`,"body": `Amin Bot`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./lib/Amin.jpg`),"sourceUrl": "https://asroriamin.xyz/"}}}, { quoted: m})
 }
 
 	const reply = (teks) => {
@@ -1567,7 +1567,7 @@ break
              let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -1827,27 +1827,27 @@ break
             }
             break
             case 'senin': {
-                m.reply('Jam Ke 1 : Character Building *Gus Anam*\nJam Ke 2 : Aswaja *Pak Sumandi*\nJam Ke 3 : Penjas *Bu Evi*\nJam Ke 4 : Penjas *Bu Evi*\nJam Ke 5 : Informatika *Bu Ana*\nJam Ke 6 : Informatika *Bu Ana*\nJam Ke 7 : Ipas IPS *Bu Aisyiyah*\nJam Ke 8 : Ipas IPS *Bu Aisyiyah*')
+                reply('Jam Ke 1 : Character Building *Gus Anam*\nJam Ke 2 : Aswaja *Pak Sumandi*\nJam Ke 3 : Penjas *Bu Evi*\nJam Ke 4 : Penjas *Bu Evi*\nJam Ke 5 : Informatika *Bu Ana*\nJam Ke 6 : Informatika *Bu Ana*\nJam Ke 7 : Ipas IPS *Bu Aisyiyah*\nJam Ke 8 : Ipas IPS *Bu Aisyiyah*')
             }
             break
             case 'selasa': {
-                m.reply('Jam Ke 1 : B.Jawa *Pak Syaeful*\nJam Ke 2 : Pkn *Pak Wahyu*\nJam Ke 3 : Seni Rupa *Pak Wahyu*\nJam Ke 4 : Seni Ripa *Pak Wahyu*\nJam Ke 5 : B.Ing *Bu Ami*\nJam Ke 6 : B.Ing *Bu Ami*\nJam Ke 7 : Agama *Pak Ali*\nJam Ke 8 : Agama *Pak Ali*')
+                reply('Jam Ke 1 : B.Jawa *Pak Syaeful*\nJam Ke 2 : Pkn *Pak Wahyu*\nJam Ke 3 : Seni Rupa *Pak Wahyu*\nJam Ke 4 : Seni Ripa *Pak Wahyu*\nJam Ke 5 : B.Ing *Bu Ami*\nJam Ke 6 : B.Ing *Bu Ami*\nJam Ke 7 : Agama *Pak Ali*\nJam Ke 8 : Agama *Pak Ali*')
             }
             break
             case 'rabu': {
-                m.reply('Jam Ke 1 : MTK *Bu Dina*\nJam Ke 2 : MTK *Bu Dina*\nJam Ke 3 : B.indo *Pak Irul*\nJam Ke 4 : B.indo *Pak Irul*\nJam Ke 5 : iPas Kimia *Bu Isma*\nJam Ke 6 : iPas Kimia *Bu Isma*\nJam Ke 7 : Tjkt *Pak Abdilla*\nJam Ke 8 : Tjkt *Pak Abdilla*')
+                reply('Jam Ke 1 : MTK *Bu Dina*\nJam Ke 2 : MTK *Bu Dina*\nJam Ke 3 : B.indo *Pak Irul*\nJam Ke 4 : B.indo *Pak Irul*\nJam Ke 5 : iPas Kimia *Bu Isma*\nJam Ke 6 : iPas Kimia *Bu Isma*\nJam Ke 7 : Tjkt *Pak Abdilla*\nJam Ke 8 : Tjkt *Pak Abdilla*')
             }
             break
             case 'kamis': {
-                m.reply('Jam Ke 1 : B.indo *Pak Irul*\nJam Ke 2 : B.indo *Pak Irul*\nJam Ke 3 : Ipas Fisika *Bu Dina*\nJam Ke 4 : Ipas Fisika *Bu Dina*\nJam Ke 5 : Informatika *Bu Ana*\nJam Ke 6 : informatika *Bu Ana*\nJam Ke 7 : B.jawa *Pak Pak Syaiful*\nJam Ke 8 : Pkn *Pak Wahyu*')
+                reply('Jam Ke 1 : B.indo *Pak Irul*\nJam Ke 2 : B.indo *Pak Irul*\nJam Ke 3 : Ipas Fisika *Bu Dina*\nJam Ke 4 : Ipas Fisika *Bu Dina*\nJam Ke 5 : Informatika *Bu Ana*\nJam Ke 6 : informatika *Bu Ana*\nJam Ke 7 : B.jawa *Pak Pak Syaiful*\nJam Ke 8 : Pkn *Pak Wahyu*')
             }
             break
             case 'jumat': {
-                m.reply('Jam Ke 1 : TJKT *Pak Abdilla*\nJam Ke 2 : TJKT *Pak Abdilla*\nJam Ke 3 : TJKT *Pak Abdilla*\nJam Ke 4 : TJKT *Pak Abdilla*\nJam Ke 5 : Informatika *Pak Ali*')
+                reply('Jam Ke 1 : TJKT *Pak Abdilla*\nJam Ke 2 : TJKT *Pak Abdilla*\nJam Ke 3 : TJKT *Pak Abdilla*\nJam Ke 4 : TJKT *Pak Abdilla*\nJam Ke 5 : Informatika *Pak Ali*')
             }
             break
             case 'sabtu': {
-                m.reply('Jam Ke 1 : B.ing *Bu Amy*\Jam Ke 2 : B.ing *Bu Amy*\nJam Ke 3 : Tjkt *Pak Abdilla*\nJam Ke 4 : Tjkt *Pak Abdilla*\nJam Ke 5 : Sejarah *Bu Evi*\nJam Ke 6 : Sejarah *Bu Evi*\nJam Ke 7 : Mtk *Bu Dina*\nJam Ke 8 : Mtk *Bu Dina*')
+                reply('Jam Ke 1 : B.ing *Bu Amy*\Jam Ke 2 : B.ing *Bu Amy*\nJam Ke 3 : Tjkt *Pak Abdilla*\nJam Ke 4 : Tjkt *Pak Abdilla*\nJam Ke 5 : Sejarah *Bu Evi*\nJam Ke 6 : Sejarah *Bu Evi*\nJam Ke 7 : Mtk *Bu Dina*\nJam Ke 8 : Mtk *Bu Dina*')
             }
             break
             case 'toaud': case 'toaudio': {
@@ -2648,7 +2648,7 @@ break
 	        case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
-                let anu = await fetchJson(`https://asroriamin-api.herokuapp.com/api/dowloader/tikok?url=${text}`)
+                let anu = await fetchJson(`https://asroriamin.xyz/api/dowloader/tikok?url=${text}`)
                 let buttons = [
                     {buttonId: `donasi`, buttonText: {displayText: 'Sewa Bot'}, type: 1},
                     {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
@@ -3248,7 +3248,7 @@ replay('Success in turning off nsfw in this group')
             let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -3526,7 +3526,7 @@ let capt = `⭔ Title: ${judul}
             let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -3623,32 +3623,32 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 								"rows": [
 									{
 										"title": "Senin",
-										"description": "",
+										"description": "Menampilkan Semua Mapel Hari Senin",
 										"rowId": `${prefix}senin`
 									},
 									{
 										"title": "Selasa",
-										"description": "",
+										"description": "Menampilkan Semua Mapel Hari Selasa",
 										"rowId": `${prefix}selasa`
 									},
 										{
 										"title": "Rabu",
-										"description": "",
+										"description": "Menampilkan Semua Mapel Hari Rabu",
 										"rowId": `${prefix}rabu`
 									},
 									{
 										"title": "Kamis",
-										"description": "",
+										"description": "Menampilkan Semua Mapel Hari Kamis",
 										"rowId": `${prefix}kamis`
 										},
 										{
 											"title": "Jumat",
-										"description": "",
+										"description": "Menampilkan Semua Mapel Hari Jumat",
 										"rowId": `${prefix}jumat`
 										},
 											{
 											"title": "Sabtu",
-										"description": "",
+										"description": "Menampilkan Semua Mapel Hari Sabtu",
 										"rowId": `${prefix}sabtu`
 										},
 										]
@@ -3657,7 +3657,7 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 								"title": "Jasa Sewa Bot",
 								"rows": [
 									{
-										"title": "🎃Jasa Sewa Bot",
+										"title": "Jasa Sewa Bot",
 										"description": "Menampilkan Menu SewaBot",
 										"rowId": `${prefix}sewabot`
 									}
@@ -3667,7 +3667,7 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 								"title": "Info Tentang Owner?",
 								"rows": [
 									{
-										"title": "🙀Chat Owner",
+										"title": "Chat Owner",
 										"description": "Yang Mau Nomer Owner",
 										"rowId": `${prefix}owner`
 									}
@@ -3677,7 +3677,7 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 								"title": "Thanks To",
 								"rows": [
 									{
-										"title": "😇Contributor",
+										"title": "Contributor",
 										"description": "Menampilkan Orang Yang Ngembangin AminBot",
 										"rowId": `${prefix}thanksto`
 									}
@@ -4128,7 +4128,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
                 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -4205,7 +4205,7 @@ Bot Ini Di Buat Oleh *Asrori Amin*
                 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -4278,7 +4278,7 @@ case 'downloadmenu': {
          let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -4346,7 +4346,7 @@ case 'searchmenu': {
        let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -4541,7 +4541,7 @@ case 'textpromenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -4611,7 +4611,7 @@ case 'photooxymenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -4678,7 +4678,7 @@ case 'ephotomenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -4761,7 +4761,7 @@ case 'funmenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -4849,7 +4849,7 @@ case 'primbonmenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -4923,7 +4923,7 @@ case 'convertmenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -4993,7 +4993,7 @@ case 'mainmenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -5059,7 +5059,7 @@ case 'databasemenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -5122,7 +5122,7 @@ case 'anonymousmenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -5185,7 +5185,7 @@ case 'islamicmenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -5254,7 +5254,7 @@ case 'voicechangermenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -5323,7 +5323,7 @@ case 'ownermenu': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
@@ -5368,12 +5368,13 @@ case 'thanksto': {
 │⭔ Allah Swt
 │⭔ Ortu Saya
 │⭔ Dika Ardnt (Pemilik Base)
+│⭔ Ella
 │⭔ RzkiUhuy
 │⭔ Dani Md
 │⭔ Putraa
 │⭔ Nisaa
 │⭔ Inuuu
-│⭔ Dimas
+│⭔ Banh Dims
 │⭔ Saad Bn
 │⭔ Denpa
 │⭔ Raisya Ronove
@@ -5390,7 +5391,7 @@ case 'thanksto': {
 let btn = [{
                                 urlButton: {
                                     displayText: 'Website',
-                                    url: 'https://asroriamin-api.herokuapp.com/'
+                                    url: 'https://asroriamin.xyz/'
                                 }
                             }, {
                                 urlButton: {
