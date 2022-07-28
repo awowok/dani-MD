@@ -1604,7 +1604,7 @@ break
                         }
                      }
             break
-            case prefix+'bc':{
+            case 'bc':{
             if (!isCreator && !fromMe) return reply(mess.OnlyOwner)
             if (args.length < 2) return reply(`Gunakan dengan cara ${command} *teks*\n\n_Contoh_\n\n${command} Amin Ganteng`)
             var bece = await store.chats.all()
@@ -1616,7 +1616,7 @@ break
             reply(`Successfully sent a broadcast message to ${bece.length} chat`)
             }
             break
-            case prefix+'bcm': case prefix+'bcmedia':{
+            case 'bcm': case 'bcmedia':{
 if (!isCreator) return m.reply(mess.owner)
 if (!m.quoted) return m.reply(`*Reply Media Dengan Kunci ${command} video|teks\n\nList:\n\n1. video\n2. image\n3. videotag\n4. imagetag\n5. butvd\n6. butima*`)
 let getGroups = await hisoka.groupFetchAllParticipating()
@@ -2798,7 +2798,7 @@ case 'list':
             }
             hisoka.sendMessage(m.chat, listMsg)
             break
-        case prefix+'addlist':
+        case 'addlist':
             if (!m.isGroup) return replay(mess.group)
             if (!isAdmins && !isCreator) return replay(mess.admin)
             var args1 = q.split("@")[0]
@@ -2823,7 +2823,7 @@ case 'list':
                 m.reply(`Sukses set list message dengan key : *${args1}*`)
             }
             break
-        case prefix+'dellist':
+        case 'dellist':
             if (!m.isGroup) return replay(mess.group)
             if (!isAdmins && !isCreator) return replay(mess.admin)
             if (db_respon_list.length === 0) return m.reply(`Belum ada list message di database`)
@@ -2832,7 +2832,7 @@ case 'list':
             delResponList(from, q, db_respon_list)
             m.reply(`Sukses delete list message dengan key *${q}*`)
             break
-        case prefix+'updatelist': case prefix+'update':
+        case 'updatelist': case prefixl+'update':
             if (!m.isGroup) return replay(mess.group)
             if (!isAdmins && !isCreator) return replay(mess.admin)
             var args1 = q.split("@")[0]
