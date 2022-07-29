@@ -586,7 +586,11 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             }
             }
             break
-	    case 'donasi': case 'sewabot': case 'sewa': case 'buypremium': case 'donate': {
+	        case 'fotomapel': {
+                hisoka.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/9db98adcb977c640887d4.jpg' }, caption: `*Hai Kak ${m.pushName}*\n\n Ini Adalah Pelajaran Kelas 10A TJKT SMK ASSYIDIYAH KUDUS` }, { quoted: m })
+            }
+            break
+            case 'donasi': case 'sewabot': case 'sewa': case 'buypremium': case 'donate': {
                 hisoka.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/42f3bc85dfaf730523886.jpg' }, caption: `*Hai Kak ${m.pushName}*\n\n Bot Rental Prices\n⭔ 5k Per Group via Gopay\n\n Premium Price Bot\n⭔ 8k per User 1 bulan\n\nPayment can be via Paypal/link aja/pulsa\n\nFor more details, you can chat with the owner\nhttps://wa.me/6288227248988 (Owner)\n\nDonate For Me : \n\n⭔ Gopay : 088227248988` }, { quoted: m })
             }
             break
@@ -787,7 +791,6 @@ hisoka.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${sange
       case 'behenchod':
       case 'behnchoda':
       case 'bhosdika':
-      case 'bc':
       case 'nerd':
       case 'mc':
       case 'bsdk':
@@ -1610,7 +1613,7 @@ break
                 var data = await store.chats.all()
                 for (let i of data) {
                     let bc = [ { buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }, { buttonId: `donasi`, buttonText: { displayText: 'Sewa Bot' }, type: 1 } ]
-                    hisoka.sendMessage(i.id, { text: `${q}`, buttons: bc, footer: 'Asrori Amin' })
+                    hisoka.sendMessage(i.id, { text: `${q}`, buttons: bc, footer: 'Asrori Amin', mentions: participants.map(a => a.id)})
                     await sleep(1000)
                 }
                     reply(`Successfully Sending Broadcast`)
@@ -3654,12 +3657,12 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 										]
 										},
 							{
-								"title": "Jasa Sewa Bot",
+								"title": "FOTO MAPEL?",
 								"rows": [
 									{
-										"title": "Jasa Sewa Bot",
-										"description": "Menampilkan Menu SewaBot",
-										"rowId": `${prefix}sewabot`
+										"title": "10 A",
+										"description": "Menampilkan Foto Mapel Kelas 10 A",
+										"rowId": `${prefix}fotomapel`
 									}
 								]
 							},
