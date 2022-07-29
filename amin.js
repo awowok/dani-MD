@@ -1611,9 +1611,11 @@ break
                 if (!isCreator) return reply(mess.OnlyOwner)
                 if (args.length < 2) return reply(`Masukkan isi pesannya`)
                 var data = await store.chats.all()
+                var b = await hisoka.groupMetadata(m.chat)
+                var d = b.participants.map(v => v.id)
                 for (let i of data) {
                     let bc = [ { buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }, { buttonId: `donasi`, buttonText: { displayText: 'Sewa Bot' }, type: 1 } ]
-                    hisoka.sendMessage(i.id, { text: `${q}`, buttons: bc, footer: 'Asrori Amin', mentions: participants.map(a => a.id)})
+                    hisoka.sendMessage(i.id, { text: `${q}`, buttons: bc, footer: 'Asrori Amin', mentions: d})
                     await sleep(1000)
                 }
                     reply(`Successfully Sending Broadcast`)
